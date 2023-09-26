@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_header_nav_nav_items",
+  "info": {
+    "displayName": "navItems"
+  },
+  "options": {},
+  "attributes": {
+    "itemText": {
+      "type": "string",
+      "required": true
+    },
+    "itemUrl": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

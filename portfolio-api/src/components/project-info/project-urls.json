@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_project_info_project_urls",
+  "info": {
+    "displayName": "projectUrls",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "liveSiteUrl": {
+      "type": "string"
+    },
+    "githubUrl": {
+      "type": "string"
+    },
+    "designFileUrl": {
+      "type": "string"
+    }
+  }
+}

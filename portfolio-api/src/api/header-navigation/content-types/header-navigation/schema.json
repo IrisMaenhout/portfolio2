@@ -1,0 +1,27 @@
+{
+  "kind": "singleType",
+  "collectionName": "header_navigations",
+  "info": {
+    "singularName": "header-navigation",
+    "pluralName": "header-navigations",
+    "displayName": "headerNavigation"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "logoSite": {
+      "displayName": "logoSite",
+      "type": "component",
+      "repeatable": false,
+      "component": "header-nav.logo-site"
+    },
+    "navItems": {
+      "displayName": "navItems",
+      "type": "component",
+      "repeatable": true,
+      "component": "header-nav.nav-items"
+    }
+  }
+}

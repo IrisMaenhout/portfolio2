@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_header_nav_logo_sites",
+  "info": {
+    "displayName": "logoSite"
+  },
+  "options": {},
+  "attributes": {
+    "logoImg": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "logoText": {
+      "type": "string"
+    }
+  }
+}

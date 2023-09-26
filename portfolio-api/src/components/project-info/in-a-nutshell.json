@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_project_info_in_a_nutshells",
+  "info": {
+    "displayName": "inANutshell",
+    "icon": "information"
+  },
+  "options": {},
+  "attributes": {
+    "theChallenge": {
+      "type": "richtext"
+    },
+    "theSolution": {
+      "type": "richtext"
+    },
+    "theResult": {
+      "type": "richtext"
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_project_info_files",
+  "info": {
+    "displayName": "files",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "videos": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "videos"
+      ]
+    },
+    "images": {
+      "displayName": "Images",
+      "type": "component",
+      "repeatable": true,
+      "component": "project-info.images"
+    }
+  }
+}

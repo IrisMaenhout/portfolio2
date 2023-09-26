@@ -1,0 +1,52 @@
+{
+  "kind": "singleType",
+  "collectionName": "personal_infos",
+  "info": {
+    "singularName": "personal-info",
+    "pluralName": "personal-infos",
+    "displayName": "personalInfo",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "introduction": {
+      "type": "richtext"
+    },
+    "cv": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    },
+    "fullName": {
+      "type": "string",
+      "required": true,
+      "default": "Iris Maenhout"
+    },
+    "contactInfo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "personal-info.contact-info"
+    },
+    "jobTitles": {
+      "type": "customField",
+      "options": [
+        "UX/UI designer",
+        "UI designer",
+        "Front-end developer",
+        "Back-end developer",
+        "Full-stack developer",
+        "Webdeveloper",
+        "Webdesigner",
+        "Game developer"
+      ],
+      "customField": "plugin::multi-select.multi-select"
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_project_info_processes",
+  "info": {
+    "displayName": "process",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "process": {
+      "type": "richtext"
+    }
+  }
+}

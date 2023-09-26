@@ -1,0 +1,19 @@
+body{
+  background-color: #EBDCD7;
+}
+
+
+.gradient-text {
+  background: -webkit-linear-gradient(45deg, #b77ae6, #de9475);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+
+.background-gradient-top-page{
+  background: -webkit-linear-gradient(185deg, #E7D4B7, #E9D9D4, #F4EBE3);
+  height: 100vh;
+  width: 100%;
+  position: absolute;
+  z-index: -10;
+}

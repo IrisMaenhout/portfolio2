@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_personal_info_contact_infos",
+  "info": {
+    "displayName": "contactInfo",
+    "icon": "phone",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "email": {
+      "type": "email",
+      "required": true
+    },
+    "phoneNr": {
+      "type": "biginteger"
+    },
+    "githubUrl": {
+      "type": "string"
+    },
+    "linkedInUrl": {
+      "type": "string"
+    }
+  }
+}

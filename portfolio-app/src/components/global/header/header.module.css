@@ -1,0 +1,109 @@
+/* ___________ Mobile view __________________ */
+header {
+    padding: 1em 10%;
+    background-color: rgba(255, 255, 255, 0.4);
+    position: sticky;
+    width: 100%;
+    top: 0;
+    box-sizing: border-box;
+    z-index: 10;
+}
+
+header nav {
+    height: 100vh;
+    margin-top: 2em;
+}
+
+nav ul{
+    display: flex;
+    gap: 2rem;
+    flex-direction: column;
+    padding: 0;
+}
+
+nav ul li{
+    list-style: none;
+}
+
+header a{
+    text-decoration: none;
+    color: #70605b;
+}
+
+header .logo{
+    color: #D2987E;
+    margin: 0.5em 0;
+}
+
+header a:hover{
+    color: #9A7AB3;
+}
+
+
+header i{
+    font-size: x-large;
+}
+
+.selected{
+    color: #9A7AB3;
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 0.5em 1em;
+    border-radius: 0.5em;
+    width: 100%;
+}
+
+header .hide{
+    display: none;
+    height: fit-content;
+}
+
+header div:first-of-type{
+    display: flex;
+    gap: 2em;
+}
+
+
+.hamburgerMenu{
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #D2987E;
+    transition: ease-in-out 300ms;
+}
+
+.hamburgerMenu:hover i{
+    font-size: 2em;
+    
+}
+
+
+/* _______________________ Desktop view _________________ */
+@media screen and (min-width: 600px) {
+    
+    header {
+        padding: 1em 5%;
+        display: flex;
+        justify-content: space-between;
+        align-Items: center;
+    
+    }
+
+    header nav{
+        height: fit-content;
+        margin: 0;
+    }
+
+    nav ul{
+        flex-direction: row;
+        gap: 3em;
+    }
+
+    .selected{
+        width: fit-content;
+
+    }
+
+    .hamburgerMenu{
+        display: none;
+    }
+  }
