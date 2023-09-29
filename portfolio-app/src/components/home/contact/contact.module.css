@@ -1,0 +1,32 @@
+.flexContainer img{
+    display: none;
+}
+
+
+@media screen and (min-width: 600px) {
+    .flexContainer{
+        display: flex;
+        gap: 4em;
+    }
+
+    .flexContainer img{
+        display: block;
+        width: 100%;
+        height: 15.5em;
+        object-fit: cover;
+        object-position: center;
+        border-radius: 0.5em;
+    }
+
+    .contactCard{
+        width: 60%;
+    }
+
+    .imgContainer{
+        width: 35%;
+    }
+
+
+
+    
+}

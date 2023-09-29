@@ -1,0 +1,69 @@
+.card{
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    background-color: #ffffffa7;
+    padding: 1.5em;
+    padding-bottom: 3em;
+    border-radius: 0.5em;
+
+}
+
+.socialMedia{
+    background-color: #F3DCD5;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 2em;
+    /* width: fit-content; */
+    padding: 1em 1.5em;
+    border-radius: 0.5rem;
+}
+.socialMedia a{
+    text-decoration: none;
+}
+
+.socialMedia i{
+    font-size: x-large;
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: #B499C8;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    transition: 0.2s ease-in-out;
+    
+}
+
+.socialMedia i:hover{
+    background-color: #9c7db3;
+    font-size: xx-large;
+}
+
+.contactInfo h4, .contactInfo a{
+    color: #806E68;
+}
+
+.contactInfo h4{
+    margin-bottom: 0.5em;
+}
+
+.contactInfo div:first-of-type{
+    margin-bottom: 3em;
+}
+
+
+@media screen and (min-width: 600px) {
+    
+    .card{
+        flex-direction: row;
+        padding: 1em;
+    }
+
+    .socialMedia{
+        flex-direction: column;
+        width: fit-content;
+    }
+  }

@@ -21,7 +21,6 @@ function Header() {
     }
 
     function handleHover() {
-        console.log('hover')
         setMobileActions(prevMobileActions => {
             return {
                     ...prevMobileActions,
@@ -50,7 +49,7 @@ function Header() {
             <nav className={!mobileActions.isNavOpen ? styles.hide : undefined}>
                 <ul>
                     <li>
-                        <Link className="hover:text-primair-blue" to={'/introductie'}>Introductie</Link>
+                        <Link to={'/introductie'}>Introductie</Link>
                     </li>
 
                     <li>
@@ -58,7 +57,7 @@ function Header() {
                     </li>
 
                     <li>
-                        <Link className="hover:text-primair-blue" to={'/contact'}>Contact</Link>
+                        <Link to={'/contact'}>Contact</Link>
                     </li>
 
                     <li>

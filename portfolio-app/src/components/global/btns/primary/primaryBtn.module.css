@@ -1,0 +1,9 @@
+.primaryBtn{
+    background-color: #B499C8;
+    color: white;
+    border-radius: 0.5rem;
+    border: none;
+    padding: 1rem 2rem;
+    cursor: pointer;
+    font-size: medium;
+}

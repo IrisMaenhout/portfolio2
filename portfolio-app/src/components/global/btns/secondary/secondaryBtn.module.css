@@ -1,0 +1,9 @@
+.secondaryBtn{
+    /* background-color: #B499C8; */
+    color: #82B3A9;
+    border-radius: 0.5rem;
+    border: 1px solid #82B3A9;
+    padding: 1rem 2rem;
+    text-decoration: none;
+    font-size: medium;
+}
