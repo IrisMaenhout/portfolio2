@@ -787,6 +787,7 @@ export interface ApiProjectProject extends Schema.CollectionType {
       'api::project-category.project-category'
     >;
     inANutshell: Attribute.Component<'project-info.in-a-nutshell'>;
+    slug: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

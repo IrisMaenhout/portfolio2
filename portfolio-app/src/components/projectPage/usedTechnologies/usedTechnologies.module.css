@@ -1,0 +1,115 @@
+/* Closed used technologies */
+
+.clossedTechnologiesContainer{
+    background-color: #FFFFFF99;
+    border-radius: 1em;
+    padding: 1.5em;
+    margin-bottom: 4em;
+}
+
+.clossedTechnologiesContainer .openBtn{
+    width: 100%;
+}
+
+.clossedTechnologiesContainer div{
+    display: flex;
+    align-items: center;
+    gap: 2em;
+    margin-bottom: 2em;
+}
+
+.clossedTechnologiesContainer div p{
+    margin: 0;
+}
+
+.clossedTechnologiesContainer div i{
+    font-size: xx-large;
+}
+
+/* Open used technologies */
+
+.openTechnologiesContainer{
+    background-color: #FFFFFF99;
+    border-radius: 1em;
+    padding: 1.5em;
+    margin-bottom: 4em;
+}
+
+.openTechnologiesContainer .topContainer{
+    display: flex;
+    justify-content: space-between;
+    gap: 2em;
+}
+
+.openTechnologiesContainer .topContainer h2{
+    margin: 0;
+    font-size: large;
+}
+
+.openTechnologiesContainer .topContainer button{
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: x-large;
+}
+
+.openTechnologiesContainer .topContainer button:hover{
+    background: -webkit-linear-gradient(45deg, #b77ae6, #de9475);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    width: fit-content;
+    transition: 50ms ease-in-out;
+}
+
+.technologiesContainer{
+    margin-top: 3em;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}
+
+.technologiesContainer img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0.5em;
+}
+
+@media screen and (min-width: 600px) {
+
+    /* Closed used technologies */
+
+    .clossedTechnologiesContainer{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 80%;
+        margin: 0 auto;
+        margin-bottom: 4em;
+    }
+
+    .clossedTechnologiesContainer .openBtn{
+        width: fit-content;
+    }
+
+    .clossedTechnologiesContainer div{
+        margin-bottom: 0;
+    }
+
+
+    /* Open used technologies */
+
+    .openTechnologiesContainer .topContainer h2{
+        font-size: x-large;
+    }
+
+    .technologiesContainer{
+        margin-top: 3em;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+
+    .openTechnologiesContainer .topContainer button{
+        font-size: xx-large;
+    }
+}

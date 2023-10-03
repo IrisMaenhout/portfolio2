@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_project_info_in_a_nutshell_bulletpoints",
+  "info": {
+    "displayName": "inANutshellBulletpoint",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "bulletpoint": {
+      "type": "string"
+    }
+  }
+}

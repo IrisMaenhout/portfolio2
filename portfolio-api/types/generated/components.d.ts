@@ -73,16 +73,36 @@ export interface ProjectInfoImages extends Schema.Component {
   };
 }
 
+export interface ProjectInfoInANutshellBulletpoint extends Schema.Component {
+  collectionName: 'components_project_info_in_a_nutshell_bulletpoints';
+  info: {
+    displayName: 'inANutshellBulletpoint';
+    description: '';
+  };
+  attributes: {
+    bulletpoint: Attribute.String;
+  };
+}
+
 export interface ProjectInfoInANutshell extends Schema.Component {
   collectionName: 'components_project_info_in_a_nutshells';
   info: {
     displayName: 'inANutshell';
     icon: 'information';
+    description: '';
   };
   attributes: {
     theChallenge: Attribute.RichText;
     theSolution: Attribute.RichText;
     theResult: Attribute.RichText;
+    challengeBulletPoint: Attribute.Component<
+      'project-info.in-a-nutshell-bulletpoint',
+      true
+    >;
+    solutionBulletpoint: Attribute.Component<
+      'project-info.in-a-nutshell-bulletpoint',
+      true
+    >;
   };
 }
 
@@ -119,6 +139,7 @@ declare module '@strapi/strapi' {
       'project-info.description': ProjectInfoDescription;
       'project-info.files': ProjectInfoFiles;
       'project-info.images': ProjectInfoImages;
+      'project-info.in-a-nutshell-bulletpoint': ProjectInfoInANutshellBulletpoint;
       'project-info.in-a-nutshell': ProjectInfoInANutshell;
       'project-info.process': ProjectInfoProcess;
       'project-info.project-urls': ProjectInfoProjectUrls;

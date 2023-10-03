@@ -58,6 +58,9 @@
       "type": "component",
       "repeatable": false,
       "component": "project-info.in-a-nutshell"
+    },
+    "slug": {
+      "type": "string"
     }
   }
 }

@@ -8,20 +8,28 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Header from './components/global/header/Header';
 import Home from './pages/home/Home';
 import Footer from './components/global/footer/Footer';
+import ProjectDetail from './pages/projectDetail/ProjectDetail';
+import ScrollToTop from './components/global/scrollToTop/ScrollToTop';
 
 
 function App() {
   return (
     <BrowserRouter>
-      <div className='background-gradient-top-page'></div>
-      <Header/>
+      <ScrollToTop>
+        <div className='gradients'>
+          <div div className='background-gradient-top-page'></div>
+          <div className='background-gradient-2'></div>
+        </div>
+        <Header/>
 
-      <Routes>
-        <Route path='/' element={<Home />}/>
+        <Routes>
+          <Route path='/' element={<Home />}/>
+          <Route path='/project-detail' element={<ProjectDetail />}/>
 
-      </Routes>
+        </Routes>
 
-      <Footer /> 
+        <Footer /> 
+      </ScrollToTop>
 
     </BrowserRouter>
   );

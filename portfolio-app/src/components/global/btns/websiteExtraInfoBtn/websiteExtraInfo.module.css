@@ -1,0 +1,39 @@
+@import url('https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css');
+@import url('https://cdn-uicons.flaticon.com/uicons-regular-straight/css/uicons-regular-straight.css');
+
+.externalLink{
+    background-color: #F3DCD5;
+    border: 2px solid #9A7AB3;
+    cursor: pointer;
+    padding: 1em;
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    align-items: center;
+    border-radius: 0.5em;
+
+}
+
+.externalLink i{
+    font-size: xx-large;
+}
+
+.externalLink i, .externalLink p{
+    color: #9A7AB3;
+    font-weight: bolder;
+}
+
+.externalLink p{
+    margin: 0;
+}
+
+@media screen and (min-width: 600px){
+    .externalLink{
+        min-width: 6em;
+        min-height: 8em;
+        width: fit-content;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}

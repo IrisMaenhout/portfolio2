@@ -1,0 +1,85 @@
+.shortOverview{
+    background-image: linear-gradient(to right bottom, #84ada5, #8eb7ad, #97c0b4, #a2cabc, #acd4c3);
+    padding: 2em;
+    border-radius: 1em;
+}
+
+.shortOverview h2, .shortOverview p {
+    color: white;
+}
+
+.shortOverview h2{
+    margin-bottom: 2em;
+}
+
+.shortOverview h4, .bulletPoint i {
+    color: #FDD2C5;
+    margin: 0;
+}
+
+.shortOverview h4{
+    text-transform: uppercase;
+    font-size: small;
+}
+
+.shortOverview p{
+    margin: 0;
+}
+
+.bulletPoint{
+    display: flex;
+    gap: 2em;
+    align-items: center;
+}
+
+.bulletPoint i{
+    font-size: xx-large;
+}
+
+.bulletPoint+.bulletPoint{
+    margin-top: 0.5em;
+}
+
+.sildeInfoContainer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 3em;
+}
+
+.circlesContainer{
+    display: flex;
+    gap: 0.5em;
+}
+
+.circle{
+    border: 1.5px solid white;
+    border-radius: 100%;
+    width: 1em;
+    height: 1em;
+}
+
+.selectedCircle{
+    border: 3px solid white;
+}
+
+.arrowBtns{
+    display: flex;
+    gap: 2em;
+}
+
+.arrowBtns button{
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.arrowBtns i{
+    font-size: x-large;
+    color: white;
+}
+
+.arrowBtns button:hover i{
+    color: #7aa89e;
+}
+
