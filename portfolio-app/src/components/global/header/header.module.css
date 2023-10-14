@@ -1,7 +1,7 @@
 /* ___________ Mobile view __________________ */
 header {
     padding: 1em 10%;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(120px);
     position: sticky;
     width: 100%;

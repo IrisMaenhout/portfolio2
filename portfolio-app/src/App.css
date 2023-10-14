@@ -41,7 +41,7 @@ h1, h2, h3, h4, h5, h6{
 .background-gradient-2{
   height: 100vh; 
   background-color: #b77ae6;
-  background-image: linear-gradient(to left bottom, #ebdad2, #edded6, #efe3da, #f2e7df, #f4ebe3);
+  background-image: linear-gradient(to left bottom, #EBDDD7, #edded6, #f4ebe3, #f4ebe3, #f4ebe3);
 }
 
 .container{

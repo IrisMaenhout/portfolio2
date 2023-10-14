@@ -55,8 +55,8 @@
 .circle{
     border: 1.5px solid white;
     border-radius: 100%;
-    width: 1em;
-    height: 1em;
+    width: 0.5em;
+    height: 0.5em;
 }
 
 .selectedCircle{
@@ -75,7 +75,7 @@
 }
 
 .arrowBtns i{
-    font-size: x-large;
+    font-size: large;
     color: white;
 }
 
@@ -83,3 +83,21 @@
     color: #7aa89e;
 }
 
+
+
+@media screen and (min-width: 600px) {
+    .shortOverview{
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    
+    .circle{
+        width: 0.8em;
+        height: 0.8em;
+    }
+
+    .arrowBtns i{
+        font-size: x-large;
+    }
+}

@@ -18,3 +18,19 @@
     font-size: large;
     margin-right: 1em;
 }
+
+.btn:hover{
+    background-color: #dbe9e2;
+}
+
+.btn:hover span, .btn:hover i{
+    color: #82B3A9;
+}
+
+.selected span, .selected i{
+    color: white;
+}
+
+.selected{
+    background-color: #82B3A9;
+}

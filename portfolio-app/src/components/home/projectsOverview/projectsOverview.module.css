@@ -24,11 +24,42 @@
         width: 100%;
     }
     
-    .small{
+    /* .small{
         grid-column: span 4;
     }
     
     .large{
         grid-column: span 8;
-    }
+    } */
   }
+
+
+  @media screen and (min-width: 600px) {
+
+  
+    .smallHorizontal{
+        grid-column: span 5 / auto;
+        /* will-change: transform;
+        transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1); */
+    }
+  
+    .mediumHorizontal{
+        grid-column: span 8 / auto;
+        /* will-change: transform;
+        transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1); */
+    }
+  
+    .miniVertical{
+        grid-column: span 3 / auto;
+    }
+  
+    .smallVertical{
+        grid-column: span 4 / auto;
+    }
+  
+    .mediumVertical{
+        grid-column: span 6 / auto;
+    }
+  
+  
+}
