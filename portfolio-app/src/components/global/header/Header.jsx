@@ -40,7 +40,7 @@ function Header() {
 
                 {/* LOGO */}
                 <Link to={'/'} className=''>
-                    <h2 className={styles.logo}>Logo</h2>
+                    <h4 className={styles.logo}>Iris Maenhout</h4>
                 </Link>
             </div>
                 

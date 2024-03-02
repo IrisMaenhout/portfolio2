@@ -2,37 +2,49 @@
     display: flex;
     justify-content: space-between;
     margin-top: 4em;
-    padding-top: 2em;
-    border-top: 2px solid #ba9a8c56;
+    padding: 3em 0;
+    /* border-bottom: 2px solid rgba(54, 49, 200, 0.6); */
 }
 
 .flexContainer a{
     display: block;
     text-decoration: none;
-    background-color: #F3DCD5;
+    background-color: rgba(42, 40, 105, 0.6);
     border-radius: 0.5em;
-    padding: 0.5em 1em;
-    border: 1px solid #9A7AB3;
+    padding: 1em;
+    padding-bottom: -0.5em;
+    /* border: 1px solid #9A7AB3; */
     transition: 0.2s ease-in-out;
 }
 
 .flexContainer a:hover{
     transform: scale(1.1);
-    background-color: #9A7AB3;
 }
 
-.flexContainer a:hover i{
-    color: #F3DCD5;
+.flexContainer a:hover h3, .flexContainer a:hover i{
+    color: #51D6AF;
 }
 
 .arrow i{
     color: #9A7AB3;
-    font-size: xx-large;
-    font-weight: 800;
+    font-size: 48px;
 }
 
 .text{
     display: none;
+}
+
+.text h3{
+    text-transform: none;
+}
+
+
+.text p{
+    color: #FFA6FF;
+}
+
+.alignRight{
+    text-align: right;
 }
 
 @media screen and (min-width: 600px) {
@@ -51,12 +63,6 @@
     .flexContainer a:hover{
         transform: scale(1.1);
         background: none;
-    }
-
-    .flexContainer a:hover i, .flexContainer a:hover h3{
-        color: #bca1d1;
-        -webkit-text-stroke-width: 1px;
-        -webkit-text-stroke-color: #715985;
     }
 
     .text{

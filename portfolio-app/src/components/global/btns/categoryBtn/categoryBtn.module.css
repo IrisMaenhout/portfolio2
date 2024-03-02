@@ -1,36 +1,21 @@
 .btn{
-    color: #82B3A9;
+    color: #51D6AF;
     border-radius: 0.5rem;
-    border: 1.5px solid #82B3A9;
-    padding: 1rem 2rem;
+    border: 2px solid #51D6AF;
+    padding: 0.5rem 1rem;
     text-decoration: none;
     display: block;
+    text-transform: uppercase;
 }
 
-.btn span, .btn i{
-    color: #82B3A9;
-}
-
-.btn span{
-    font-size: medium;
-}
-.btn i{
-    font-size: large;
-    margin-right: 1em;
-}
 
 .btn:hover{
-    background-color: #dbe9e2;
+    background-color: #1a0334;
+    scale: 1.1;
 }
 
-.btn:hover span, .btn:hover i{
-    color: #82B3A9;
-}
-
-.selected span, .selected i{
-    color: white;
-}
 
 .selected{
-    background-color: #82B3A9;
+    background-color: #51D6AF;
+    color: #0C0118;
 }

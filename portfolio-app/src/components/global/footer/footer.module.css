@@ -1,8 +1,14 @@
-.footer{
+/* .footer{
     background-color: #ffffffa7;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 1em;
     margin-top: 6em;
+} */
+
+.footer{
+    margin: 0 10%;
+    padding: 2em 0;
+    border-top: 2px solid rgba(54, 49, 200, 0.6);
 }

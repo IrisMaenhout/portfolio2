@@ -1,20 +1,22 @@
 .shortOverview{
-    background-image: linear-gradient(to right bottom, #84ada5, #8eb7ad, #97c0b4, #a2cabc, #acd4c3);
+    background-image: linear-gradient(to right bottom, #180D2E, rgba(74, 34, 106, 0.6));
     padding: 2em;
     border-radius: 1em;
 }
 
-.shortOverview h2, .shortOverview p {
-    color: white;
+.shortOverview p {
+    color: #EAE5F1;
 }
 
 .shortOverview h2{
-    margin-bottom: 2em;
+    margin-bottom: 1em;
+    margin-top: .5em;
+    text-transform: none;
 }
 
-.shortOverview h4, .bulletPoint i {
-    color: #FDD2C5;
+.shortOverview h5, .bulletPoint i {
     margin: 0;
+    color: #FFA6FF;
 }
 
 .shortOverview h4{
@@ -53,14 +55,14 @@
 }
 
 .circle{
-    border: 1.5px solid white;
+    border: 1.5px solid #EAE5F1;
     border-radius: 100%;
     width: 0.5em;
     height: 0.5em;
 }
 
 .selectedCircle{
-    border: 3px solid white;
+    border: 3px solid #EAE5F1;
 }
 
 .arrowBtns{
@@ -76,18 +78,20 @@
 
 .arrowBtns i{
     font-size: large;
-    color: white;
+    color: #EAE5F1;
 }
 
 .arrowBtns button:hover i{
-    color: #7aa89e;
+    color: #FFA6FF;
+    scale: 1.4;
+    transition: 0.3s ease-in-out;
 }
 
 
 
 @media screen and (min-width: 600px) {
     .shortOverview{
-        width: 80%;
+        width: 100%;
         margin: 0 auto;
     }
 

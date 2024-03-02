@@ -25,7 +25,7 @@ function UsedTechnologies({usedTechnologiesArray}) {
         return (
             <div className={styles.openTechnologiesContainer}>
                 <div className={styles.topContainer}>
-                    <h2 className='title'>Overzicht van alle gebruikte technologieën</h2>
+                    <h2 className='gradientText'>Overzicht van alle gebruikte technologieën</h2>
 
                     <button onClick={toggleIsOpen}>
                         <i className="fa-solid fa-xmark"></i>
@@ -38,7 +38,7 @@ function UsedTechnologies({usedTechnologiesArray}) {
                         usedTechnologiesArray.map((image, index) => (
                             <div
                               key={index}
-                              className={`${styles.technology}`}
+                              className={styles.technology}
                             >
                               <img src={image} alt={`name`} />
                             </div>

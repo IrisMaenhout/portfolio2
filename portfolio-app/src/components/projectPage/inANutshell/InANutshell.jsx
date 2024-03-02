@@ -4,9 +4,9 @@ import styles from './inANutshell.module.css';
 function InANutshell(props) {
     return (
         <div className={styles.shortOverview}>
-            <h4 className={styles.smallTitle}>In a nutshell</h4>
+            <h5 className={styles.smallTitle}>In a nutshell</h5>
 
-            <h2>De uitdaging</h2>
+            <h2 className='gradientText'>De uitdaging</h2>
 
             <div>
                 <div className={styles.bulletPoint}>

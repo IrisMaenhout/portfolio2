@@ -11,10 +11,10 @@ img, video{
 
 }
 
-.topInfo h1{
+/* .topInfo h1{
     margin-bottom: 1em;
     font-size: 42px;
-}
+} */
 
 .categories{
     display: flex;
@@ -35,6 +35,7 @@ img, video{
     flex-direction: column;
     gap: 2em;
     margin-bottom: 6em;
+    margin-top: 8em;
 }
 
 .devicesImagesContainer img{
@@ -48,7 +49,7 @@ img, video{
     display: flex;
     flex-direction: column;
     gap: 2em;
-    margin: 4em 0;
+    margin: 6em 0;
 }
 
 /* ____________ Grid images / video's */
@@ -95,7 +96,7 @@ img, video{
         flex-direction: row;
         width: 50%;
         justify-content: space-around;
-        margin: 4em auto;
+        margin: 6em auto;
     }
 
     .imagesContainer{

@@ -1,9 +1,18 @@
 .primaryBtn{
-    background-color: #B499C8;
-    color: white;
+    background-color: #FFA6FF;
+    color: #1E1849;
+    text-transform: uppercase;
     border-radius: 0.5rem;
     border: none;
-    padding: 1rem 2rem;
+    padding: .8rem 1rem;
     cursor: pointer;
-    font-size: medium;
+    font-weight: 400;
+    font-size: 18px;
+    letter-spacing: .1rem;
+}
+
+.primaryBtn:hover{
+    scale: 1.1;
+    background: rgb(173,74,173);
+    background: linear-gradient(30deg, rgb(182, 93, 182) 0%, rgb(239, 182, 239) 100%);
 }

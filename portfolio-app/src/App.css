@@ -1,14 +1,51 @@
+/* Font imports */
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 body{
-  background-color: #F4EBE3;
+  background-color: #0C0118;
 }
 
 p, b, i, span, div{
-  color: #806E68;
+  color: #D9D0E3;
+  font-family: "Kanit", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 18px;
 }
 
 h1, h2, h3, h4, h5, h6{
-  color: #D2987E;
+  /* color: #D2987E; */
+  font-family: "Kanit", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+
+  text-transform: uppercase;
+  letter-spacing: 0.15rem;
 }
+
+h1, h2, h3{
+  color: #EAE5F1;
+}
+
+h1{
+  font-size: 73px;
+  letter-spacing: normal;
+}
+
+h2{
+  font-size: 32px;
+}
+
+h4{
+  color: #EAE5F1;
+}
+
+h5{
+  color: #FFA6FF;
+  font-size: 18px;
+}
+
+
 
 .title{
   margin-top: 4em;
@@ -16,8 +53,9 @@ h1, h2, h3, h4, h5, h6{
 }
 
 
-.gradient-text{
-  background: -webkit-linear-gradient(45deg, #b77ae6, #de9475);
+.gradientText{
+  background: -webkit-linear-gradient(#EAE5F1, #BDABF0);
+  background-image: linear-gradient(#EAE5F1, #BDABF0);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   width: fit-content;
@@ -32,17 +70,16 @@ h1, h2, h3, h4, h5, h6{
 .background-gradient-top-page{
   /* background: -webkit-linear-gradient(185deg, #E7D4B7, #E9D9D4, #F4EBE3); */
 
-  background: linear-gradient(215deg, #E7D4B7 0%, #E9D9D4 25%, #F4EBE3 100%);
+  /* background: linear-gradient(215deg, #E7D4B7 0%, #E9D9D4 25%, #F4EBE3 100%); */
+
+  background: rgb(63,28,92);
+  background: radial-gradient(circle, rgba(63,28,92,1) 0%, rgba(34,17,68,1) 9%, rgba(12,1,24,1) 35%, rgba(12,1,24,1) 100%);
   height: 100vh; 
   
   /* background-image: linear-gradient(to left bottom, #e7d4b7, #ead4bc, #ebd5c2, #ebd6c8, #ebd7cd, #ebd9d0, #ecdbd4, #ecddd7, #eee1da, #f0e4dd, #f2e8e0, #f4ebe3); */
 }
 
-.background-gradient-2{
-  height: 100vh; 
-  background-color: #b77ae6;
-  background-image: linear-gradient(to left bottom, #EBDDD7, #edded6, #f4ebe3, #f4ebe3, #f4ebe3);
-}
+
 
 .container{
   padding: 3em 10%;
@@ -51,6 +88,6 @@ h1, h2, h3, h4, h5, h6{
 @media screen and (min-width: 600px) {
     
   .container {
-      padding: 2em 5%;
+      padding: 2em 10%;
   }
 }

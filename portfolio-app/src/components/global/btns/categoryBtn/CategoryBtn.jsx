@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useParams } from 'react-router-dom';
 import styles from './categoryBtn.module.css';
 
-function CategoryBtn({location, logoClassName, text}) {
+function CategoryBtn({location, text}) {
 
     const { hash } = useLocation();
 
@@ -54,8 +54,7 @@ function CategoryBtn({location, logoClassName, text}) {
 
     return (
         <Link to={url} className={`${styles.btn} ${isSelected && styles.selected}`}>
-             <i className={logoClassName}></i>
-             <span>{text}</span>
+          {text}
         </Link>
     );
 }
