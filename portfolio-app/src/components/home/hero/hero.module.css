@@ -1,12 +1,19 @@
-.name, .jobTitle{
+/* .name, .jobTitle{
     text-transform: uppercase;
+} */
+
+.name+.name{
+    margin-top: -1em;
 }
 
-.jobTitle{
-    color: #D2987E;
-    margin-top: -0.5em;
-    margin-bottom: 2em;
+
+
+.introContainer{
+    width: 100%;
+    margin-bottom: 6em;
+    overflow: hidden;
 }
+
 
 .btnsContainer{
     margin-top: 2em;
@@ -29,12 +36,18 @@
 
 
 @media screen and (min-width: 600px) {
-    .imgContainer{
-        float: right;
-        margin-left: 4em;
-        width: 35%;
-        max-width: 35em;
-        max-height: 35em;
-        margin-bottom: 0;
+    .flexContainer{
+        display: flex;
+        gap: 2em;
+        align-items: center;
     }
+
+    .imgContainer{
+        z-index: 5;
+    }
+
+    .introContainer{
+        overflow: visible;
+    }
+    
 }

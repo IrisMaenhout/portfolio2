@@ -20,14 +20,16 @@ function ProjectsOverview({projectsData}) {
 
     return (
         <div>
-            <h2 className='title'>Projecten</h2>
+            <h2 className='gradientText'>Projecten</h2>
             
             <div className={styles.filters}>
-                <CategoryBtn location={'ux-ui-design'} text={'UX/UI design'} logoClassName={'fa-solid fa-palette'}/>
+                <CategoryBtn location={'all'} text={'All'} initialySelected={true}/>
 
-                <CategoryBtn location={'web-development'} text={'Web development'} logoClassName={'fa-solid fa-code'}/>
+                <CategoryBtn location={'ux-ui-design'} text={'UX/UI design'} initialySelected={false}/>
+
+                <CategoryBtn location={'web-development'} text={'Web development'} initialySelected={false}/>
                 
-                <CategoryBtn location={'cms-development'} text={'CMS development'} logoClassName={'fa-brands fa-wordpress'}/>
+                <CategoryBtn location={'cms-development'} text={'CMS development'} initialySelected={false}/>
             </div>
             
             <div className={styles.grid}>

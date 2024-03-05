@@ -1,0 +1,162 @@
+.flexContainer{
+    display: block;
+}
+
+.name{
+    white-space: pre-line;
+}
+
+.infoContainer{
+   width: 100%; 
+}
+
+
+.canvas3D{
+    width: 100%;
+    height: 10em;
+}
+
+
+/* ___________Headers__________ */
+
+.personalDataInfoHeader{
+    background-image: url( '/public/svg/personalInfoHeaderTitle.svg' );
+
+    width: 60%;
+    background-position: left;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    padding: 1rem 0;
+    text-align: center;
+}
+
+.personalDataInfoHeader h3{
+    margin: 0;
+    text-align: center;
+    font-weight: 400;
+    width: 100%;
+}
+
+.personalDataHeader{
+    background-image: url( '/public/svg/headerBoxPersonalData.svg' );
+    filter: drop-shadow(.5rem .5rem 1em rgba(54, 49, 200, 0.4));
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    padding: 6em 0;
+}
+
+
+
+/*_______________ CONTENT _________________*/
+
+.personalDataInfoContent{
+    background-image: url( '/public/svg/personalInfoBox.svg' );
+    margin-top: -.5em;
+}
+
+/* _______ Info with bulletpoints___________*/
+
+.personalDataInfoContent ul li {
+    padding-left: 2rem;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='11' cy='11' r='11' fill='url(%23paint0_linear_287_347)'/%3E%3Cdefs%3E%3ClinearGradient id='paint0_linear_287_347' x1='11' y1='0' x2='11' y2='22' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%23D9D9D9'/%3E%3Cstop offset='1' stop-color='%23BDABF0'/%3E%3C/linearGradient%3E%3C/defs%3E%3C/svg%3E%0A");
+    background-position: 0 .45rem;
+    background-size: .8rem .8rem;
+    background-repeat: no-repeat;
+}
+
+.personalDataInfoContent ul {
+    padding-left: 2rem;
+    list-style-type: none;
+    
+    margin-left: 0.5rem;
+    margin-right: 2rem;
+}
+
+
+.personalDataInfoContent ul li+li{
+    margin-top: 1em;
+}
+
+/* __________Skills grid___________ */
+
+.skillsContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.personalDataInfoContent .grid{
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat( auto-fill, minmax(5rem, 1fr));
+    gap: 1em;
+    margin: 1em 2em;
+}
+
+
+.personalDataInfoContent .grid div{
+   width: 100%;
+   height: 5rem;
+   background-color: #1C1551;
+   border-radius: 10%;
+}
+
+
+
+.personalDataInfo{
+    filter: drop-shadow(.5rem .5rem 1em rgba(54, 49, 200, 0.4));
+    margin-top: 4em;
+}
+
+.personalDataHeader, .personalDataInfoContent{
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    padding: 1em 0;
+}
+
+.personalDataHeader h5, .personalDataHeader p{
+    margin-top: 0;
+    margin-bottom: .8em;
+}
+
+.personalDataHeader p{
+    margin-bottom: 0;
+}
+
+
+
+.personalDataHeaderContent{
+    display: flex;
+    gap: 2em;
+}
+
+
+.cvBtnContainer{
+    display: flex;
+    justify-content: center;
+    margin-top: 4em;
+}
+
+@media screen and (min-width: 1000px) {
+    
+    .flexContainer{
+        display: flex;
+        gap: 2em;
+    }
+
+
+    .personalDataHeader{
+        padding: 2em 0;
+        gap: 2;
+    }
+
+
+    .personalDataInfoContent ul li {
+        background-position: 0 .3rem;
+        background-size: 1rem 1rem;
+    }
+
+  }

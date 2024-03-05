@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useLocation, useParams } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 import styles from './categoryBtn.module.css';
 
 function CategoryBtn({location, text}) {
-
+    let navigate = useNavigate();
     const { hash } = useLocation();
 
     const [url, setUrl] = useState(hash);
@@ -15,31 +15,56 @@ function CategoryBtn({location, text}) {
     const categories = categoryArrayMatch ? categoryArrayMatch.map(match => match.replace('category[]=', '')) : [];
 
     // Check if the button's text matches any category in the array
-    const isSelected = categories.includes(location);
-
+    const isSelected = categories.includes(location) || (hash === "" && location === "all");
 
     useEffect(() => {
         // Clone the current URL to a new variable
         let updatedUrl = hash;
     
         if (categoryArrayMatch) {
-          if (isSelected) {
-            // Remove the category from the URL
-            updatedUrl = updatedUrl.replace(`&category[]=${location}`, '');
-            updatedUrl = updatedUrl.replace(`?category[]=${location}`, '');
-    
-            if (updatedUrl.includes('#projects&category[]=')) {
-              updatedUrl = updatedUrl.replace('#projects&category[]=', '#projects?category[]=');
+
+          if (isSelected && hash !== "") {
+            if(location !== "all"){
+              // Remove the category from the URL
+              updatedUrl = updatedUrl.replace(`&category[]=${location}`, '');
+              updatedUrl = updatedUrl.replace(`?category[]=${location}`, '');
+      
+              if (updatedUrl.includes('#projects&category[]=')) {
+                updatedUrl = updatedUrl.replace('#projects&category[]=', '#projects?category[]=');
+              }
+
             }
 
           } else {
-        
-            updatedUrl += `&category[]=${location}`;
+            if(location === "all"){
+              // Remove the category from the URL
+              updatedUrl = '#projects?category[]=all';
+            }else{
+              if(updatedUrl.match(/all/)){
+                // Remove the category from the URL
+                updatedUrl = updatedUrl.replace(`&category[]=all`, '');
+                updatedUrl = updatedUrl.replace(`?category[]=all`, '');
+
+                updatedUrl += `?category[]=${location}`;
+
+              }else{
+                updatedUrl += `&category[]=${location}`;
+              }
+              
+
+
+            }
           }
         } else {
           // If there are no categories in the URL, create a new category parameter
           if(hash){
-            updatedUrl += `?category[]=${location}`;
+
+            if (hash === "#projects") {
+              navigate('/#projects?category[]=all', { replace: true });
+            
+            }else{
+              updatedUrl += `?category[]=${location}`;
+            }
 
           }else{
             updatedUrl += `/#projects?category[]=${location}`;
@@ -48,9 +73,9 @@ function CategoryBtn({location, text}) {
         }
     
 
-        setUrl(updatedUrl)
+        setUrl(updatedUrl);
         
-      }, [isSelected, hash]);
+      }, [isSelected, hash, url, location, categoryArrayMatch, navigate]);
 
     return (
         <Link to={url} className={`${styles.btn} ${isSelected && styles.selected}`}>
