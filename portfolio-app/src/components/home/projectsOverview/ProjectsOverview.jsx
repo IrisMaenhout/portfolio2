@@ -3,6 +3,7 @@ import { Tilt } from 'react-tilt';
 import styles from './projectsOverview.module.css';
 import ProjectCard from './projectCard/ProjectCard';
 import CategoryBtn from '../../global/btns/categoryBtn/CategoryBtn';
+import { Link } from 'react-router-dom';
 
 function ProjectsOverview({projectsData}) {
 
@@ -19,7 +20,7 @@ function ProjectsOverview({projectsData}) {
     // }
 
     return (
-        <div>
+        <div className={styles.projectsOverview}>
             <h2 className='gradientText'>Projecten</h2>
             
             <div className={styles.filters}>
@@ -33,32 +34,10 @@ function ProjectsOverview({projectsData}) {
             </div>
             
             <div className={styles.grid}>
-
-                {/* <Tilt options={defaultOptions} className={styles.small}> */}
-                    <ProjectCard className={styles.smallHorizontal}/>
-                {/* </Tilt> */}
-
-                {/* <Tilt options={defaultOptions} className={styles.large}> */}
-                    <ProjectCard className={styles.miniVertical}/>
-
-                    <ProjectCard className={styles.smallVertical}/>
-                {/* </Tilt> */}
-
-                {/* <Tilt options={defaultOptions} className={styles.large}> */}
-                    <ProjectCard className={styles.mediumVertical}/>
-                    <ProjectCard className={styles.mediumVertical}/>
-
-                    <ProjectCard className={styles.mediumHorizontal}/>
-                    <ProjectCard className={styles.smallVertical}/>
-                {/* </Tilt> */}
-
-            
-                
-            {
-                // projectsData.map((projectData)=> (
-                //     <ProjectCard />
-                // ))
-            }
+                <ProjectCard/>
+                <ProjectCard/>
+                <ProjectCard/>
+                <ProjectCard/>
             </div>
            
         </div>

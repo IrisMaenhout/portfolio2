@@ -4,6 +4,7 @@ import TechnologiesSlider from '../../components/global/technologiesSlider/Techn
 import ProjectsOverview from '../../components/home/projectsOverview/ProjectsOverview';
 import Contact from '../../components/home/contact/Contact';
 import PersonalInfo from '../../components/home/personalInfo/PersonalInfo';
+import Services from '../../components/home/services/Services';
 
 function Home(props) {
     return (
@@ -11,6 +12,8 @@ function Home(props) {
             <Hero />
 
             <PersonalInfo/>
+
+            <Services/>
 
             <ProjectsOverview />
 

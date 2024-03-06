@@ -1,67 +1,80 @@
 .card{
-    position: relative;
-    overflow: hidden;
-    border-radius: 0.5em;
-}
-
-
-.card img{
-    width: 100%;
-    height: 100%;
-    object-position: center;
-    object-fit: cover;
-    position: absolute;
-    border-radius: 0.5em;
-    z-index: 0;
-}
-
-.projectCard{
-    width: 100%;
-    display: block;
-    min-height: 20rem;
-    background: linear-gradient(0deg, rgba(39,39,39,0.8) 0%, rgba(39,39,39,0) 50%, rgba(39,39,39,0) 100%);
-    position: relative; 
-    border-radius: 0.5em;
     text-decoration: none;
 }
 
-.card:hover img{
-    transform: scale(1.1);
-    transition: 0.5s ease-in-out;
-}
-
-.card:hover{
-    box-shadow: 0.5em 0.5em  0 0.2px #B499C8;
-    transition: 0.5s ease-in-out;
-}
-
-.projectCard h3{
-    position: absolute;
-    bottom: 1.5em;
-    left: 1.5em;
-    color: white;
-    font-size: 20px;
-    margin: 0;
-
-}
-
-.category{
-    background-color: #ffffffda;
-    border: 4px solid #FFF;
+.image{
+    background-color: #1E1849;
+    height: 20rem;
+    border-radius: .4em;
     display: flex;
-    flex-direction: column;
-    width: fit-content;
-    padding: 1em;
-    gap: 2em;
-    border-radius: 0.5em;
-    position: absolute;
-    right: 1.5em;
-    top: 1.5em;
-    backdrop-filter: blur(5px);
-    
+    justify-content: flex-end;
+    align-items: end;
 }
 
-.categoryLogo{
-    font-size: larger;
-    color: #638E85;
+.btns{
+    display: flex;
+    gap: 1em;
+    margin: 2em;
+}
+
+
+.btns a{
+    display: block;
+    border-radius: 100%;
+    width: 4rem;
+    height: 4rem;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btns a:hover{
+    scale: 1.2;
+    transition: 1s ease-in-out;
+    background-color: #FFA6FF;
+}
+
+.btns a:hover i{
+    color: #0C0118;
+}
+
+.btns i{
+    font-size: 28px;
+}
+
+.websiteLink{
+    background-color: #EAE5F1;
+}
+
+.websiteLink i{
+    color: #301449;
+}
+
+.readMoreLink{
+    background-color: #0C0118;
+}
+
+.readMoreLink i{
+    color: #EAE5F1;
+}
+
+
+.cardContent h3{
+    text-transform: none;
+    margin-bottom: 0em;
+}
+
+.categoryHashtags{
+    display: flex;
+    gap: 1em;
+    margin-top: 2em;
+    margin-bottom: 4em;
+}
+
+.categoryHashtags i{
+    display: block;
+    color: #51D6AF;
+    font-weight: 200;
+    font-size: 16px;
 }

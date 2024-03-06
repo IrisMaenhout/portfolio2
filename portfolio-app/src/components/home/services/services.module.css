@@ -1,0 +1,35 @@
+.services{
+    margin-top: 8em;
+}
+.servicesContainer {
+    width: 100%;
+    display: grid;
+    gap: 4em;
+    grid-template-columns: repeat(auto-fit, minmax(10em, 1fr));
+}
+
+.servicesContainer div {
+  width: 100%;
+  gap: 2em;
+  background-color: rgba(42, 40, 105, 0.6);
+  border-radius: .4rem;
+}
+
+
+.servicesContainer h4{
+    color: #FFA6FF;
+    text-transform: none;
+    font-weight: 400;
+    text-align: center;
+    margin: 0;
+    margin-bottom: 2rem;
+}
+.servicesContainer div i{
+    color: #AB81D0;
+    font-weight: 400;
+    font-size: 64px;
+    text-align: center;
+    display: block;
+    width: 100%;
+    margin-top: 2rem;
+}
