@@ -30,7 +30,7 @@
 }
 
 .btns a:hover{
-    scale: 1.2;
+    scale: 1.1;
     transition: 1s ease-in-out;
     background-color: #FFA6FF;
 }

@@ -29,16 +29,17 @@
     margin-bottom: 2em;
 }
 
-.imgContainer img {
+.imgContainer img, .imgContainer video {
     width: 100%;
     border-radius: 0.5em;
+    cursor: initial;
 }
 
 
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 1000px) {
     .flexContainer{
         display: flex;
-        gap: 2em;
+        gap: 4em;
         align-items: center;
     }
 

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styles from "./personalInfo.module.css";
 import PrimaryBtn from '../../global/btns/primary/PrimaryBtn';
+import AvatarCanvas from '../../global/avatar/avatarCanvas/AvatarCanvas';
 
 function PersonalInfo(props) {
     return (
@@ -70,7 +71,7 @@ function PersonalInfo(props) {
             </div>
 
             <div className={styles.canvas3D}>
-
+                <AvatarCanvas/>
             </div>
             
         </div>
