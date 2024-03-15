@@ -1,6 +1,6 @@
-import { Environment, OrbitControls } from '@react-three/drei';
+import { Environment, Loader, OrbitControls } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
-import React, { useState } from 'react';
+import React, { Suspense, useState } from 'react';
 import { AvatarThreeJs } from '../avatarThreeJs/AvatarThreeJs';
 import styles from "./avatarCanvas.module.css";
 
@@ -26,13 +26,16 @@ function AvatarCanvas(props) {
             </div>
 
             <Canvas shadows>
-                <Environment preset='sunset' />
-                <group position={[0, -0.8, 3.5]}>
-                    <AvatarThreeJs animation={playingAnimation}/>
-                </group>
+                <Suspense>
+                    <Environment preset='sunset' />
+                    <group position={[0, -0.8, 3.5]}>
+                        <AvatarThreeJs animation={playingAnimation}/>
+                    </group>
+                </Suspense>
             </Canvas>
 
-            
+            <Loader/>
+
 
         </div>
     );

@@ -7,6 +7,7 @@ import PersonalInfo from '../../components/home/personalInfo/PersonalInfo';
 import Services from '../../components/home/services/Services';
 
 function Home(props) {
+    
     return (
         <div className={`container`}>
             <Hero />

@@ -1,39 +1,92 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styles from './hero.module.css';
 import PrimaryBtn from '../../global/btns/primary/PrimaryBtn';
-import SecondaryBtn from '../../global/btns/secondary/SecondaryBtn';
-import TypewriterEffect from '../../global/typeWriterEffect/TypeWriterEffect';
+import TypeWriterEffect from "../../global/typeWriterEffect/TypeWriterEffect";
+import { useSpring, animated } from '@react-spring/web';
 
 function Hero(props) {
-    
+    const [isVisible, setIsVisible] = useState(false);
+    const containerRef = useRef(null);
+
+    useEffect(() => {
+        const options = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.8 // Intersection threshold
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    setIsVisible(true);
+                    observer.unobserve(entry.target); // Stop observing once the element is visible
+                }
+            });
+        }, options);
+
+        if (containerRef.current) {
+            observer.observe(containerRef.current);
+        }
+
+        
+
+        return () => {
+            if (containerRef.current) {
+                observer.unobserve(containerRef.current);
+            }
+        };
+    }, []);
+
+    const config = { 
+        tension: 50, 
+        friction: 8 
+    }
+
+    // Animations for the elements
+    const introAnimation = useSpring({
+        from: { opacity: 0 },
+        to: { opacity: isVisible ? 1 : 0},
+        config
+    });
+
+    const firstNameAnimation = useSpring({
+        from: { transform: 'translateX(150px)' },
+        to: { transform: isVisible? 'translateX(0)' : 'translateX(150px)' },
+        config
+    });
+
+    const lastNameAnimation = useSpring({
+        from: { transform: 'translateX(-150px)' },
+        to: { transform: isVisible ? 'translateX(0)' : 'translateX(-150px)' },
+        config
+    });
+
     return (
-        <div className={styles.flexContainer}>
-            
+        <div className={styles.flexContainer} ref={containerRef}>
             <div className={styles.introContainer}>
-                <h1 className={`gradientText ${styles.name}`}>Iris</h1>
-                <h1 className={`gradientText ${styles.name}`}>Maenhout</h1>
+                <animated.h1 className={`gradientText ${styles.name}`} style={firstNameAnimation}>Iris</animated.h1>
+                <animated.h1 className={`gradientText ${styles.name}`} style={lastNameAnimation}>Maenhout</animated.h1>
             
-                <TypewriterEffect jobTitlesArray={["front-end developer", "UX/UI designer", "full stack developer", "freelancer"]}/>
+                <animated.div style={introAnimation}>
+                    <TypeWriterEffect jobTitlesArray={["front-end developer", "UX/UI designer", "full stack developer", "freelancer"]}/>
+                    
+                    <p>
+                        Ik heb een passie voor het creëren van webapplicaties die een mooie en gebruiksvriendelijke interfase hebben.
+                    </p>
 
-                <p>
-                    Ik heb een passie voor het creëren van webapplicaties die een mooie en gebruiksvriendelijke interfase hebben.
-                </p>
+                    <div className={styles.btnsContainer}>
+                        <PrimaryBtn text={'Neem contact op'}/>
+                    </div>
 
-                <div className={styles.btnsContainer}>
-                    <PrimaryBtn text={'Neem contact op'}/>
-                </div>
-
+                </animated.div>
             </div>
 
-            <div className={styles.imgContainer}>
-                {/* <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fHww&w=1000&q=80" alt="" /> */}
-
+            {/* animated.div component for the image */}
+            <animated.div className={styles.imgContainer}>
                 <video autoPlay loop muted playsInline>
                     <source src="/video/hero_animation.webm" type="video/webm"/>
                 </video>
-            </div>
-
-            
+            </animated.div>
         </div>
     );
 }
