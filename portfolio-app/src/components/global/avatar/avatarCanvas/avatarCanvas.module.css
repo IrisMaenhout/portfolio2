@@ -1,3 +1,75 @@
 .canvas3DAvatar{
     height: 100vh;
+    margin-top: 2em;
 }
+
+.sayHiBtn{
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.sayHiBtn button{
+    transition: .5s ease-in-out;
+    position: absolute;
+    z-index: 5;
+    margin-top: -1rem;
+    background: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    border: 1px solid #51D6AF;
+    border-radius: 1rem;
+}
+
+.sayHiBtn button i{
+    font-size: 21px;
+    color: #51D6AF;
+}
+
+.sayHiBtn .btnText{
+    display: none;
+}
+
+.sayHiBtn button:hover{
+    transition: .5s ease-in-out;
+    /* border: 1px solid #51D6AF; */
+    scale: 1.1;
+    background-color: #1a0334;
+}
+
+.sayHiBtn:hover .btnText{
+    transition: .5s ease-in-out;
+    display: inline-block;
+    margin-left: 1em;
+    color: #51D6AF;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.sayHiBtn button:disabled{
+    transition: .5s ease-in-out;
+    opacity: .3;
+    cursor: initial;
+}
+
+.sayHiBtn button:disabled:hover{
+    scale: 1;
+    background: none;
+}
+
+.sayHiBtn button:disabled:hover .btnText{
+    display: none;
+}
+
+@media screen and (min-width: 600px) {
+    
+    .sayHiBtn button{
+        margin-top: -1rem;
+    }
+
+  }
+

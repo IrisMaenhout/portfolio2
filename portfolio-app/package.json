@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@react-spring/three": "^9.7.3",
     "@react-three/drei": "^9.102.3",
     "@react-three/fiber": "^8.15.19",
     "@testing-library/jest-dom": "^5.17.0",
@@ -15,7 +16,7 @@
     "react-router-dom": "^6.16.0",
     "react-scripts": "5.0.1",
     "react-tilt": "^1.0.2",
-    "three": "^0.164.0",
+    "three": "^0.162.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

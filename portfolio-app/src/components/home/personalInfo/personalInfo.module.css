@@ -13,6 +13,7 @@
 
 .canvas3D{
     width: 100%;
+    margin-top: 6em;
     /* height: 10em; */
 }
 
@@ -157,6 +158,10 @@
     .personalDataInfoContent ul li {
         background-position: 0 .3rem;
         background-size: 1rem 1rem;
+    }
+
+    .canvas3D{
+        margin-top: 0;
     }
 
   }

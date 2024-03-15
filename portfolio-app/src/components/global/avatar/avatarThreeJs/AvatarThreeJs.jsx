@@ -7,25 +7,28 @@ import { useAnimations, useFBX, useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from 'three';
 
-export function AvatarThreeJs({isHovered}) {
+export function AvatarThreeJs({animation}) {
   const { nodes, materials } = useGLTF("models/iris_character.glb");
   const avatarGroup = useRef();
 
   const {animations: standingAnimation} = useFBX("animations/standing.fbx");
   standingAnimation[0].name = "Standing";
 
-  const { actions } = useAnimations(standingAnimation, avatarGroup);
+  const {animations: greetingAnimation} = useFBX("animations/greeting.fbx");
+  greetingAnimation[0].name = "Greeting";
 
-  console.log(standingAnimation);
+  const { actions } = useAnimations([standingAnimation[0], greetingAnimation[0]], avatarGroup);
 
-  // Activate first action
+  // Activate current action
   useEffect(()=> {
-    actions["Standing"].reset().play();
-  }, []);
+    actions[animation].reset().play();
+
+    return () => actions[animation].reset().fadeOut(0.5);
+  }, [animation, actions]);
 
   
   useFrame((state)=>{
-    if(isHovered){
+    if(animation === "Standing"){
       // _____ Look at the cursor ______
       const target = new THREE.Vector3(state.mouse.x, state.mouse.y, 5); // z axis decides how easily the selected bodypart will move. How lower the number, how faster and how higher the number, it will be slower.
 
