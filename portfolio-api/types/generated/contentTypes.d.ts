@@ -707,6 +707,38 @@ export interface ApiHeaderNavigationHeaderNavigation extends Schema.SingleType {
   };
 }
 
+export interface ApiJobTitleJobTitle extends Schema.CollectionType {
+  collectionName: 'job_titles';
+  info: {
+    singularName: 'job-title';
+    pluralName: 'job-titles';
+    displayName: 'JobTitle';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    job: Attribute.String & Attribute.Unique;
+    hide: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<false>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::job-title.job-title',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::job-title.job-title',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiPersonalInfoPersonalInfo extends Schema.SingleType {
   collectionName: 'personal_infos';
   info: {
@@ -719,26 +751,27 @@ export interface ApiPersonalInfoPersonalInfo extends Schema.SingleType {
     draftAndPublish: true;
   };
   attributes: {
-    introduction: Attribute.RichText;
+    shortIntro: Attribute.RichText;
     cv: Attribute.Media;
-    fullName: Attribute.String &
+    firstName: Attribute.String &
       Attribute.Required &
       Attribute.DefaultTo<'Iris Maenhout'>;
     contactInfo: Attribute.Component<'personal-info.contact-info'>;
-    jobTitles: Attribute.JSON &
-      Attribute.CustomField<
-        'plugin::multi-select.multi-select',
-        [
-          'UX/UI designer',
-          'UI designer',
-          'Front-end developer',
-          'Back-end developer',
-          'Full-stack developer',
-          'Webdeveloper',
-          'Webdesigner',
-          'Game developer'
-        ]
-      >;
+    lastName: Attribute.String;
+    dateOfBirth: Attribute.Date & Attribute.Required;
+    country: Attribute.String;
+    InfoBulletpoints: Attribute.RichText;
+    jobTitles: Attribute.Relation<
+      'api::personal-info.personal-info',
+      'oneToMany',
+      'api::job-title.job-title'
+    >;
+    heroImgVideo: Attribute.Media & Attribute.Required;
+    knownTechnologies: Attribute.Relation<
+      'api::personal-info.personal-info',
+      'oneToMany',
+      'api::technology.technology'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -770,11 +803,10 @@ export interface ApiProjectProject extends Schema.CollectionType {
   };
   attributes: {
     title: Attribute.String & Attribute.Required & Attribute.Unique;
-    shortIntro: Attribute.RichText;
     projectContent: Attribute.DynamicZone<
       ['project-info.description', 'project-info.files', 'project-info.process']
     >;
-    technologies: Attribute.Relation<
+    usedTechnologies: Attribute.Relation<
       'api::project.project',
       'manyToMany',
       'api::technology.technology'
@@ -788,6 +820,7 @@ export interface ApiProjectProject extends Schema.CollectionType {
     >;
     inANutshell: Attribute.Component<'project-info.in-a-nutshell'>;
     slug: Attribute.String;
+    shortIntro: Attribute.Text & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -812,7 +845,7 @@ export interface ApiProjectCategoryProjectCategory
   info: {
     singularName: 'project-category';
     pluralName: 'project-categories';
-    displayName: 'projectCategory';
+    displayName: 'serviceProjectCategory';
     description: '';
   };
   options: {
@@ -820,13 +853,20 @@ export interface ApiProjectCategoryProjectCategory
   };
   attributes: {
     name: Attribute.String & Attribute.Required & Attribute.Unique;
-    icon: Attribute.Media & Attribute.Required;
+    iconImg: Attribute.Media;
     projects: Attribute.Relation<
       'api::project-category.project-category',
       'manyToMany',
       'api::project.project'
     >;
     atributeToAuthorImg: Attribute.String;
+    iconClassname: Attribute.String;
+    hideService: Attribute.Boolean &
+      Attribute.Required &
+      Attribute.DefaultTo<false>;
+    hideCategory: Attribute.Boolean &
+      Attribute.Required &
+      Attribute.DefaultTo<false>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -858,12 +898,16 @@ export interface ApiTechnologyTechnology extends Schema.CollectionType {
   };
   attributes: {
     name: Attribute.String & Attribute.Required & Attribute.Unique;
+    logoImage: Attribute.Media;
+    logoClassname: Attribute.String;
+    stillRemember: Attribute.Boolean &
+      Attribute.Required &
+      Attribute.DefaultTo<true>;
     projects: Attribute.Relation<
       'api::technology.technology',
       'manyToMany',
       'api::project.project'
     >;
-    logoImage: Attribute.Media & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -899,6 +943,7 @@ declare module '@strapi/strapi' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::header-navigation.header-navigation': ApiHeaderNavigationHeaderNavigation;
+      'api::job-title.job-title': ApiJobTitleJobTitle;
       'api::personal-info.personal-info': ApiPersonalInfoPersonalInfo;
       'api::project.project': ApiProjectProject;
       'api::project-category.project-category': ApiProjectCategoryProjectCategory;

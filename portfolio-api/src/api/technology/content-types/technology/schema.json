@@ -17,20 +17,27 @@
       "required": true,
       "unique": true
     },
+    "logoImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "logoClassname": {
+      "type": "string"
+    },
+    "stillRemember": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    },
     "projects": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::project.project",
-      "inversedBy": "technologies"
-    },
-    "logoImage": {
-      "allowedTypes": [
-        "images",
-        "files"
-      ],
-      "type": "media",
-      "multiple": false,
-      "required": true
+      "mappedBy": "usedTechnologies"
     }
   }
 }

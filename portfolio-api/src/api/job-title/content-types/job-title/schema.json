@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "job_titles",
+  "info": {
+    "singularName": "job-title",
+    "pluralName": "job-titles",
+    "displayName": "JobTitle",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "job": {
+      "type": "string",
+      "unique": true
+    },
+    "hide": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    }
+  }
+}

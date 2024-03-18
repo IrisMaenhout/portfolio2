@@ -12,7 +12,7 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "introduction": {
+    "shortIntro": {
       "type": "richtext"
     },
     "cv": {
@@ -24,7 +24,7 @@
         "files"
       ]
     },
-    "fullName": {
+    "firstName": {
       "type": "string",
       "required": true,
       "default": "Iris Maenhout"
@@ -34,19 +34,38 @@
       "repeatable": false,
       "component": "personal-info.contact-info"
     },
+    "lastName": {
+      "type": "string"
+    },
+    "dateOfBirth": {
+      "type": "date",
+      "required": true
+    },
+    "country": {
+      "type": "string"
+    },
+    "InfoBulletpoints": {
+      "type": "richtext",
+      "required": false
+    },
     "jobTitles": {
-      "type": "customField",
-      "options": [
-        "UX/UI designer",
-        "UI designer",
-        "Front-end developer",
-        "Back-end developer",
-        "Full-stack developer",
-        "Webdeveloper",
-        "Webdesigner",
-        "Game developer"
-      ],
-      "customField": "plugin::multi-select.multi-select"
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::job-title.job-title"
+    },
+    "heroImgVideo": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images",
+        "videos"
+      ]
+    },
+    "knownTechnologies": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::technology.technology"
     }
   }
 }

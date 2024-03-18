@@ -17,9 +17,6 @@
       "unique": true,
       "required": true
     },
-    "shortIntro": {
-      "type": "richtext"
-    },
     "projectContent": {
       "type": "dynamiczone",
       "components": [
@@ -28,11 +25,11 @@
         "project-info.process"
       ]
     },
-    "technologies": {
+    "usedTechnologies": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::technology.technology",
-      "mappedBy": "projects"
+      "inversedBy": "projects"
     },
     "coverImage": {
       "type": "media",
@@ -61,6 +58,10 @@
     },
     "slug": {
       "type": "string"
+    },
+    "shortIntro": {
+      "type": "text",
+      "required": true
     }
   }
 }

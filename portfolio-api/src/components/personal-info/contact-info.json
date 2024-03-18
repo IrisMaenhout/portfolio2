@@ -19,6 +19,17 @@
     },
     "linkedInUrl": {
       "type": "string"
+    },
+    "messengerUrl": {
+      "type": "string"
+    },
+    "imgVideo": {
+      "allowedTypes": [
+        "images",
+        "videos"
+      ],
+      "type": "media",
+      "multiple": false
     }
   }
 }

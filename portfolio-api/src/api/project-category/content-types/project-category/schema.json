@@ -4,7 +4,7 @@
   "info": {
     "singularName": "project-category",
     "pluralName": "project-categories",
-    "displayName": "projectCategory",
+    "displayName": "serviceProjectCategory",
     "description": ""
   },
   "options": {
@@ -17,13 +17,12 @@
       "required": true,
       "unique": true
     },
-    "icon": {
+    "iconImg": {
       "type": "media",
       "multiple": false,
-      "required": true,
+      "required": false,
       "allowedTypes": [
-        "images",
-        "files"
+        "images"
       ]
     },
     "projects": {
@@ -34,6 +33,19 @@
     },
     "atributeToAuthorImg": {
       "type": "string"
+    },
+    "iconClassname": {
+      "type": "string"
+    },
+    "hideService": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "hideCategory": {
+      "type": "boolean",
+      "default": false,
+      "required": true
     }
   }
 }
