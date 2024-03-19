@@ -3,13 +3,32 @@ import styles from "./personalInfo.module.css";
 import PrimaryBtn from '../../global/btns/primary/PrimaryBtn';
 import AvatarCanvas from '../../global/avatar/avatarCanvas/AvatarCanvas';
 import { useSpring, animated } from '@react-spring/web';
+import ReactMarkdown from 'react-markdown'; 
 
-function PersonalInfo(props) {
+function PersonalInfo({apiData}) {
 
     const [isVisible, setIsVisible] = useState(false);
     const firstContainerRef = useRef(null);
     const secondContainerRef = useRef(null);
     const thirdContainerRef = useRef(null);
+
+    const data = apiData ? apiData.data.attributes : null;
+
+    // Calculate my age
+    function calculateAge(dateOfBirth) {
+        const dob = new Date(dateOfBirth);
+        const now = new Date();
+      
+        let age = now.getFullYear() - dob.getFullYear();
+        
+        // Adjust age if birthday hasn't occurred yet this year
+        if (now.getMonth() < dob.getMonth() || (now.getMonth() === dob.getMonth() && now.getDate() < dob.getDate())) {
+          age--;
+        }
+        
+        return age;
+    }
+
 
     const springData = {
         from: { scale: 0.8 },
@@ -77,18 +96,18 @@ function PersonalInfo(props) {
                     <div className={styles.personalDataHeaderContent}>
                         <div>
                             <h5>Naam:</h5>
-                            <p className={styles.name}>Iris{window.innerWidth > 600 ? " " : "\n"}Maenhout</p>
+                            <p className={styles.name}>{data? data.firstName : ""}{window.innerWidth > 600 ? " " : "\n"}{data? data.lastName : ""}</p>
 
                         </div>
 
                         <div>
                             <h5>Leeftijd:</h5>
-                            <p>22</p>
+                            <p>{data? calculateAge(data.dateOfBirth) : ""}</p>
                         </div>
 
                         <div>
                             <h5>Land:</h5>
-                            <p>België</p>
+                            <p>{data? data.country : ""}</p>
                         </div>
                     </div>
 
@@ -105,6 +124,8 @@ function PersonalInfo(props) {
                             <li>Creatief Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates excepturi id quae non earum, laborum esse sit in quasi maiores. Rem sint at earum excepturi magni possimus sequi minima numquam!</li>
                             <li>Oog voor detail</li>
                         </ul>
+
+                        {data && <ReactMarkdown>{data.InfoBulletpoints}</ReactMarkdown>}
                     </div>
                 </animated.div>
 

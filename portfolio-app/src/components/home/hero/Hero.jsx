@@ -3,11 +3,17 @@ import styles from './hero.module.css';
 import PrimaryBtn from '../../global/btns/primary/PrimaryBtn';
 import TypeWriterEffect from "../../global/typeWriterEffect/TypeWriterEffect";
 import { useSpring, animated } from '@react-spring/web';
+import ReactMarkdown from 'react-markdown'; 
 
-function Hero(props) {
+function Hero({apiData}) {
     const [isVisible, setIsVisible] = useState(false);
     const containerRef = useRef(null);
+    const data = apiData ? apiData.data.attributes : null;
 
+    console.log("data", apiData);
+
+    const videoImgdata = data ? data.heroImgVideo.data.attributes : null;
+    
     useEffect(() => {
         const options = {
             root: null,
@@ -64,15 +70,15 @@ function Hero(props) {
     return (
         <div className={styles.flexContainer} ref={containerRef}>
             <div className={styles.introContainer}>
-                <animated.h1 className={`gradientText ${styles.name}`} style={firstNameAnimation}>Iris</animated.h1>
-                <animated.h1 className={`gradientText ${styles.name}`} style={lastNameAnimation}>Maenhout</animated.h1>
+                <animated.h1 className={`gradientText ${styles.name}`} style={firstNameAnimation}>{data !== null ? data.firstName : ""}</animated.h1>
+                <animated.h1 className={`gradientText ${styles.name}`} style={lastNameAnimation}>{data !== null ? data.lastName : ""}</animated.h1>
             
                 <animated.div style={introAnimation}>
-                    <TypeWriterEffect jobTitlesArray={["front-end developer", "UX/UI designer", "full stack developer", "freelancer"]}/>
+                    <TypeWriterEffect />
                     
-                    <p>
-                        Ik heb een passie voor het creëren van webapplicaties die een mooie en gebruiksvriendelijke interfase hebben.
-                    </p>
+
+                    {data && <ReactMarkdown>{data.shortIntro}</ReactMarkdown>}
+
 
                     <div className={styles.btnsContainer}>
                         <PrimaryBtn text={'Neem contact op'}/>
@@ -81,11 +87,23 @@ function Hero(props) {
                 </animated.div>
             </div>
 
-            {/* animated.div component for the image */}
+            {/* animated.div component for the image or video*/}
             <animated.div className={styles.imgContainer}>
-                <video autoPlay loop muted playsInline>
-                    <source src="/video/hero_animation.webm" type="video/webm"/>
-                </video>
+                {
+                    videoImgdata !== null ?
+                        videoImgdata.ext.match(/\.(jpg|jpeg|png|gif)$/i) ?
+                        
+                        <img src={`${process.env.REACT_APP_API_ROOT_URL}${videoImgdata.formats.medium.url}`} alt={videoImgdata.alternativeText}/>
+
+                        :
+
+                        <video autoPlay loop muted playsInline>
+                            <source src={`${process.env.REACT_APP_API_ROOT_URL}${videoImgdata.url}`} type={videoImgdata.mime}/>
+                        </video>
+                    :
+                    <></>
+                }
+                
             </animated.div>
         </div>
     );
