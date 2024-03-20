@@ -90,7 +90,7 @@ header div:first-of-type{
 
 
 /* _______________________ Desktop view _________________ */
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 1000px) {
     
     header {
         padding: 0.5em 10%;

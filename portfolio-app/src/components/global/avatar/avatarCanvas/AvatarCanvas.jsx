@@ -33,7 +33,7 @@ function AvatarCanvas(props) {
                     </group>
                 </Suspense>
             </Canvas>
-
+            
             <Loader/>
 
 

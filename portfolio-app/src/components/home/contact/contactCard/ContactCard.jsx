@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import styles from './contactCard.module.css';
 import { Link } from 'react-router-dom';
 
-function ContactCard(props) {
+function ContactCard({apiData}) {
 
+    const contactData = apiData !== null ?  apiData.data.attributes.contactInfo : null;
+    const contactImgVideoData = apiData !== null ?  apiData.data.attributes.ContactSectionImgVideo.data.attributes: null;
 
     return (
         
@@ -15,39 +17,65 @@ function ContactCard(props) {
                     <h2 className='gradientText'>Zin om samen te werken?</h2>
                     <p>Contacteer mij gerust en laten we er samen in vliegen.</p>
 
-                    <div className={styles.phoneNrEmailDiv}>
-                        <i className="fa-solid fa-envelope"></i>
-                        <a href="mailto:irismaenhout@gmail.com">irismaenhout@gmail.com</a>
-                    </div>
+                    { (contactData !== null && contactData.email !== null) &&
+                        <div className={styles.phoneNrEmailDiv}>
+                            <i className="fa-solid fa-envelope"></i>
+                            <a href={`mailto:${contactData.email}`}>{contactData.email}</a>
+                        </div>
+                    }
 
-                    <div className={styles.phoneNrEmailDiv}>
-                        <i className="fa-solid fa-phone"></i>
-                        <a href="tel:+32 4325 2909">+32 4325 2909</a>
-                    </div>
+                    { (contactData !== null && contactData.phoneNr !== null) &&
+
+                        <div className={styles.phoneNrEmailDiv}>
+                            <i className="fa-solid fa-phone"></i>
+                            <a href="tel:+32 4325 2909">{contactData.phoneNr}</a>
+                        </div>
+                    }
 
                 </div>
 
 
                 <div className={styles.socialMedia}>
-                    <Link to={''}>
-                        <i className="fa-brands fa-linkedin"></i>
-                    </Link>
 
-                    <Link to={''}>
-                        <i className="fa-brands fa-github"></i>
-                    </Link>
+                    { (contactData !== null && contactData.linkedInUrl !== null) &&
+                        <a href={contactData.linkedInUrl} target="_blank" rel="noreferrer">
+                            <i className="fa-brands fa-linkedin"></i>
+                        </a>
+                    }
 
-                    <Link to={''}>
-                        <i className="fa-brands fa-facebook-messenger"></i>
-                    </Link>
+
+                    { (contactData !== null && contactData.githubUrl !== null) &&
+                        <a href={contactData.githubUrl} target="_blank" rel="noreferrer">
+                            <i className="fa-brands fa-github"></i>
+                        </a>
+                    }
+
+
+                    { (contactData !== null && contactData.messengerUrl !== null) &&
+                        <a href={contactData.messengerUrl} target="_blank" rel="noreferrer">
+                            <i className="fa-brands fa-facebook-messenger"></i>
+                        </a>
+                    }
                     
                     
                 </div>
             </div>
 
-            <div className={styles.image}>
+            {
+                contactImgVideoData !== null ?
+                contactImgVideoData.ext.match(/\.(jpg|jpeg|png|gif)$/i) ?
+                        
+                    <img className={styles.image} src={`${process.env.REACT_APP_API_ROOT_URL}${contactImgVideoData.url}`} alt={contactImgVideoData.alternativeText}/>
 
-            </div>
+                    :
+
+                    <video className={styles.image} autoPlay loop muted playsInline>
+                        <source src={`${process.env.REACT_APP_API_ROOT_URL}${contactImgVideoData.url}`} type={contactImgVideoData.mime}/>
+                    </video>
+                :
+
+                <></>
+            }
                 
         </div>
 

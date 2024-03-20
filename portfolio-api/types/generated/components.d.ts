@@ -31,11 +31,10 @@ export interface PersonalInfoContactInfo extends Schema.Component {
   };
   attributes: {
     email: Attribute.Email & Attribute.Required;
-    phoneNr: Attribute.BigInteger;
     githubUrl: Attribute.String;
     linkedInUrl: Attribute.String;
     messengerUrl: Attribute.String;
-    imgVideo: Attribute.Media;
+    phoneNr: Attribute.String;
   };
 }
 

@@ -72,7 +72,8 @@
 
 
 .image{
-    background-color: #140723;
+    display: block;
+    /* background-color: #140723; */
     width: 100%;
     min-height: 18rem;
 }

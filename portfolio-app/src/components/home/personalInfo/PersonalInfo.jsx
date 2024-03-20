@@ -8,6 +8,7 @@ import ReactMarkdown from 'react-markdown';
 function PersonalInfo({apiData}) {
 
     const [isVisible, setIsVisible] = useState(false);
+    const [techData, setTechData] = useState([]);
     const firstContainerRef = useRef(null);
     const secondContainerRef = useRef(null);
     const thirdContainerRef = useRef(null);
@@ -28,6 +29,38 @@ function PersonalInfo({apiData}) {
         
         return age;
     }
+
+
+    const getTechData = async () => {
+        const resp = await fetch(`${process.env.REACT_APP_API_ROOT_URL}/api/technologies?filters[stillRemember][$eq]=true&populate=*`);
+        const json = await resp.json();
+
+        setTechData(json.data.map(item => {
+            if(item.attributes.logoImage.data !== null){
+                return {
+                    name: item.attributes.name, 
+                    logoClassname: item.attributes.logoClassname,
+                    logoImg: {
+                        url: item.attributes.logoImage.data.attributes.url,
+                        alt: item.attributes.logoImage.data.attributes.alternativeText
+                    }
+                }
+            }else{
+                return {
+                    name: item.attributes.name, 
+                    logoClassname: item.attributes.logoClassname,
+                    logoImg: null
+                }
+            }
+        }));
+
+    }
+
+     
+      
+      useEffect(() => {
+        getTechData();
+      }, []);
 
 
     const springData = {
@@ -119,11 +152,6 @@ function PersonalInfo({apiData}) {
                         <h3 className='gradientText'>Info</h3>
                     </div>
                     <div className={styles.personalDataInfoContent}>
-                        <ul>
-                            <li>Passie voor het creëren van webaplicaties</li>
-                            <li>Creatief Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates excepturi id quae non earum, laborum esse sit in quasi maiores. Rem sint at earum excepturi magni possimus sequi minima numquam!</li>
-                            <li>Oog voor detail</li>
-                        </ul>
 
                         {data && <ReactMarkdown>{data.InfoBulletpoints}</ReactMarkdown>}
                     </div>
@@ -136,22 +164,41 @@ function PersonalInfo({apiData}) {
                     </div>
                     <div className={`${styles.personalDataInfoContent} ${styles.skillsContainer}`}>
                         <div className={styles.grid}>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
+                            {techData.map((tech)=> {
+                                if(tech.logoClassname !== "" && tech.logoImg === null){
+                                    return (
+                                        <div>
+                                            <i className={tech.logoClassname}></i>
+                                            <p>{tech.name}</p>
+                                        </div>
+                                    );
+                                }else{
+                                    return (
+                                        <div>
+                                            <div className={styles.techImgContainer}>
+                                                <img src={`${process.env.REACT_APP_API_ROOT_URL}${tech.logoImg.url}`} alt={tech.logoImg.alt} />
+                                            </div>
+                                            <p>{tech.name}</p>
+                                        </div>
+                                    )
+                                }
+                                
+                            })}
+                            
                         </div>
                     </div>
                 </animated.div>
-
-                <div className={styles.cvBtnContainer}>
-                    <PrimaryBtn text={"Bekijk mijn CV"}/>
-                </div>
                 
+                {(data !== null && data.cv.data !== null) && 
+                
+                    <div className={styles.cvBtnContainer}>
+                        <a href={`${process.env.REACT_APP_API_ROOT_URL}${data.cv.data.attributes.url}`} without rel="noopener noreferrer" target="_blank">
+                            <PrimaryBtn text={"Bekijk mijn CV"}/>
+                        </a>
+                    </div>
+                }
+                
+        
 
             </div>
 

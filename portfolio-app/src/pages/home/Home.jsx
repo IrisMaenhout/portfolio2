@@ -26,14 +26,14 @@ function Home(props) {
 
 
     const getData = async () => {
-        const resp = await fetch(`${process.env.REACT_APP_API_ROOT_URL}/api/personal-info?populate=*`);
-        const json = await resp.json();
-        setApiData(json);
-      }
+      const resp = await fetch(`${process.env.REACT_APP_API_ROOT_URL}/api/personal-info?populate=*`);
+      const json = await resp.json();
+      setApiData(json);
+    }
     
-      useEffect(() => {
-        getData();
-      }, []);
+    useEffect(() => {
+      getData();
+    }, []);
 
       useEffect(()=>{
         console.log(apiData);

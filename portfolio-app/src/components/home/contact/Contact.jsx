@@ -3,9 +3,10 @@ import ContactCard from './contactCard/ContactCard';
 import styles from './contact.module.css';
 
 function Contact({apiData}) {
+
     return (
-        <div className={styles.marginContainer}>
-            <ContactCard />
+        <div className={styles.marginContainer} id="contact">
+            <ContactCard apiData={apiData}/>
         </div>
     );
 }

@@ -1,8 +1,21 @@
-import React, { useState } from 'react';
-import {Link} from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import {Link, useLocation} from 'react-router-dom';
 import styles from './header.module.css';
 
 function Header() {
+
+    const [contactData, setContactData] = useState(null); 
+    const { hash } = useLocation();
+
+    const getData = async () => {
+        const resp = await fetch(`${process.env.REACT_APP_API_ROOT_URL}/api/personal-info?populate=contactInfo`);
+        const json = await resp.json();
+        setContactData(json.data.attributes.contactInfo);
+      }
+      
+      useEffect(() => {
+        getData();
+      }, []);
 
     const [mobileActions, setMobileActions] = useState({
         isNavOpen: window.innerWidth > 600 ? true : false,
@@ -49,24 +62,33 @@ function Header() {
             <nav className={!mobileActions.isNavOpen ? styles.hide : undefined}>
                 <ul>
                     <li>
-                        <Link to={'/introductie'}>Introductie</Link>
+                        <a className={hash === "#introductie" ? styles.selected : undefined} href={'#introductie'}>Introductie</a>
                     </li>
 
                     <li>
-                        <Link  className={styles.selected} to={'/projecten'}>Projecten</Link>
+                        <a className={hash === "#diensten" ? styles.selected : undefined} href={'#diensten'}>Diensten</a>
                     </li>
 
                     <li>
-                        <Link to={'/contact'}>Contact</Link>
+                        <a className={hash === "#projecten" ? styles.selected : undefined} href={'#projecten'}>Projecten</a>
                     </li>
 
                     <li>
-                        <a href={'/github-url'} target="_blank" rel="noreferrer"><i className="fa-brands fa-github"></i></a>
+                        <a className={hash === "#contact" ? styles.selected : undefined} href={'#contact'}>Contact</a>
                     </li>
 
-                    <li>
-                        <a href={'/linkedIn-url'} target="_blank" rel="noreferrer"><i className="fa-brands fa-linkedin"></i></a>
-                    </li>
+                    {(contactData !== null && contactData.githubUrl !== null) &&
+                        <li>
+                            <a href={contactData.githubUrl} target="_blank" rel="noreferrer"><i className="fa-brands fa-github"></i></a>
+                        </li>
+                    }
+                    
+                    {(contactData !== null && contactData.linkedInUrl !== null) &&
+                        <li>
+                            <a href={contactData.linkedInUrl} target="_blank" rel="noreferrer"><i className="fa-brands fa-linkedin"></i></a>
+                        </li>
+                    }
+                    
 
                 </ul>
             </nav>

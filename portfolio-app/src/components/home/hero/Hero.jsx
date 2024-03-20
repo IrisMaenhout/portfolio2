@@ -68,7 +68,7 @@ function Hero({apiData}) {
     });
 
     return (
-        <div className={styles.flexContainer} ref={containerRef}>
+        <div className={styles.flexContainer} ref={containerRef} id="introductie">
             <div className={styles.introContainer}>
                 <animated.h1 className={`gradientText ${styles.name}`} style={firstNameAnimation}>{data !== null ? data.firstName : ""}</animated.h1>
                 <animated.h1 className={`gradientText ${styles.name}`} style={lastNameAnimation}>{data !== null ? data.lastName : ""}</animated.h1>
@@ -93,7 +93,7 @@ function Hero({apiData}) {
                     videoImgdata !== null ?
                         videoImgdata.ext.match(/\.(jpg|jpeg|png|gif)$/i) ?
                         
-                        <img src={`${process.env.REACT_APP_API_ROOT_URL}${videoImgdata.formats.medium.url}`} alt={videoImgdata.alternativeText}/>
+                        <img src={`${process.env.REACT_APP_API_ROOT_URL}${videoImgdata.url}`} alt={videoImgdata.alternativeText}/>
 
                         :
 

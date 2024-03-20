@@ -11,9 +11,6 @@
       "type": "email",
       "required": true
     },
-    "phoneNr": {
-      "type": "biginteger"
-    },
     "githubUrl": {
       "type": "string"
     },
@@ -23,13 +20,8 @@
     "messengerUrl": {
       "type": "string"
     },
-    "imgVideo": {
-      "allowedTypes": [
-        "images",
-        "videos"
-      ],
-      "type": "media",
-      "multiple": false
+    "phoneNr": {
+      "type": "string"
     }
   }
 }

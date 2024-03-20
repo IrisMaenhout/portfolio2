@@ -20,7 +20,7 @@ function ProjectsOverview({projectsData}) {
     // }
 
     return (
-        <div className={styles.projectsOverview}>
+        <div className={styles.projectsOverview} id={"projecten"}>
             <h2 className='gradientText'>Projecten</h2>
             
             <div className={styles.filters}>

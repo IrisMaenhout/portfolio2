@@ -101,6 +101,32 @@
    height: 5rem;
    background-color: #1C1551;
    border-radius: 10%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   cursor: pointer;
+   transition: 5s ease-in-out;
+}
+
+.personalDataInfoContent .grid div p{
+    text-align: center;
+    display: none;
+}
+
+.personalDataInfoContent .grid div:hover p{
+    display: block;
+}
+
+.personalDataInfoContent .grid div:hover .techImgContainer, .personalDataInfoContent .grid div:hover i{
+    display: none;
+}
+
+.personalDataInfoContent .grid div i{
+   font-size: 46px;
+}
+
+.personalDataInfoContent .grid div .techImgContainer{
+   margin: .5rem;
 }
 
 

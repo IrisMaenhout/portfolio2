@@ -772,6 +772,7 @@ export interface ApiPersonalInfoPersonalInfo extends Schema.SingleType {
       'oneToMany',
       'api::technology.technology'
     >;
+    ContactSectionImgVideo: Attribute.Media;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -894,7 +895,7 @@ export interface ApiTechnologyTechnology extends Schema.CollectionType {
     description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     name: Attribute.String & Attribute.Required & Attribute.Unique;
@@ -910,7 +911,6 @@ export interface ApiTechnologyTechnology extends Schema.CollectionType {
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::technology.technology',
       'oneToOne',
