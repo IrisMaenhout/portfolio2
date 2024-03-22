@@ -1,38 +1,47 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './projectCard.module.css';
 import { Link } from 'react-router-dom';
 
-function ProjectCard({className}) {
+function ProjectCard({className, projectData}) {
+    const projectCardData = projectData.attributes;
+
+    const [cardHover, setCardHover] = useState(false);
+
     return (
-        // <div className={`${styles.card } ${className}`}>
-        //     <img src='https://media.routard.com/image/66/6/couv-philippines.1613666.142.jpg' alt="" />
-        //     <Link to={'/project-detail'} className={`${styles.projectCard}`}>
-        //         <div className={styles.category}>
-        //             <i className={`fa-brands fa-wordpress ${styles.categoryLogo}`}></i>
-        //             <i className={`fa-solid fa-code ${styles.categoryLogo}`}></i>
-        //             <i className={`fa-solid fa-palette ${styles.categoryLogo}`}></i>
-        //         </div>
-
-        //         <h3>Project name</h3>
-        //     </Link>
-
-        // </div>
 
 
-        <Link to={"/"} className={styles.card}>
-            <div className={styles.image}>
-                <div className={styles.btns}>
-                    <Link to={"/"} className={styles.websiteLink}><i className="fa-solid fa-link"></i></Link>
-                    <Link to={"/"} className={styles.readMoreLink}><i className="fa-solid fa-right-long"></i></Link>
+        <Link 
+            to={`/${projectCardData.slug}`} 
+            className={styles.card}
+            onMouseEnter={() => setCardHover(true)} // Wrap in arrow function
+            onMouseLeave={() => setCardHover(false)} // Wrap in arrow function
+        >
+            <div className={styles.projectCardhoverImg} >
+                {
+                    cardHover && 
+
+                    <svg preserveAspectRatio="none" viewBox="0 0 645 649" fill={projectCardData.coverImgBackgroundHexColor} xmlns="http://www.w3.org/2000/svg">
+                        <path d="M643 647.5H1.5V41L44.5 2H609L643 41V647.5Z" stroke="#3531C8" strokeWidth="4" strokeLinejoin="round"/>
+                    </svg>
+
+                }
+
+                <div className={styles.image} style={{ backgroundImage: `url(${process.env.REACT_APP_API_ROOT_URL}${projectCardData.coverImage.data.attributes.url})`, backgroundColor:`${projectCardData.coverImgBackgroundHexColor}` }}>
+                    <div className={styles.btns}>
+                        <a href={`${projectCardData.projectUrls.liveSiteUrl}`} target='_blank' className={styles.websiteLink} rel="noreferrer"><i className="fa-solid fa-link"></i></a>
+                        <Link to={`/${projectCardData.slug}`} className={styles.readMoreLink}><i className="fa-solid fa-right-long"></i></Link>
+                    </div>
                 </div>
             </div>
 
-            <div className={styles.cardContent}>
-                <h3>Project</h3>
-                <p>Website om geboortelijstjes aan te maken.</p>
-                <div className={styles.categoryHashtags}>
-                    <i>#Full stack development</i>
-                    <i>#UX/UI design</i>
+            <div className={styles.projectCardhoverContent} >
+                <div className={styles.cardContent}>
+                    <h3>{projectCardData.title}</h3>
+                    <p>{projectCardData.shortIntroProjectCard}</p>
+                    <div className={styles.categoryHashtags}>
+                        <i>#Full stack development</i>
+                        <i>#UX/UI design</i>
+                    </div>
                 </div>
             </div>
         </Link>

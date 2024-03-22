@@ -59,9 +59,15 @@
     "slug": {
       "type": "string"
     },
-    "shortIntro": {
+    "shortIntroProjectCard": {
       "type": "text",
       "required": true
+    },
+    "coverImgBackgroundHexColor": {
+      "type": "string"
+    },
+    "basicDescription": {
+      "type": "richtext"
     }
   }
 }

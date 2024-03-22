@@ -164,17 +164,17 @@ function PersonalInfo({apiData}) {
                     </div>
                     <div className={`${styles.personalDataInfoContent} ${styles.skillsContainer}`}>
                         <div className={styles.grid}>
-                            {techData.map((tech)=> {
+                            {techData.map((tech, i)=> {
                                 if(tech.logoClassname !== "" && tech.logoImg === null){
                                     return (
-                                        <div>
+                                        <div key={i}>
                                             <i className={tech.logoClassname}></i>
                                             <p>{tech.name}</p>
                                         </div>
                                     );
                                 }else{
                                     return (
-                                        <div>
+                                        <div key={i}>
                                             <div className={styles.techImgContainer}>
                                                 <img src={`${process.env.REACT_APP_API_ROOT_URL}${tech.logoImg.url}`} alt={tech.logoImg.alt} />
                                             </div>
@@ -192,7 +192,7 @@ function PersonalInfo({apiData}) {
                 {(data !== null && data.cv.data !== null) && 
                 
                     <div className={styles.cvBtnContainer}>
-                        <a href={`${process.env.REACT_APP_API_ROOT_URL}${data.cv.data.attributes.url}`} without rel="noopener noreferrer" target="_blank">
+                        <a href={`${process.env.REACT_APP_API_ROOT_URL}${data.cv.data.attributes.url}`} rel="noreferrer" target="_blank">
                             <PrimaryBtn text={"Bekijk mijn CV"}/>
                         </a>
                     </div>

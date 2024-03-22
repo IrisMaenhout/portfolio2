@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Tilt } from 'react-tilt';
 import styles from './projectsOverview.module.css';
 import ProjectCard from './projectCard/ProjectCard';
 import CategoryBtn from '../../global/btns/categoryBtn/CategoryBtn';
 import { Link } from 'react-router-dom';
 
-function ProjectsOverview({projectsData}) {
+function ProjectsOverview() {
 
     // const defaultOptions = {
     //     reverse:        true,  // reverse the tilt direction
@@ -18,6 +18,23 @@ function ProjectsOverview({projectsData}) {
     //     reset:          true,    // If the tilt effect has to be reset on exit.
     //     easing:         "cubic-bezier(.03,.98,.52,.99)",    // Easing on enter/exit.
     // }
+
+    const [apiData, setApiData] = useState(null);
+
+    const getData = async () => {
+        const resp = await fetch(`${process.env.REACT_APP_API_ROOT_URL}/api/projects?populate=*`);
+        const json = await resp.json();
+        setApiData(json.data);
+      }
+      
+    useEffect(() => {
+        getData();
+    }, []);
+  
+        useEffect(()=>{
+          console.log("projectsData", apiData);
+        }, [apiData])
+
 
     return (
         <div className={styles.projectsOverview} id={"projecten"}>
@@ -34,10 +51,12 @@ function ProjectsOverview({projectsData}) {
             </div>
             
             <div className={styles.grid}>
-                <ProjectCard/>
-                <ProjectCard/>
-                <ProjectCard/>
-                <ProjectCard/>
+
+                {   apiData !== null &&
+                    apiData.map((projectData, i)=>(
+                        <ProjectCard key={i} projectData={projectData}/>
+                    ))
+                }
             </div>
            
         </div>

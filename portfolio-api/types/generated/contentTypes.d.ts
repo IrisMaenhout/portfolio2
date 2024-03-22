@@ -821,7 +821,9 @@ export interface ApiProjectProject extends Schema.CollectionType {
     >;
     inANutshell: Attribute.Component<'project-info.in-a-nutshell'>;
     slug: Attribute.String;
-    shortIntro: Attribute.Text & Attribute.Required;
+    shortIntroProjectCard: Attribute.Text & Attribute.Required;
+    coverImgBackgroundHexColor: Attribute.String;
+    basicDescription: Attribute.RichText;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

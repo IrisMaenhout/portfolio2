@@ -76,6 +76,7 @@
     /* background-color: #140723; */
     width: 100%;
     min-height: 18rem;
+    cursor: default;
 }
 
 
@@ -83,6 +84,14 @@
     .card{
         flex-direction: row;
     
+    }
+
+    .content{
+        width: 60%;
+    }
+
+    .image{
+        width: 40%;
     }
 
 
