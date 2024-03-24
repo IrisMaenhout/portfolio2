@@ -8,7 +8,8 @@ import Services from '../../components/home/services/Services';
 
 function Home(props) {
 
-    const [apiData, setApiData] = useState(null);
+    const [apiPersonalData, setPersonalApiData] = useState(null);
+    const [apiServicesCategoriesData, setServicesCategoriesData] = useState(null);
 
     // useEffect(() => {
     //     fetch(`${process.env.REACT_APP_API_ROOT_URL}/projects`)
@@ -24,32 +25,43 @@ function Home(props) {
     //     .catch(error => console.error(error));
     // }, []);
 
-
-    const getData = async () => {
+    // Get personal info from api
+    const getPersonalData = async () => {
       const resp = await fetch(`${process.env.REACT_APP_API_ROOT_URL}/api/personal-info?populate=*`);
       const json = await resp.json();
-      setApiData(json);
+      setPersonalApiData(json);
     }
-    
+
+    // Get services & categories to filter my projects from the api
+    const getServicesCategoriesData = async () => {
+      const resp = await fetch(`${process.env.REACT_APP_API_ROOT_URL}/api/project-categories?populate=*&sort=displayOrder:asc`);
+      const json = await resp.json();
+      setServicesCategoriesData(json.data);
+    }
+      
     useEffect(() => {
-      getData();
+      getPersonalData();
+      getServicesCategoriesData();
     }, []);
 
-      useEffect(()=>{
-        console.log(apiData);
-      }, [apiData])
+
+    useEffect(()=>{
+      console.log("personal", apiPersonalData);
+      console.log("services",apiServicesCategoriesData);
+    
+    }, [apiPersonalData, apiServicesCategoriesData])
     
     return (
         <div className={`container`}>
-            <Hero apiData={apiData}/>
+            <Hero apiData={apiPersonalData}/>
 
-            <PersonalInfo apiData={apiData}/>
+            <PersonalInfo apiData={apiPersonalData}/>
 
-            <Services />
+            <Services servicesData={apiServicesCategoriesData}/>
 
-            <ProjectsOverview />
+            <ProjectsOverview categoriesData={apiServicesCategoriesData} personalInfoData={apiPersonalData}/>
 
-            <Contact apiData={apiData}/> 
+            <Contact apiData={apiPersonalData}/> 
         </div>
     );
 }

@@ -1,29 +1,50 @@
 import React from 'react';
 import styles from "./services.module.css";
 
-function Services() {
-    return (
-        <div className={styles.services} id="diensten">
-            <h2 className='gradientText'>Diensten</h2>
+function Services({servicesData}) {
 
-            <div className={styles.servicesContainer}>
-                <div>
-                    <i className="fi fi-rr-layout-fluid"></i>
-                    <h4>UI/UI design</h4>
-                </div>
+    if(servicesData !== null && servicesData.length > 1){
+    
+        let visibleServices = servicesData.filter((service) => {
+            return service.attributes.hideService === false;
+        });
 
-                <div>
-                    <i className="fi fi-rr-browser"></i>
-                    <h4>Front end development</h4>
+        if(visibleServices.length > 1){
+            return (
+                <div className={styles.services} id="diensten">
+                    <h2 className='gradientText'>Diensten</h2>
+        
+                    <div className={styles.servicesContainer}>
+                        {
+                            visibleServices.map((service, i) => {
+                                return (
+                                    <div key={`service-${i}`}>
+                                        {
+                                            service.attributes.iconClassname !== null ?
+                                            <i className={service.attributes.iconClassname}></i>
+                                            : 
+                                            <span className={styles.imgService}>
+                                                <img src={`${process.env.REACT_APP_API_ROOT_URL}${service.attributes.iconImg.data.attributes.url}`} alt={service.attributes.iconImg.data.attributes.alternativeText} />
+                                            </span>
+                                        }
+                                        
+                                        <h4>{service.attributes.name}</h4>
+                                    </div>
+                                )
+                            })
+                        }
+                        
+                    </div>
                 </div>
+            );
+        }else{
+            return <div className={styles.services}></div>
+        }
 
-                <div>
-                    <i className="fi fi-rr-display-code"></i>
-                    <h4>Full stack development</h4>
-                </div>
-            </div>
-        </div>
-    );
+    }else{
+        return <div className={styles.services}></div>
+    }
+    
 }
 
 export default Services;

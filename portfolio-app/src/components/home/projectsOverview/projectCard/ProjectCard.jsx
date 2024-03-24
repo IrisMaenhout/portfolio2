@@ -39,8 +39,11 @@ function ProjectCard({className, projectData}) {
                     <h3>{projectCardData.title}</h3>
                     <p>{projectCardData.shortIntroProjectCard}</p>
                     <div className={styles.categoryHashtags}>
-                        <i>#Full stack development</i>
-                        <i>#UX/UI design</i>
+                        {
+                            projectCardData.projectCategories.data.map((category, i)=>(
+                                <i key={`category-hashtags-${i}`}>#{category.attributes.name}</i>
+                            ))
+                        }
                     </div>
                 </div>
             </div>

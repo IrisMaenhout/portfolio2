@@ -6,6 +6,10 @@
     flex-wrap: wrap;
 }
 
+.noFilter{
+    margin-top: 4em;
+}
+
 .projectsOverview{
     margin-top: 8em;
 }

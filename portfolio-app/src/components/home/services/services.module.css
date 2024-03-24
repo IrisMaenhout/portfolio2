@@ -5,7 +5,7 @@
     width: 100%;
     display: grid;
     gap: 4em;
-    grid-template-columns: repeat(auto-fit, minmax(10em, 1fr));
+    grid-template-columns: repeat(3, minmax(12em, 1fr));
 }
 
 .servicesContainer div {
@@ -32,4 +32,36 @@
     display: block;
     width: 100%;
     margin-top: 2rem;
+}
+
+/* .servicesContainer div img{
+    display: block;
+    width: 100%;
+    scale: .2;
+} */
+
+.imgService{
+    display: block;
+    width: 30%;
+    margin: 0 auto;
+    margin-top: 2rem;
+}
+
+.imgService img{
+    border-radius: 0;
+    cursor: default;
+    margin-bottom: 1rem;
+}
+
+
+@media screen and (max-width: 992px) {
+    .servicesContainer  {
+        grid-template-columns: repeat(2, minmax(12em, 1fr));
+    }
+}
+  
+@media screen and (max-width: 600px) {
+    .servicesContainer {
+        grid-template-columns: repeat(1, minmax(12em, 1fr));
+    }
 }

@@ -75,6 +75,11 @@
         "images",
         "videos"
       ]
+    },
+    "useCategoryFilterProjects": {
+      "type": "boolean",
+      "default": false,
+      "required": true
     }
   }
 }

@@ -773,6 +773,9 @@ export interface ApiPersonalInfoPersonalInfo extends Schema.SingleType {
       'api::technology.technology'
     >;
     ContactSectionImgVideo: Attribute.Media;
+    useCategoryFilterProjects: Attribute.Boolean &
+      Attribute.Required &
+      Attribute.DefaultTo<false>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -852,7 +855,7 @@ export interface ApiProjectCategoryProjectCategory
     description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     name: Attribute.String & Attribute.Required & Attribute.Unique;
@@ -870,9 +873,9 @@ export interface ApiProjectCategoryProjectCategory
     hideCategory: Attribute.Boolean &
       Attribute.Required &
       Attribute.DefaultTo<false>;
+    displayOrder: Attribute.Integer;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::project-category.project-category',
       'oneToOne',
