@@ -6,31 +6,10 @@ import Contact from '../../components/home/contact/Contact';
 import PersonalInfo from '../../components/home/personalInfo/PersonalInfo';
 import Services from '../../components/home/services/Services';
 
-function Home(props) {
+function Home({apiPersonalData}) {
 
-    const [apiPersonalData, setPersonalApiData] = useState(null);
     const [apiServicesCategoriesData, setServicesCategoriesData] = useState(null);
 
-    // useEffect(() => {
-    //     fetch(`${process.env.REACT_APP_API_ROOT_URL}/projects`)
-    //     .then(response => {
-    //         console.log("response", response);
-    //         response.json();
-
-    //     })
-    //     .then(json => {
-    //         setApiData(json);
-    //         console.log("Data",json);
-    //     })
-    //     .catch(error => console.error(error));
-    // }, []);
-
-    // Get personal info from api
-    const getPersonalData = async () => {
-      const resp = await fetch(`${process.env.REACT_APP_API_ROOT_URL}/api/personal-info?populate=*`);
-      const json = await resp.json();
-      setPersonalApiData(json);
-    }
 
     // Get services & categories to filter my projects from the api
     const getServicesCategoriesData = async () => {
@@ -40,7 +19,6 @@ function Home(props) {
     }
       
     useEffect(() => {
-      getPersonalData();
       getServicesCategoriesData();
     }, []);
 

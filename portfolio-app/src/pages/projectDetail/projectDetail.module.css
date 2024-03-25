@@ -1,3 +1,12 @@
+.disabledCategory{
+    border-radius: 0.5rem;
+    background-color: #281c33;
+    padding: 1rem 1.5rem;
+    text-decoration: none;
+    display: block;
+    text-transform: uppercase;
+}
+
 img, video{
     cursor: pointer;
     width: 100%;

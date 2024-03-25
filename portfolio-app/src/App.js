@@ -11,9 +11,24 @@ import Footer from './components/global/footer/Footer';
 import ProjectDetail from './pages/projectDetail/ProjectDetail';
 import ScrollToTop from './components/global/scrollToTop/ScrollToTop';
 import PageNotFound from './pages/pageNotFound/PageNotFound';
+import { useEffect, useState } from 'react';
 
 
 function App() {
+
+  const [apiPersonalData, setPersonalApiData] = useState(null);
+  // Get personal info from api
+  const getPersonalData = async () => {
+    const resp = await fetch(`${process.env.REACT_APP_API_ROOT_URL}/api/personal-info?populate=*`);
+    const json = await resp.json();
+    setPersonalApiData(json);
+  }
+
+  useEffect(() => {
+    getPersonalData();
+  }, []);
+
+
   return (
     <BrowserRouter>
       <ScrollToTop>
@@ -24,9 +39,9 @@ function App() {
         <Header/>
 
         <Routes>
-          <Route path='/' element={<Home />}/>
+          <Route path='/' element={<Home apiPersonalData={apiPersonalData}/>}/>
           {/* <Route path='/project-detail' element={<ProjectDetail />}/> */}
-          <Route path='/projecten/:projectSlug' element={<ProjectDetail />}/>
+          <Route path='/projecten/:projectSlug' element={<ProjectDetail personalInfo={apiPersonalData}/>}/>
           <Route path="/*" element={<PageNotFound />} />
 
         </Routes>

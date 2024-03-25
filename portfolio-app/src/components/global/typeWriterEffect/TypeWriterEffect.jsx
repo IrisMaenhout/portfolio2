@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import styles from './typeWriterEffect.module.css'; // Assuming you have a CSS module file
+import styles from './typeWriterEffect.module.css';
+import { Typewriter } from 'react-simple-typewriter';
 
 const TypewriterEffect = () => {
 
@@ -37,8 +38,22 @@ const TypewriterEffect = () => {
     if(jobTitlesArray.length > 1){
         return (
             <div className={styles.container}>
-                <span className={`${styles.text} ${styles.animationText}`}>{text}</span>
+
+                <span className={styles.text}>
+                    {/* Style will be inherited from the parent element */}
+                    <Typewriter
+                    words={jobTitlesArray}
+                    loop={0}
+                    cursor
+                    cursorStyle='_'
+                    typeSpeed={50}
+                    deleteSpeed={50}
+                    delaySpeed={1000}
+                    />
+                </span>
             </div>
+
+            
         )
     }else{
         return (

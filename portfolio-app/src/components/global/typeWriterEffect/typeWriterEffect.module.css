@@ -3,7 +3,7 @@
     margin-bottom: 2em;
 }
 
-.container .text{
+.container .text, .text span{
     position: relative;
     color: #51D6AF;
     font-size: 16px;
@@ -11,29 +11,6 @@
     text-transform: uppercase;
     letter-spacing: .3em;
     overflow-x: hidden;
-}
-
-
-
-.text.animationText:before{
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background-color: #0C0118;
-    border-left: 2px solid #51D6AF;
-    animation: animate 4s steps(12) infinite;
-}
-
-@keyframes animate{
-    40%, 60%{
-        left: calc(100% + 4px);
-    }
-    100%{
-        left: 0%;
-    }
 }
 
 

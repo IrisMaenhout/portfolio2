@@ -13,9 +13,11 @@ import { Link, useParams } from 'react-router-dom';
 import PageNotFound from '../pageNotFound/PageNotFound';
 import ReactMarkdown from 'react-markdown'; 
 
-function ProjectDetail(props) {
+function ProjectDetail({personalInfo}) {
     // To open the lightbox change the value of the "toggler" prop.
 	// const [lightBoxToggle, setLightBoxToggle] = useState(false);
+
+    console.log(personalInfo);
 
     const [projectData, setProjectData] = useState(null);
     const [projectContentData, setProjectContentData] = useState(null);
@@ -79,6 +81,10 @@ function ProjectDetail(props) {
         });
 	}
 
+    function convertToSlug(string) {
+        return string.trim().toLowerCase().replace(/\s+/g, '-');
+    }
+
     // function toggleLightBox (){
     //     setLightBoxToggle(prevLightBoxToggle => !prevLightBoxToggle);
     // }
@@ -92,11 +98,23 @@ function ProjectDetail(props) {
                             <h1 className={`gradientText`}>{projectData[0].attributes.title}</h1>
         
                             <div className={styles.categories}>
-                                <CategoryBtn location={'../?category=ux-ui-design'} text={'UX/UI design'} logoClassName={'fa-solid fa-palette'}/>
+                                {   
+                                    personalInfo!== null &&
+                                    (personalInfo.data.attributes.useCategoryFilterProjects ?
+                                    projectData[0].attributes.projectCategories.data.map((category, index)=>(
+                                        <CategoryBtn key={`project-category-${index}`} location={`/${convertToSlug(category.attributes.name)}`} text={category.attributes.name}/>
+                                    ))
+
+                                    : 
+                                    
+                                    projectData[0].attributes.projectCategories.data.map((category, index)=>(
+                                        <div key={`project-category-${index}`} className={styles.disabledCategory}>
+                                            {category.attributes.name}
+                                        </div>
+                                    )))
+                                    
+                                }
         
-                                <CategoryBtn location={'../?category=web-development'} text={'Web development'} logoClassName={'fa-solid fa-code'}/>
-                                
-                                <CategoryBtn location={'../?category=cms-development'} text={'CMS development'} logoClassName={'fa-brands fa-wordpress'}/>
                             </div>
                         </div>
         
@@ -121,19 +139,8 @@ function ProjectDetail(props) {
                                 />
                             }
                         </div>
-        
-                        <UsedTechnologies usedTechnologiesArray={['https://cdn-prod.medicalnewstoday.com/content/images/articles/322/322868/golden-retriever-puppy.jpg', 'https://i.natgeofe.com/n/4f5aaece-3300-41a4-b2a8-ed2708a0a27c/domestic-dog_thumb_3x2.jpg', 'https://media-cldnry.s-nbcnews.com/image/upload/t_nbcnews-fp-1024-512,f_auto,q_auto:best/rockcms/2022-08/220805-border-collie-play-mn-1100-82d2f1.jpg', 'https://www.akc.org/wp-content/uploads/2021/07/Cavalier-King-Charles-Spaniel-laying-down-indoors.jpeg', 'https://static01.nyt.com/images/2023/09/15/multimedia/15UK-DOGS-01-hftk/15UK-DOGS-01-hftk-videoSixteenByNine3000.jpg', 'https://media.cnn.com/api/v1/images/stellar/prod/201030094143-stock-rhodesian-ridgeback.jpg?q=w_2187,h_1458,x_0,y_0,c_fill', 'https://hips.hearstapps.com/hmg-prod/images/wolf-dog-breeds-siberian-husky-1570411330.jpg?crop=1xw:0.84375xh;center,top', 'https://hips.hearstapps.com/hmg-prod/images/best-guard-dogs-1650302456.jpeg?crop=0.754xw:1.00xh;0.0651xw,0&resize=1200:*', 'https://www.southernliving.com/thmb/Rz-dYEhwq_82C5_Y9GLH2ZlEoYw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/gettyimages-837898820-1-4deae142d4d0403dbb6cb542bfc56934.jpg', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2ZaVrlmpJYvstalJv1T4vWrnQ8cjXqOrnEw&usqp=CAU', 'https://www.hindustantimes.com/ht-img/img/2023/07/10/550x309/labrador-retriever-gfd78b67cf_1280_1677927949246_1688982230758.jpg', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7t1lv8eFXVWmIuzxAoHvWekhW8xB46a479Q&usqp=CAU']}/>
-        
-                        {
-                            projectData[0].attributes.basicDescription &&
-                            <>
-                                <h2 className={`gradientText`}>Briefing</h2>
-                                <ReactMarkdown>{projectData[0].attributes.basicDescription}</ReactMarkdown>
-                            </>
-                        }
-                        
-        
-        
+
+
                         <div className={styles.externalLinksContainer}>
                             {((!projectData[0].attributes.hideWebsiteUrlOnDesktop && window.innerWidth > 600) || (!projectData[0].attributes.hideWebsiteUrlOnMobile && window.innerWidth < 600)) && projectData[0].attributes.projectUrls.liveSiteUrl !== null &&
 
@@ -151,7 +158,21 @@ function ProjectDetail(props) {
                             }
                         </div>
         
-                        <InANutshell/>
+                        <UsedTechnologies projectId={projectData[0].id}/>
+        
+                        {
+                            projectData[0].attributes.basicDescription &&
+                            <>
+                                <h2 className={`gradientText`}>Briefing</h2>
+                                <ReactMarkdown>{projectData[0].attributes.basicDescription}</ReactMarkdown>
+                            </>
+                        }
+                        
+        
+        
+                        
+        
+                        {/* <InANutshell/> */}
         
                     </div>
     
@@ -212,15 +233,7 @@ function ProjectDetail(props) {
                         <Cta ctaText={'Vind je dit een interessant project en wil je graag samenwerken?'} url={'/#contact'} btnText={'Stuur mij een berichtje'}/>
         
                         <PrevNextProject 
-                            prevProject={{
-                                url: '',
-                                name: 'Vorig project'
-                            }}
-        
-                            nextProject={{
-                                url: '',
-                                name: 'Volgend project'
-                            }}
+                            currentProjectId={projectData[0].id}
                         />
                     </div>
         
