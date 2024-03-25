@@ -6,15 +6,7 @@
   },
   "options": {},
   "attributes": {
-    "videos": {
-      "type": "media",
-      "multiple": true,
-      "required": false,
-      "allowedTypes": [
-        "videos"
-      ]
-    },
-    "images": {
+    "imagesVideos": {
       "displayName": "Images",
       "type": "component",
       "repeatable": true,

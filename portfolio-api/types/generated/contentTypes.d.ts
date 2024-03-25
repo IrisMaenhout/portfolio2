@@ -808,7 +808,7 @@ export interface ApiProjectProject extends Schema.CollectionType {
   attributes: {
     title: Attribute.String & Attribute.Required & Attribute.Unique;
     projectContent: Attribute.DynamicZone<
-      ['project-info.description', 'project-info.files', 'project-info.process']
+      ['project-info.description', 'project-info.files']
     >;
     usedTechnologies: Attribute.Relation<
       'api::project.project',
@@ -827,6 +827,14 @@ export interface ApiProjectProject extends Schema.CollectionType {
     shortIntroProjectCard: Attribute.Text & Attribute.Required;
     coverImgBackgroundHexColor: Attribute.String;
     basicDescription: Attribute.RichText;
+    DetailPageDesktopImg: Attribute.Media;
+    DetailPagePhoneImg: Attribute.Media;
+    hideWebsiteUrlOnDesktop: Attribute.Boolean &
+      Attribute.Required &
+      Attribute.DefaultTo<false>;
+    hideWebsiteUrlOnMobile: Attribute.Boolean &
+      Attribute.Required &
+      Attribute.DefaultTo<false>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

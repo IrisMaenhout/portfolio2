@@ -23,7 +23,7 @@ export function AvatarThreeJs({animation}) {
   useEffect(()=> {
     actions[animation].reset().play();
 
-    return () => actions[animation].reset().fadeOut(0.5);
+    return () => actions[animation]?.reset().fadeOut(0.5);
   }, [animation, actions]);
 
   

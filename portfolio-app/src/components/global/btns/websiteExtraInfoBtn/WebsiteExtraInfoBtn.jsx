@@ -4,7 +4,7 @@ import styles from "./websiteExtraInfo.module.css";
 
 function WebsiteExtraInfoBtn({iconClassName, text, location}) {
     return (
-        <a href={location} className={styles.externalLink}>
+        <a href={location} className={styles.externalLink} target='_blank' rel="noreferrer">
             <i className={iconClassName}></i>
             <p>{text}</p>
         </a>

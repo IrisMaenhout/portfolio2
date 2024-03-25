@@ -1,13 +1,33 @@
 {
   "collectionName": "components_project_info_descriptions",
   "info": {
-    "displayName": "description",
-    "description": ""
+    "displayName": "text",
+    "description": "",
+    "icon": "file"
   },
   "options": {},
   "attributes": {
-    "description": {
+    "informationText": {
       "type": "richtext"
+    },
+    "belongsToProcess": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "width": {
+      "type": "enumeration",
+      "enum": [
+        "width-100%",
+        "width-50%"
+      ],
+      "default": "width-100%",
+      "required": true
+    },
+    "showProcessTitle": {
+      "type": "boolean",
+      "default": false,
+      "required": true
     }
   }
 }

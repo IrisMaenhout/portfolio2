@@ -41,11 +41,21 @@ export interface PersonalInfoContactInfo extends Schema.Component {
 export interface ProjectInfoDescription extends Schema.Component {
   collectionName: 'components_project_info_descriptions';
   info: {
-    displayName: 'description';
+    displayName: 'text';
     description: '';
+    icon: 'file';
   };
   attributes: {
-    description: Attribute.RichText;
+    informationText: Attribute.RichText;
+    belongsToProcess: Attribute.Boolean &
+      Attribute.Required &
+      Attribute.DefaultTo<false>;
+    width: Attribute.Enumeration<['width-100%', 'width-50%']> &
+      Attribute.Required &
+      Attribute.DefaultTo<'width-100%'>;
+    showProcessTitle: Attribute.Boolean &
+      Attribute.Required &
+      Attribute.DefaultTo<false>;
   };
 }
 
@@ -56,8 +66,7 @@ export interface ProjectInfoFiles extends Schema.Component {
     description: '';
   };
   attributes: {
-    videos: Attribute.Media;
-    images: Attribute.Component<'project-info.images', true>;
+    imagesVideos: Attribute.Component<'project-info.images', true>;
   };
 }
 
@@ -68,9 +77,14 @@ export interface ProjectInfoImages extends Schema.Component {
     description: '';
   };
   attributes: {
-    imagesVertical: Attribute.Media;
-    imagesHorizontal: Attribute.Media;
-    imagesSquare: Attribute.Media;
+    imageVideo: Attribute.Media;
+    ImgVideoSize: Attribute.Enumeration<['big', 'medium']>;
+    belongsToProcess: Attribute.Boolean &
+      Attribute.Required &
+      Attribute.DefaultTo<false>;
+    showProcessTitle: Attribute.Boolean &
+      Attribute.Required &
+      Attribute.DefaultTo<false>;
   };
 }
 

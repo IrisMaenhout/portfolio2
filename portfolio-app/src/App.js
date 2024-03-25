@@ -10,6 +10,7 @@ import Home from './pages/home/Home';
 import Footer from './components/global/footer/Footer';
 import ProjectDetail from './pages/projectDetail/ProjectDetail';
 import ScrollToTop from './components/global/scrollToTop/ScrollToTop';
+import PageNotFound from './pages/pageNotFound/PageNotFound';
 
 
 function App() {
@@ -24,7 +25,9 @@ function App() {
 
         <Routes>
           <Route path='/' element={<Home />}/>
-          <Route path='/project-detail' element={<ProjectDetail />}/>
+          {/* <Route path='/project-detail' element={<ProjectDetail />}/> */}
+          <Route path='/projecten/:projectSlug' element={<ProjectDetail />}/>
+          <Route path="/*" element={<PageNotFound />} />
 
         </Routes>
 

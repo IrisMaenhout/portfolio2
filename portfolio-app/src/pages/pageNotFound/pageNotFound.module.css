@@ -1,0 +1,10 @@
+.positionCenter{
+    text-align: center;
+}
+.positionCenter h1, .positionCenter h4{
+    width: 100%;
+}
+
+.positionCenter p{
+    margin-bottom: 8rem;
+}

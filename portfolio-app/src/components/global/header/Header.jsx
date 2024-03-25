@@ -62,19 +62,19 @@ function Header() {
             <nav className={!mobileActions.isNavOpen ? styles.hide : undefined}>
                 <ul>
                     <li>
-                        <a className={hash === "#introductie" ? styles.selected : undefined} href={'#introductie'}>Introductie</a>
+                        <a className={hash === "#introductie" ? styles.selected : undefined} href={'/#introductie'}>Introductie</a>
                     </li>
 
                     <li>
-                        <a className={hash === "#diensten" ? styles.selected : undefined} href={'#diensten'}>Diensten</a>
+                        <a className={hash === "#diensten" ? styles.selected : undefined} href={'/#diensten'}>Diensten</a>
                     </li>
 
                     <li>
-                        <a className={hash === "#projecten" ? styles.selected : undefined} href={'#projecten'}>Projecten</a>
+                        <a className={hash === "#projecten" ? styles.selected : undefined} href={'/#projecten'}>Projecten</a>
                     </li>
 
                     <li>
-                        <a className={hash === "#contact" ? styles.selected : undefined} href={'#contact'}>Contact</a>
+                        <a className={hash === "#contact" ? styles.selected : undefined} href={'/#contact'}>Contact</a>
                     </li>
 
                     {(contactData !== null && contactData.githubUrl !== null) &&
@@ -88,7 +88,6 @@ function Header() {
                             <a href={contactData.linkedInUrl} target="_blank" rel="noreferrer"><i className="fa-brands fa-linkedin"></i></a>
                         </li>
                     }
-                    
 
                 </ul>
             </nav>

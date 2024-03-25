@@ -11,10 +11,10 @@ function ProjectCard({className, projectData}) {
 
 
         <Link 
-            to={`/${projectCardData.slug}`} 
+            to={`/projecten/${projectCardData.slug}`} 
             className={styles.card}
-            onMouseEnter={() => setCardHover(true)} // Wrap in arrow function
-            onMouseLeave={() => setCardHover(false)} // Wrap in arrow function
+            onMouseEnter={() => setCardHover(true)}
+            onMouseLeave={() => setCardHover(false)} 
         >
             <div className={styles.projectCardhoverImg} >
                 {
@@ -28,8 +28,12 @@ function ProjectCard({className, projectData}) {
 
                 <div className={styles.image} style={{ backgroundImage: `url(${process.env.REACT_APP_API_ROOT_URL}${projectCardData.coverImage.data.attributes.url})`, backgroundColor:`${projectCardData.coverImgBackgroundHexColor}` }}>
                     <div className={styles.btns}>
+                        {((!projectCardData.hideWebsiteUrlOnDesktop && window.innerWidth > 600) || (!projectCardData.hideWebsiteUrlOnMobile && window.innerWidth < 600)) && projectCardData.projectUrls.liveSiteUrl !== null &&
+
                         <a href={`${projectCardData.projectUrls.liveSiteUrl}`} target='_blank' className={styles.websiteLink} rel="noreferrer"><i className="fa-solid fa-link"></i></a>
-                        <Link to={`/${projectCardData.slug}`} className={styles.readMoreLink}><i className="fa-solid fa-right-long"></i></Link>
+                        }
+                        
+                        <Link to={`/projecten/${projectCardData.slug}`} className={styles.readMoreLink}><i className="fa-solid fa-right-long"></i></Link>
                     </div>
                 </div>
             </div>

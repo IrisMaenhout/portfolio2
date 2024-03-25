@@ -21,8 +21,7 @@
       "type": "dynamiczone",
       "components": [
         "project-info.description",
-        "project-info.files",
-        "project-info.process"
+        "project-info.files"
       ]
     },
     "usedTechnologies": {
@@ -68,6 +67,32 @@
     },
     "basicDescription": {
       "type": "richtext"
+    },
+    "DetailPageDesktopImg": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "DetailPagePhoneImg": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "hideWebsiteUrlOnDesktop": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "hideWebsiteUrlOnMobile": {
+      "type": "boolean",
+      "default": false,
+      "required": true
     }
   }
 }

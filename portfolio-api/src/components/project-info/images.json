@@ -6,29 +6,31 @@
   },
   "options": {},
   "attributes": {
-    "imagesVertical": {
+    "imageVideo": {
       "type": "media",
-      "multiple": true,
+      "multiple": false,
       "required": false,
       "allowedTypes": [
-        "images"
+        "images",
+        "videos"
       ]
     },
-    "imagesHorizontal": {
-      "type": "media",
-      "multiple": true,
-      "required": false,
-      "allowedTypes": [
-        "images"
+    "ImgVideoSize": {
+      "type": "enumeration",
+      "enum": [
+        "big",
+        "medium"
       ]
     },
-    "imagesSquare": {
-      "type": "media",
-      "multiple": true,
-      "required": false,
-      "allowedTypes": [
-        "images"
-      ]
+    "belongsToProcess": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "showProcessTitle": {
+      "type": "boolean",
+      "default": false,
+      "required": true
     }
   }
 }
