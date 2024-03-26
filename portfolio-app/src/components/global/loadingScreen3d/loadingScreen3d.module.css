@@ -1,0 +1,61 @@
+.container{
+    display: flex; 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    z-index: 50; 
+    justify-content: center; 
+    align-items: center; 
+    width: 100%; 
+    height: 100%; 
+    background-color: #0C0118; 
+    transition-property: opacity;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms; 
+    transition-duration: 1000ms; 
+    pointer-events: none; 
+}
+
+/* fixed top-0 left-0 w-full h-full z-50 transition-opacity duration-1000 pointer-events-none
+  flex items-center justify-center bg-indigo-50 
+  ${started ? "opacity-0" : "opacity-100"} */
+
+.container .name{
+    position: relative; 
+    /* font-size: 2.25rem;
+    line-height: 2.5rem;  */
+    font-weight: 700; 
+    color: #312E81; 
+}
+
+.name div{
+    font-size: 53px
+}
+
+.container .progressName{
+    overflow: hidden; 
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; 
+    text-overflow: clip; 
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms; 
+    transition-duration: 500ms; 
+}
+
+
+.container .lowerOpacityName{
+    opacity: 0.4; 
+}
+
+
+@media (min-width: 768px) { 
+    .container .name{
+        font-size: 8rem;
+        line-height: 1; 
+    }
+}

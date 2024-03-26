@@ -8,7 +8,8 @@ import { useFrame } from "@react-three/fiber";
 import * as THREE from 'three';
 
 export function AvatarThreeJs({animation}) {
-  const { nodes, materials } = useGLTF("models/iris_character.glb");
+  const { nodes, materials, errors } = useGLTF("/models/iris_character.glb");
+
   const avatarGroup = useRef();
 
   const {animations: standingAnimation} = useFBX("animations/standing.fbx");
@@ -112,4 +113,4 @@ export function AvatarThreeJs({animation}) {
   );
 }
 
-useGLTF.preload("models/iris_character.glb");
+// useGLTF.preload("/models/iris_character.glb");

@@ -12,6 +12,7 @@ import ProjectDetail from './pages/projectDetail/ProjectDetail';
 import ScrollToTop from './components/global/scrollToTop/ScrollToTop';
 import PageNotFound from './pages/pageNotFound/PageNotFound';
 import { useEffect, useState } from 'react';
+import PreloadModel from './components/global/preloadModel/PreloadModel';
 
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
   return (
     <BrowserRouter>
       <ScrollToTop>
+        <PreloadModel/>
         <div className='gradients'>
           <div div className='background-gradient-top-page'></div>
           <div className='background-gradient-2'></div>
