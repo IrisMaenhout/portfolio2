@@ -21,13 +21,6 @@ function Home({apiPersonalData}) {
     useEffect(() => {
       getServicesCategoriesData();
     }, []);
-
-
-    useEffect(()=>{
-      console.log("personal", apiPersonalData);
-      console.log("services",apiServicesCategoriesData);
-    
-    }, [apiPersonalData, apiServicesCategoriesData])
     
     return (
         <div className={`container`}>

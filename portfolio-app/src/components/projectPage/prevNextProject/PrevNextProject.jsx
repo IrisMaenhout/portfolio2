@@ -23,17 +23,13 @@ function PrevNextProject({currentProjectId}) {
         return project.id === currentProjectId;
     })
 
-    console.log(currentProjectsIndex);
-
-
-    console.log("pro", projects);
+  
 
 
     return (
         <div className={styles.flexContainer}>
             {(currentProjectId !== undefined && projects !== null) &&
                 <>
-                    {console.log(currentProjectsIndex, [currentProjectsIndex - 1 === -1 ? projects.length - 1 : currentProjectsIndex - 1])}
                     <a href={`/projecten/${projects[currentProjectsIndex - 1 === -1 ? projects.length - 1 : currentProjectsIndex - 1].attributes.slug}`}>
                         <div className={styles.arrow}>
                             <i className='fi fi-rr-arrow-left gradientText'></i>

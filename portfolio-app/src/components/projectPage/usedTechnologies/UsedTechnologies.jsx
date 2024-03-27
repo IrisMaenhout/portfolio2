@@ -63,9 +63,7 @@ function UsedTechnologies({projectId}) {
 
 
                     {usedTechnologiesArray.map((tech, i)=> {
-                        // console.log("tech", tech);
-                        // console.log("logoIMg", tech.attributes.logoImage);
-                        // console.log("url", tech.attributes.logoImage.data?.attributes.url);
+                        
                         if(tech.attributes.logoClassname !== "" && tech.attributes.logoImage.data === null){
                             return (
                                 <div key={`used-tech-${i}`}>

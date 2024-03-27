@@ -17,8 +17,6 @@ function ProjectDetail({personalInfo}) {
     // To open the lightbox change the value of the "toggler" prop.
 	// const [lightBoxToggle, setLightBoxToggle] = useState(false);
 
-    console.log(personalInfo);
-
     const [projectData, setProjectData] = useState(null);
     const [projectContentData, setProjectContentData] = useState(null);
 
@@ -46,10 +44,6 @@ function ProjectDetail({personalInfo}) {
     }, []);
 
 
-    console.log(projectData);
-    console.log(projectContentData);
-
-
     const imageSources = [];
 
     projectData && imageSources.push(`${process.env.REACT_APP_API_ROOT_URL}${projectData[0].attributes.DetailPageDesktopImg.data?.attributes.url}`);
@@ -64,8 +58,6 @@ function ProjectDetail({personalInfo}) {
             });
         }
     });
-
-    console.log(imageSources);
 
     const [lightboxController, setLightboxController] = useState({
 		toggle: false,

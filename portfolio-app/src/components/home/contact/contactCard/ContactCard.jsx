@@ -3,9 +3,12 @@ import styles from './contactCard.module.css';
 import { Link } from 'react-router-dom';
 
 function ContactCard({apiData}) {
-
     const contactData = apiData !== null ?  apiData.data.attributes.contactInfo : null;
-    const contactImgVideoData = apiData !== null ?  apiData.data.attributes.ContactSectionImgVideo.data.attributes: null;
+    const contactImgVideoData = apiData !== null ?  
+        apiData.data.attributes.ContactSectionImgVideo.data !== null ?
+            apiData.data.attributes.ContactSectionImgVideo.data.attributes
+            : null
+        : null;
 
     return (
         
