@@ -13,6 +13,7 @@ import ScrollToTop from './components/global/scrollToTop/ScrollToTop';
 import PageNotFound from './pages/pageNotFound/PageNotFound';
 import { useEffect, useState } from 'react';
 import PreloadModel from './components/global/preloadModel/PreloadModel';
+import { ModelLoadingProvider } from './contexts/ModelLoadingContext';
 
 
 function App() {
@@ -41,7 +42,11 @@ function App() {
         <Header/>
 
         <Routes>
-          <Route path='/' element={<Home apiPersonalData={apiPersonalData}/>}/>
+          <Route path='/' element={
+            <ModelLoadingProvider>
+              <Home apiPersonalData={apiPersonalData}/>
+            </ModelLoadingProvider>
+          }/>
           {/* <Route path='/project-detail' element={<ProjectDetail />}/> */}
           <Route path='/projecten/:projectSlug' element={<ProjectDetail personalInfo={apiPersonalData}/>}/>
           <Route path="/*" element={<PageNotFound />} />

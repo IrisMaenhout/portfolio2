@@ -34,7 +34,7 @@ function ProjectDetail({personalInfo}) {
         const resp = await fetch(`${process.env.REACT_APP_API_ROOT_URL}/api/projects?filters[slug][$eq]=${projectSlug}&populate[projectContent][on][project-info.files][populate][imagesVideos][populate][0]=imageVideo&populate[projectContent][on][project-info.description][populate]=*`);
         const json = await resp.json();
 
-        setProjectContentData(json.data[0].attributes.projectContent);
+        json.data[0] !== undefined && setProjectContentData(json.data[0].attributes.projectContent);
     }
 
       
@@ -46,9 +46,9 @@ function ProjectDetail({personalInfo}) {
 
     const imageSources = [];
 
-    projectData && imageSources.push(`${process.env.REACT_APP_API_ROOT_URL}${projectData[0].attributes.DetailPageDesktopImg.data?.attributes.url}`);
+    projectData !== null && projectData.length > 0 && (imageSources.push(`${process.env.REACT_APP_API_ROOT_URL}${projectData[0].attributes.DetailPageDesktopImg.data?.attributes.url}`));
 
-    projectData && imageSources.push(`${process.env.REACT_APP_API_ROOT_URL}${projectData[0].attributes.DetailPagePhoneImg.data?.attributes.url}`);
+    projectData !== null && projectData.length > 0 && (imageSources.push(`${process.env.REACT_APP_API_ROOT_URL}${projectData[0].attributes.DetailPagePhoneImg.data?.attributes.url}`));
 
     // Iterate over the projectContentData to extract the image URLs
     projectContentData?.forEach((content) => {
@@ -80,6 +80,7 @@ function ProjectDetail({personalInfo}) {
     // function toggleLightBox (){
     //     setLightBoxToggle(prevLightBoxToggle => !prevLightBoxToggle);
     // }
+
     if(projectData !== null){
         if(projectData.length > 0){
 
@@ -133,6 +134,20 @@ function ProjectDetail({personalInfo}) {
                         </div>
 
 
+                        
+        
+                        <UsedTechnologies projectId={projectData[0].id}/>
+        
+                        {
+                            projectData[0].attributes.basicDescription &&
+                            <>
+                                <h2 className={`gradientText`}>Briefing</h2>
+                                <ReactMarkdown>{projectData[0].attributes.basicDescription}</ReactMarkdown>
+                            </>
+                        }
+                        
+                        
+
                         <div className={styles.externalLinksContainer}>
                             {((!projectData[0].attributes.hideWebsiteUrlOnDesktop && window.innerWidth > 600) || (!projectData[0].attributes.hideWebsiteUrlOnMobile && window.innerWidth < 600)) && projectData[0].attributes.projectUrls.liveSiteUrl !== null &&
 
@@ -150,21 +165,10 @@ function ProjectDetail({personalInfo}) {
                             }
                         </div>
         
-                        <UsedTechnologies projectId={projectData[0].id}/>
-        
-                        {
-                            projectData[0].attributes.basicDescription &&
-                            <>
-                                <h2 className={`gradientText`}>Briefing</h2>
-                                <ReactMarkdown>{projectData[0].attributes.basicDescription}</ReactMarkdown>
-                            </>
-                        }
-                        
-        
         
                         
         
-                        {/* <InANutshell/> */}
+                        <InANutshell/>
         
                     </div>
     

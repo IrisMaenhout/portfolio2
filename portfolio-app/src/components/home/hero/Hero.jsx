@@ -3,14 +3,13 @@ import styles from './hero.module.css';
 import PrimaryBtn from '../../global/btns/primary/PrimaryBtn';
 import TypeWriterEffect from "../../global/typeWriterEffect/TypeWriterEffect";
 import { useSpring, animated } from '@react-spring/web';
-import ReactMarkdown from 'react-markdown'; 
+import ReactMarkdown from 'react-markdown';
+import FadeIn from '../../global/animations/FadeIn';
 
 function Hero({apiData}) {
     const [isVisible, setIsVisible] = useState(false);
     const containerRef = useRef(null);
     const data = apiData ? apiData.data.attributes : null;
-
-    console.log("data", apiData);
 
     const videoImgdata = data ? data.heroImgVideo.data.attributes : null;
     
@@ -67,9 +66,13 @@ function Hero({apiData}) {
         config
     });
 
+
     return (
         <div className={styles.flexContainer} ref={containerRef} id="introductie">
             <div className={styles.introContainer}>
+                <FadeIn>
+                    <h1>Test</h1>
+                </FadeIn>
                 <animated.h1 className={`gradientText ${styles.name}`} style={firstNameAnimation}>{data !== null ? data.firstName : ""}</animated.h1>
                 <animated.h1 className={`gradientText ${styles.name}`} style={lastNameAnimation}>{data !== null ? data.lastName : ""}</animated.h1>
             

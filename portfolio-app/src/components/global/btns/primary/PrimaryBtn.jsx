@@ -5,7 +5,9 @@ function PrimaryBtn({text, actionOnClickFunc, className}) {
 
     return (
         <button onClick={actionOnClickFunc} className={`${styles.primaryBtn} ${className}`}>
-            {text}
+            <div className={styles.inner}>
+                {text}
+            </div>
         </button>
     );
 }

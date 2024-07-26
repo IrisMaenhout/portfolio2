@@ -1,17 +1,22 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import styles from "./personalInfo.module.css";
 import PrimaryBtn from '../../global/btns/primary/PrimaryBtn';
 import AvatarCanvas from '../../global/avatar/avatarCanvas/AvatarCanvas';
-import { useSpring, animated } from '@react-spring/web';
+import { useSpring, animated, easings } from '@react-spring/web';
 import ReactMarkdown from 'react-markdown'; 
+import ScaleUp from '../../global/animations/ScaleUp';
+import ModelLoadingContext from '../../../contexts/ModelLoadingContext';
+import SlideUp from '../../global/animations/SlideUp';
+import { Waypoint } from 'react-waypoint';
 
 function PersonalInfo({apiData}) {
 
-    const [isVisible, setIsVisible] = useState(false);
+    // const [isVisible, setIsVisible] = useState(false);
     const [techData, setTechData] = useState([]);
-    const firstContainerRef = useRef(null);
-    const secondContainerRef = useRef(null);
-    const thirdContainerRef = useRef(null);
+    const { isModelLoaded } = useContext(ModelLoadingContext);
+    // const firstContainerRef = useRef(null);
+    // const secondContainerRef = useRef(null);
+    // const thirdContainerRef = useRef(null);
 
     const data = apiData ? apiData.data.attributes : null;
 
@@ -63,145 +68,162 @@ function PersonalInfo({apiData}) {
       }, []);
 
 
-    const springData = {
-        from: { scale: 0.8 },
-        to: { scale: isVisible ? 1 : 0.5 },
-        config: { 
-            tension: 100, // Increase tension for slower transition
-            friction: 14 // Increase friction for smoother transition
-        }
-    }
 
-    useEffect(() => {
-        const options = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.8 // Intersection threshold
-        };
+    // const springData = {
+    //     from: { scale: 0.8 },
+    //     to: { scale: isVisible ? 1 : 0.5 },
+    //     config: { 
+    //         tension: 100, // Increase tension for slower transition
+    //         friction: 14 // Increase friction for smoother transition
+    //     }
+    // }
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    setIsVisible(true);
-                    observer.unobserve(entry.target); // Stop observing once the element is visible
-                }
-            });
-        }, options);
+    // useEffect(() => {
+        // const options = {
+        //     root: null,
+        //     rootMargin: '0px',
+        //     threshold: 0.8 // Intersection threshold
+        // };
 
-        if (firstContainerRef.current) {
-            observer.observe(firstContainerRef.current);
-        }
+        // const observer = new IntersectionObserver((entries) => {
+        //     entries.forEach(entry => {
+        //         if (entry.isIntersecting) {
+        //             setIsVisible(true);
+        //             observer.unobserve(entry.target); // Stop observing once the element is visible
+        //         }
+        //     });
+        // }, options);
 
-        if (secondContainerRef.current) {
-            observer.observe(firstContainerRef.current);
-        }
+        // if (firstContainerRef.current) {
+        //     observer.observe(firstContainerRef.current);
+        // }
 
-        if (thirdContainerRef.current) {
-            observer.observe(firstContainerRef.current);
-        }
+        // if (secondContainerRef.current) {
+        //     observer.observe(firstContainerRef.current);
+        // }
+
+        // if (thirdContainerRef.current) {
+        //     observer.observe(firstContainerRef.current);
+        // }
 
         
 
-        return () => {
-            if (firstContainerRef.current) {
-                observer.unobserve(firstContainerRef.current);
-            }
+    //     return () => {
+    //         if (firstContainerRef.current) {
+    //             observer.unobserve(firstContainerRef.current);
+    //         }
 
-            if (secondContainerRef.current) {
-                observer.unobserve(secondContainerRef.current);
-            }
+    //         if (secondContainerRef.current) {
+    //             observer.unobserve(secondContainerRef.current);
+    //         }
 
-            if (thirdContainerRef.current) {
-                observer.unobserve(thirdContainerRef.current);
-            }
-        };
-    }, []);
+    //         if (thirdContainerRef.current) {
+    //             observer.unobserve(thirdContainerRef.current);
+    //         }
+    //     };
+    // }, []);
 
-    const personalDataHeader = useSpring(springData);
-    const personalDataInfo = useSpring(springData);
-    const skills = useSpring(springData);
+    // const personalDataHeader = useSpring(springData);
+    // const personalDataInfo = useSpring(springData);
+    // const skills = useSpring(springData);
 
     return (
         <div className={styles.flexContainer}>
+            
             <div className={styles.infoContainer}>
-                
-                <animated.div className={styles.personalDataHeader} style={personalDataHeader} ref={firstContainerRef}>
-                    <div className={styles.personalDataHeaderContent}>
+                {isModelLoaded && (
                         <div>
-                            <h5>Naam:</h5>
-                            <p className={styles.name}>{data? data.firstName : ""}{window.innerWidth > 600 ? " " : "\n"}{data? data.lastName : ""}</p>
+                            <ScaleUp delay={100} bounceNeeded={false}>
+                                <div className={styles.personalDataHeader}>
+                                    <div className={styles.personalDataHeaderContent}>
+                                        <div>
+                                            <h5>Naam:</h5>
+                                            <p className={styles.name}>{data? data.firstName : ""}{window.innerWidth > 600 ? " " : "\n"}{data? data.lastName : ""}</p>
 
-                        </div>
-
-                        <div>
-                            <h5>Leeftijd:</h5>
-                            <p>{data? calculateAge(data.dateOfBirth) : ""}</p>
-                        </div>
-
-                        <div>
-                            <h5>Land:</h5>
-                            <p>{data? data.country : ""}</p>
-                        </div>
-                    </div>
-
-                </animated.div>
-
-
-                <animated.div className={styles.personalDataInfo} style={personalDataInfo}  ref={secondContainerRef}>
-                    <div className={styles.personalDataInfoHeader}>
-                        <h3 className='gradientText'>Info</h3>
-                    </div>
-                    <div className={styles.personalDataInfoContent}>
-
-                        {data && <ReactMarkdown>{data.InfoBulletpoints}</ReactMarkdown>}
-                    </div>
-                </animated.div>
-
-
-                <animated.div className={styles.personalDataInfo} style={skills}  ref={thirdContainerRef}>
-                    <div className={styles.personalDataInfoHeader}>
-                        <h3 className='gradientText'>Skills</h3>
-                    </div>
-                    <div className={`${styles.personalDataInfoContent} ${styles.skillsContainer}`}>
-                        <div className={styles.grid}>
-                            {techData.map((tech, i)=> {
-                                if(tech.logoClassname !== "" && tech.logoImg === null){
-                                    return (
-                                        <div key={i}>
-                                            <i className={tech.logoClassname}></i>
-                                            <p>{tech.name}</p>
                                         </div>
-                                    );
-                                }else{
-                                    return (
-                                        <div key={i}>
-                                            <div className={styles.techImgContainer}>
-                                                <img src={`${process.env.REACT_APP_API_ROOT_URL}${tech.logoImg.url}`} alt={tech.logoImg.alt} />
-                                            </div>
-                                            <p>{tech.name}</p>
+
+                                        <div>
+                                            <h5>Leeftijd:</h5>
+                                            <p>{data? calculateAge(data.dateOfBirth) : ""}</p>
                                         </div>
-                                    )
-                                }
-                                
-                            })}
+
+                                        <div>
+                                            <h5>Land:</h5>
+                                            <p>{data? data.country : ""}</p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                    
+                            </ScaleUp>
                             
+                            
+
+                            <ScaleUp delay={100} bounceNeeded={false}>
+                                <div className={styles.personalDataInfo} >
+                                    <div className={styles.personalDataInfoHeader}>
+                                        <h3 className='gradientText'>Info</h3>
+                                    </div>
+                                    <div className={styles.personalDataInfoContent}>
+
+                                        {data && <ReactMarkdown>{data.InfoBulletpoints}</ReactMarkdown>}
+                                    </div>
+                                </div>
+                            </ScaleUp>
+
+                            <ScaleUp delay={100} bounceNeeded={false}>
+                                <div className={styles.personalDataInfo}>
+                                    <div className={styles.personalDataInfoHeader}>
+                                        <h3 className='gradientText'>Skills</h3>
+                                    </div>
+                                    <div className={`${styles.personalDataInfoContent} ${styles.skillsContainer}`}>
+                                        <div className={styles.grid}>
+                                            {techData.map((tech, i)=> {
+                                                if(tech.logoClassname !== "" && tech.logoImg === null){
+                                                    return (
+                                                        <div key={i}>
+                                                            <i className={tech.logoClassname}></i>
+                                                            <p>{tech.name}</p>
+                                                        </div>
+                                                    );
+                                                }else{
+                                                    return (
+                                                        <div key={i}>
+                                                            <div className={styles.techImgContainer}>
+                                                                <img src={`${process.env.REACT_APP_API_ROOT_URL}${tech.logoImg.url}`} alt={tech.logoImg.alt} />
+                                                            </div>
+                                                            <p>{tech.name}</p>
+                                                        </div>
+                                                    )
+                                                }
+                                                
+                                            })}
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </ScaleUp>
+                            
+                            {(data !== null && data.cv.data !== null) && 
+                                
+                                <div className={styles.cvBtnContainer}>
+                                    <ScaleUp bounceNeeded={true}>
+                                        <a href={`${process.env.REACT_APP_API_ROOT_URL}${data.cv.data.attributes.url}`} rel="noreferrer" target="_blank">
+                                            <PrimaryBtn text={"Bekijk mijn CV"}/>
+                                        </a>
+                                    </ScaleUp>
+                                    
+                                </div>
+                            }
+
                         </div>
-                    </div>
-                </animated.div>
-                
-                {(data !== null && data.cv.data !== null) && 
-                
-                    <div className={styles.cvBtnContainer}>
-                        <a href={`${process.env.REACT_APP_API_ROOT_URL}${data.cv.data.attributes.url}`} rel="noreferrer" target="_blank">
-                            <PrimaryBtn text={"Bekijk mijn CV"}/>
-                        </a>
-                    </div>
-                }
-                
-        
+
+  
+                )}
 
             </div>
-
+            
+            
             <div className={styles.canvas3D}>
                 <AvatarCanvas/>
             </div>

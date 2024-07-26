@@ -4,6 +4,7 @@ import React, { Suspense, useState } from 'react';
 import { AvatarThreeJs } from '../avatarThreeJs/AvatarThreeJs';
 import styles from "./avatarCanvas.module.css";
 import LoadingScreen3d from '../../loadingScreen3d/LoadingScreen3d';
+import { useSpring, animated } from '@react-spring/web';
 
 function AvatarCanvas(props) {
     // const [isHovered, setIsHovered] = useState(false);
@@ -20,11 +21,23 @@ function AvatarCanvas(props) {
         return () => clearTimeout(backToInitialPose);
     }
 
+
+
+    
+
+
     return (
         <div id="canvas-container" className={styles.canvas3DAvatar}>
 
-            <div className={styles.sayHiBtn}>
-                <button disabled={playingAnimation === "Greeting"} onClick={wave}><i className="fi fi-rr-hand-wave"></i> <span className={styles.btnText}>Zeg hallo!</span></button>
+             <div className={styles.sayHiBtn}>
+                <button disabled={playingAnimation === "Greeting"} onClick={wave}>
+                    <div className={styles.inner}>
+                        <i className="fi fi-rr-hand-wave"></i> 
+                        <span className={styles.btnText}>Zeg hallo!</span>
+                    </div>
+
+                    
+                </button>
             </div>
 
             <LoadingScreen3d started={started} setStarted={setStarted}/>

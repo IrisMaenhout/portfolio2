@@ -1,17 +1,24 @@
 import { useProgress } from '@react-three/drei';
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import styles from './loadingScreen3d.module.css';
+import ModelLoadingContext from '../../../contexts/ModelLoadingContext';
 
 function LoadingScreen3d(props) {
     const { started, setStarted } = props;
     const { progress, total, loaded, item } = useProgress();
+    const { setIsModelLoaded } = useContext(ModelLoadingContext);
+
+    
 
     useEffect(() => {
         if (progress === 100) {
-        setTimeout(() => {
+          setTimeout(() => {
+            console.log('rendered');
+            setIsModelLoaded(true);
             setStarted(true);
-        }, 500);
+          }, 500);
         }
+        
     }, [progress, total, loaded, item]);
 
   return (

@@ -17,13 +17,72 @@
     margin-top: -1rem;
     background: none;
     cursor: pointer;
+    /* border: 1px solid #51D6AF; */
+    border-radius: 1rem;
+    animation: animateOutline 4s ease infinite;
+    /* animation: name duration timing-function delay iteration-count direction fill-mode; */
+
+    background-color: #260b44;
+
+    outline-width: 1px;
+    outline-offset: 0;
+    outline-color: rgb(61, 196, 155);
+    outline-style: solid;
+    border: none;
+    border: 2px solid #51d6ae;
+}
+
+.sayHiBtn button .inner{
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 1rem;
-    border: 1px solid #51D6AF;
-    border-radius: 1rem;
 }
+
+@keyframes animateOutline {
+    0% {
+      outline-width: 1px;
+      outline-offset: 0;
+      outline-color: rgba(81, 214, 174, 0);
+      scale: 1;
+    }
+  
+    10% {
+      outline-color: rgba(81, 214, 174, 0.75);
+      scale: 1.1;
+    }
+  
+    /* The animation finishes at 50% */
+    50% {
+      outline-width: 4px;
+      outline-offset: 4px;
+      outline-color: rgba(0, 130, 206, 0);
+      /* scale: 1; */
+    }
+  
+    100% {
+      outline-width: 7px;
+      outline-offset: 4px;
+      outline-color: hsla(269, 92%, 5%, 0);
+      
+      /* scale: 1; */
+    }
+  }
+  
+
+@keyframes tilt-shaking {
+    0% { scale: 1.2;}
+    10% { scale: 1.2;}
+    50% { scale: 1;}
+    100% { scale: 1;}
+}
+/* @keyframes tilt-shaking {
+    0% { transform: rotate(0deg); scale: 1.1;}
+    25% { transform: rotate(5deg); scale: 1;}
+    50% { transform: rotate(0eg); scale: 1.1;}
+    75% { transform: rotate(-5deg); scale: 1;}
+    100% { transform: rotate(0deg); scale: 1.2;}
+} */
 
 .sayHiBtn button i{
     font-size: 21px;
@@ -54,6 +113,10 @@
     transition: .5s ease-in-out;
     opacity: .3;
     cursor: initial;
+    
+    animation: none; /* Disable animations */
+    outline-width: 1px; /* Optional: adjust outline if needed */
+    outline-color: rgba(102, 102, 102, 0.5); /* Optional: adjust outline color if needed */
 }
 
 .sayHiBtn button:disabled:hover{
