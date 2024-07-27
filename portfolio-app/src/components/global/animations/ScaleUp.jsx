@@ -13,7 +13,7 @@ const ScaleUp = ({ children, delay, bounceNeeded }) => {
   const config = { 
     tension: 150, 
     friction: 10, // Adjust this value to slow down or speed up the animation
-    bounce: bounceNeeded ? .5 : 0,
+    bounce: bounceNeeded ? .8 : 0,
     clamp: !bounceNeeded
    };
 

@@ -5,9 +5,8 @@ import { useState } from "react";
 import { Waypoint } from "react-waypoint";
 // import { useSpring, animated } from '@react-spring/web';
 import { useSpring, animated, easings } from '@react-spring/web';
-import { clamp } from "three/src/math/MathUtils.js";
 
-const SlideUp = ({ children }) => {
+const SlideUp = ({ children, delay, bounceNeeded }) => {
   const [inView, setInview] = useState(false);
 
   // const config = { 
@@ -16,18 +15,29 @@ const SlideUp = ({ children }) => {
   //   clamp: true
   //  };
 
+  const config = { 
+    tension: 150, 
+    friction: 10, // Adjust this value to slow down or speed up the animation
+    bounce: bounceNeeded ? .8 : 0,
+    clamp: !bounceNeeded
+   };
+
   const transition = useSpring({
+    delay: delay,
     from: {
-      y: -10
+      transform: 'translateY(12rem)',
+      opacity: 0
     },
     to: {
-      y: 0 
+      transform: !inView ? 'translateY(12rem)' : 'translateY(0)',
+      opacity: !inView ? 0 : 1
     },
     config: {
-        // ...config,
+        ...config,
         easing: easings.easeOutQuad // Use an easing function for smooth animation
     }
   });
+   
    
 
   return (
