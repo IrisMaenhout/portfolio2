@@ -7,12 +7,12 @@ import { Waypoint } from "react-waypoint";
 import { useSpring, animated, easings } from '@react-spring/web';
 import { clamp } from "three/src/math/MathUtils.js";
 
-const ScaleUp = ({ children, delay, bounceNeeded, isSlow }) => {
+const ScaleUpWhileScrolling = ({ children, delay, bounceNeeded }) => {
   const [inView, setInview] = useState(false);
 
   const config = { 
-    tension: isSlow ? 50 : 150, 
-    friction: isSlow ? 2 : 10, // Adjust this value to slow down or speed up the animation
+    tension: 150, 
+    friction: 10, // Adjust this value to slow down or speed up the animation
     bounce: bounceNeeded ? .8 : 0,
     clamp: !bounceNeeded
    };
@@ -21,11 +21,11 @@ const ScaleUp = ({ children, delay, bounceNeeded, isSlow }) => {
     delay: delay,
     from: {
         opacity: 0,
-        scale: isSlow ? 0.4 : 0.8
+        scale: 0.8
     },
     to: {
       opacity: !inView ? 0 : 1,
-      scale: !inView ? (isSlow ? 0.4 : 0.8)  : 1
+      scale: !inView ? 0.8 : 1
     },
     config: {
         ...config,
@@ -43,4 +43,4 @@ const ScaleUp = ({ children, delay, bounceNeeded, isSlow }) => {
   );
 };
 
-export default ScaleUp;
+export default ScaleUpWhileScrolling;

@@ -33,9 +33,9 @@ function Home({apiPersonalData}) {
 
               {isModelLoaded && <Services servicesData={apiServicesCategoriesData}/>}
 
-              <ProjectsOverview categoriesData={apiServicesCategoriesData} personalInfoData={apiPersonalData}/>
+              {isModelLoaded && <ProjectsOverview categoriesData={apiServicesCategoriesData} personalInfoData={apiPersonalData}/>}
 
-              <Contact apiData={apiPersonalData}/> 
+              {isModelLoaded && <Contact apiData={apiPersonalData}/>}
           </div>
     );
 }

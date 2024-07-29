@@ -12,7 +12,7 @@ function Services({servicesData}) {
 
         if(visibleServices.length > 1){
             return (
-                <div className={styles.services} id="diensten">
+                <section className={styles.services} id="diensten">
                     <h2 className='gradientText'>Diensten</h2>
         
                     <div className={`${styles.servicesContainer} ${visibleServices.length > 2 ? styles.threeOrMoreServices : styles.twoServices}`}>
@@ -40,14 +40,14 @@ function Services({servicesData}) {
                         }
                         
                     </div>
-                </div>
+                </section>
             );
         }else{
-            return <div className={styles.services}></div>
+            return <section className={styles.services}></section>
         }
 
     }else{
-        return <div className={styles.services}></div>
+        return <section className={styles.services}></section>
     }
     
 }

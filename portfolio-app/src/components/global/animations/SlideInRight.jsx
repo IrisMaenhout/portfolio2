@@ -5,7 +5,7 @@ import { useState } from "react";
 import { Waypoint } from "react-waypoint";
 import { useSpring, animated, easings } from '@react-spring/web';
 
-const FadeIn = ({ children, delay }) => {
+const SlideInRight = ({ children, delay }) => {
   const [inView, setInview] = useState(false);
 
   const config = { 
@@ -16,14 +16,16 @@ const FadeIn = ({ children, delay }) => {
   const transition = useSpring({
     delay: delay,
     from: {
+        x: -50,
         opacity: 0,
     },
     to: {
+      x: !inView ? -50 : 0,
       opacity: !inView ? 0 : 1,
     },
     config: {
       ...config,
-      easing: easings.easeInOutQuad // Use an easing function for smooth animation
+      easing: easings.easeOutCubic
   }
   });
   return (
@@ -35,4 +37,4 @@ const FadeIn = ({ children, delay }) => {
   );
 };
 
-export default FadeIn;
+export default SlideInRight;

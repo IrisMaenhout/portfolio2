@@ -1,0 +1,139 @@
+.card {
+    text-decoration: none;
+    transition: filter 0.5s ease-in-out;
+}
+
+.projectCardhoverImg {
+    position: relative;
+    /* transition: padding 0.5s; */
+}
+
+.projectCardhoverImg svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.image {
+    height: 20rem;
+    /* height: 20rem; */
+    border-radius: .4em;
+    display: flex;
+    justify-content: flex-end;
+    align-items: end;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.projectCardhoverContent {
+    background: transparent;
+    transition: padding 0.5s;
+}
+
+.btns {
+    display: flex;
+    gap: 1em;
+    margin: 2em;
+}
+
+.btns a {
+    display: block;
+    border-radius: 100%;
+    width: 4rem;
+    height: 4rem;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.5s;
+}
+
+.btns i {
+    font-size: 28px;
+}
+
+.websiteLink {
+    background-color: #EAE5F1;
+}
+
+.websiteLink i {
+    color: #301449;
+}
+
+.readMoreLink {
+    background-color: #0C0118;
+}
+
+.readMoreLink i {
+    color: #EAE5F1;
+}
+
+.cardContent h3 {
+    text-transform: none;
+    margin-bottom: 0em;
+}
+
+.categoryHashtags {
+    display: flex;
+    gap: 1em;
+    margin-top: 2em;
+    margin-bottom: 4em;
+}
+
+.categoryHashtags i {
+    display: block;
+    color: #51D6AF;
+    font-weight: 200;
+    font-size: 16px;
+}
+
+
+.hoverVideo{
+    -webkit-mask-image: url("./imageHoverOutline.svg");
+    mask-image: url("./imageHoverOutline.svg");
+    -webkit-mask-size: cover;
+    mask-size: cover;
+    mask-repeat: no-repeat;
+    -webkit-mask-repeat: no-repeat;
+}
+
+@media screen and (min-width: 600px) {
+    
+    /* Hovers */
+
+    .card:hover .projectCardhoverImg {
+        width: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        padding: .2rem;
+    }
+
+    .btns a:hover {
+        background-color: #FFA6FF;
+    }
+
+    .btns a:hover i {
+        color: #0C0118;
+    }
+
+    .card:hover .projectCardhoverContent {
+        background-image: url('/public/svg/projectHoverContent.svg');
+        width: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        padding: .5rem;
+        padding-bottom: 0;
+        margin-top: -0.2rem;
+    }
+    
+    .card:hover .cardContent {
+        padding: 0 2em;
+    }
+
+    
+}
