@@ -141,7 +141,7 @@ function ProjectDetail({personalInfo}) {
                         {
                             projectData[0].attributes.basicDescription &&
                             <>
-                                <h2 className={`gradientText`}>Briefing</h2>
+                                <h2 className={`gradientText`}>Over dit project</h2>
                                 <ReactMarkdown>{projectData[0].attributes.basicDescription}</ReactMarkdown>
                             </>
                         }
@@ -168,7 +168,7 @@ function ProjectDetail({personalInfo}) {
         
                         
         
-                        <InANutshell/>
+                        {/* <InANutshell/> */}
         
                     </div>
     
@@ -222,6 +222,15 @@ function ProjectDetail({personalInfo}) {
                                 }
                             })}
                     </div>
+
+
+                    
+                    <div className={styles.bentoGrid}>
+                        <div style={{gridColumn: "span 5", gridRow: "span 2", backgroundColor: "#3B82F6"}}/>
+                        <div style={{gridColumn: "span 2", gridRow: "span 4", backgroundColor: "#3B82F6"}}/>
+                        <div style={{gridColumn: "span 1", gridRow: "span 1", backgroundColor: "#3B82F6"}}/>
+                    </div>
+
 
         
         

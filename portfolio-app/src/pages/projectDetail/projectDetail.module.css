@@ -96,6 +96,15 @@ img, video{
     margin-top: 6rem;
 }
 
+.bentoGrid{
+    display: grid;
+    height: 80rem;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 2rem;
+    grid-template-rows: repeat(10, 1fr);
+    margin: 4rem;
+}
+
 
 @media screen and (min-width: 600px) {
     .topInfo, .categories{

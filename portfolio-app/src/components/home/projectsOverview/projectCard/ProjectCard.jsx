@@ -2,13 +2,13 @@ import React, { useRef, useState } from 'react';
 import styles from './projectCard.module.css';
 import { Link } from 'react-router-dom';
 import hoverVideo from './testProjectHover.mp4';
+import { isFirefox } from 'react-device-detect';
 // import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 // import hoverVideo from './testHoverVideo.json';
 
 
 function ProjectCard({className, projectData}) {
     const projectCardData = projectData.attributes;
-    console.log(window.innerWidth);
 
     const [cardHover, setCardHover] = useState(false);
 
@@ -19,7 +19,7 @@ function ProjectCard({className, projectData}) {
 
         <Link 
             to={`/projecten/${projectCardData.slug}`} 
-            className={styles.card}
+            className={`${styles.card} ${isFirefox ? styles.onFirefox : styles.onOtherBrowsers}`}
             onMouseEnter={() => {
                 setCardHover(true);
                 videoHoverRef.current.play();
@@ -34,13 +34,16 @@ function ProjectCard({className, projectData}) {
             
                 <div className={`${styles.projectCardhoverImg} ${cardHover && window.innerWidth > 600 ? styles.show : styles.hide}`} >
                     <div className={styles.parentHoverContainer}>
+                
                         <video muted loop preload='auto' className={styles.hoverVideo} ref={videoHoverRef}>
                             <source src={hoverVideo} type="video/mp4"/>
                         </video>
                         
+
+                        {/* Visible */}
                         <svg preserveAspectRatio="none" viewBox="0 0 645 649" fill="none" xmlns="http://www.w3.org/2000/svg">
                             
-                            <path d="M643 647.5H1.5V41L44.5 2H609L643 41V647.5Z" stroke="#3531C8" strokeWidth="4" strokeLinejoin="round" height="80"/>
+                            <path d="M643 647.5H1.5V41L44.5 2H609L643 41V647.5Z" stroke="#3531C8" strokeWidth="4" strokeLinejoin="round"/>
                                 
                         </svg>
 
