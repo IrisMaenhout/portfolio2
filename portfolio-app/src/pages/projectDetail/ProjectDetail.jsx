@@ -31,7 +31,7 @@ function ProjectDetail({personalInfo}) {
     }
 
     const getProjectContentData = async () => {
-        const resp = await fetch(`${process.env.REACT_APP_API_ROOT_URL}/api/projects?filters[slug][$eq]=${projectSlug}&populate[projectContent][on][project-info.files][populate][imagesVideos][populate][0]=imageVideo&populate[projectContent][on][project-info.description][populate]=*`);
+        const resp = await fetch(`${process.env.REACT_APP_API_ROOT_URL}/api/projects?filters[slug][$eq]=${projectSlug}&populate[projectContent][on][project-info.files][populate][imagesVideos][populate][0]=imageVideo&populate[projectContent][on][project-info.files][populate][bigImgOrVideo][populate][0]=imageVideo&populate[projectContent][on][project-info.description][populate]=*`);
         const json = await resp.json();
 
         json.data[0] !== undefined && setProjectContentData(json.data[0].attributes.projectContent);
@@ -174,7 +174,7 @@ function ProjectDetail({personalInfo}) {
     
 
 
-                    <div className={`container ${styles.imagesContainer}`}>
+                    {/* <div className={`container ${styles.imagesContainer}`}>
                         {projectContentData?.length > 0 &&
                             projectContentData.map((content, index) => {
                                 if (content.__component === "project-info.files") {
@@ -221,18 +221,102 @@ function ProjectDetail({personalInfo}) {
                                     )
                                 }
                             })}
-                    </div>
+                    </div> */}
 
 
-                    
-                    <div className={styles.bentoGrid}>
-                        <div style={{gridColumn: "span 5", gridRow: "span 2", backgroundColor: "#3B82F6"}}/>
-                        <div style={{gridColumn: "span 2", gridRow: "span 4", backgroundColor: "#3B82F6"}}/>
-                        <div style={{gridColumn: "span 1", gridRow: "span 1", backgroundColor: "#3B82F6"}}/>
-                    </div>
 
+                    {projectContentData?.length > 0 &&
+                            projectContentData.map((content, index) => {
 
-        
+                                // Check if there are multiple images or video's for the bento grid
+                                if (content.__component === "project-info.files") {
+                                    // Check if the imagesVideos has content inside
+                                    if(content.imagesVideos.length > 0){
+                                        return (
+                                            <div className={`container ${styles.bentoGrid} ${styles.flexibleContent}`}>
+                                                { content.imagesVideos.map((imgVideo, i) => (
+                                                    <div
+                                                        style={{gridColumn: `span ${imgVideo.gridSizeHorizontal}`, gridRow: `span ${imgVideo.gridSizeVertical}`}}
+                                                        onClick={() => openLightboxOnSlide(imageSources.indexOf(`${process.env.REACT_APP_API_ROOT_URL}${imgVideo.imageVideo.data.attributes.url}`) +1)} 
+                                                        key={`project-img-${i}`}
+                                                    >
+                                                        {imgVideo.imageVideo.data.attributes.ext.match(/\.(jpg|jpeg|png|gif)$/i) ? (
+                                                            <img
+                                                                src={`${process.env.REACT_APP_API_ROOT_URL}${imgVideo.imageVideo.data?.attributes.url}`}
+                                                                alt={imgVideo.imageVideo.data?.attributes.alternativeText}
+                                                            />
+                                                        ) : (
+                                                            <video autoPlay loop muted playsInline>
+                                                                <source
+                                                                    src={`${process.env.REACT_APP_API_ROOT_URL}${imgVideo.imageVideo.data?.attributes.url}`}
+                                                                    type={imgVideo.imageVideo.data?.attributes.mime}
+                                                                />
+                                                            </video>
+                                                        )}
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        );
+                                    }
+                                
+                                    // Check if there is a big image or video
+                                    if(content.bigImgOrVideo !== null){
+                                        console.log(content.bigImgOrVideo.isFullWidthViewport)
+                                        return (
+                                            <div className={`${styles.flexibleContent} ${content.bigImgOrVideo.isFullWidthViewport ? styles.fullViewportWidth : "container"}`}>
+                                                <div className={styles.bigMedia}>
+                                                {content.bigImgOrVideo.imageVideo.data.attributes.ext.match(/\.(jpg|jpeg|png|gif)$/i) ? (
+                                                    <img
+                                                        style={{height: content.bigImgOrVideo.height !== null ? content.bigImgOrVideo.height : '100%'}}
+                                                        src={`${process.env.REACT_APP_API_ROOT_URL}${content.bigImgOrVideo.imageVideo.data?.attributes.url}`}
+                                                        alt={content.bigImgOrVideo.imageVideo.data?.attributes.alternativeText}
+                                                    />
+                                                ) : (
+                                                    <video 
+                                                        autoPlay 
+                                                        loop 
+                                                        muted 
+                                                        playsInline
+                                                        style={{height: content.bigImgOrVideo.height !== null ? content.bigImgOrVideo.height : '100%'}}
+                                                    >
+                                                        <source
+                                                            src={`${process.env.REACT_APP_API_ROOT_URL}${content.bigImgOrVideo.imageVideo.data?.attributes.url}`}
+                                                            type={content.bigImgOrVideo.imageVideo.data?.attributes.mime}
+                                                        />
+                                                    </video>
+                                                )}
+                                                </div>
+
+                                                
+                                            </div>
+                                        );
+                                    }
+                                } else {
+                                    // If the component is text
+                                    return (
+                                        
+
+                                            <div
+                                                className={`${styles.flexibleContent} ${content.width === "width-100%" ? styles.bigImgVideo : styles.mediumImgVideo} container`}
+                                                key={`project-info-text-${index}`}
+                                            > 
+                                                <ReactMarkdown>{content.informationText}</ReactMarkdown>
+                                            </div> 
+                                       
+                                        
+                                    )
+                                }
+                                
+                                return null;
+                            })}
+                        {/* <div style={{gridColumn: "span 4", gridRow: "span 3"}}>Box 1</div>
+                        <div style={{gridColumn: "span 4", gridRow: "span 3"}}>Box 1</div>
+                        <div style={{gridColumn: "span 2", gridRow: "span 3"}}>Box 2</div>
+                        <div style={{gridColumn: "span 6", gridRow: "span 5"}}>Box 3</div>
+                        <div style={{gridColumn: "span 4", gridRow: "span 4"}}>Box 4</div>
+                        <div style={{gridColumn: "span 1", gridRow: "span 1"}}>Box 5</div>
+                        <div style={{gridColumn: "span 3", gridRow: "span 1"}}>Box 6</div> */}
+
         
                     <div className='container'>
                         <Cta ctaText={'Vind je dit een interessant project en wil je graag samenwerken?'} url={'/#contact'} btnText={'Stuur mij een berichtje'}/>

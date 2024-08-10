@@ -20,9 +20,9 @@
 
 
 @media screen and (min-width: 600px) {
-    .primaryBtn .inner{
+    /* .primaryBtn .inner{
         font-size: 20px;
-    }
+    } */
 
 
     .primaryBtn:hover::before,

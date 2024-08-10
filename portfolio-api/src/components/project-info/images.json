@@ -15,22 +15,17 @@
         "videos"
       ]
     },
-    "ImgVideoSize": {
-      "type": "enumeration",
-      "enum": [
-        "big",
-        "medium"
-      ]
+    "gridSizeHorizontal": {
+      "type": "integer",
+      "required": true,
+      "default": 1,
+      "max": 25
     },
-    "belongsToProcess": {
-      "type": "boolean",
-      "default": false,
-      "required": true
-    },
-    "showProcessTitle": {
-      "type": "boolean",
-      "default": false,
-      "required": true
+    "gridSizeVertical": {
+      "type": "integer",
+      "required": true,
+      "default": 1,
+      "max": 25
     }
   }
 }

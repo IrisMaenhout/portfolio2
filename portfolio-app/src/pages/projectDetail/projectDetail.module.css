@@ -8,9 +8,34 @@
 }
 
 img, video{
-    cursor: pointer;
     width: 100%;
     border-radius: 1em;
+
+    /* height: 100%; */
+    /* object-fit: cover;
+    object-position: center; */
+}
+
+.bentoGrid div img, .bentoGrid div video{
+    cursor: pointer;
+    /* width: 100%; */
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 0;
+}
+
+.bigMedia img, .bigMedia video{
+    object-fit: cover;
+    object-position: center;
+}
+
+.fullViewportWidth{
+    margin-bottom: 12rem;
+}
+
+.fullViewportWidth .bigMedia img, .fullViewportWidth .bigMedia video{
+    border-radius: 0;
 }
 
 .topInfo{
@@ -96,14 +121,27 @@ img, video{
     margin-top: 6rem;
 }
 
-.bentoGrid{
+.bentoGrid {
     display: grid;
-    height: 80rem;
-    grid-template-columns: repeat(10, 1fr);
     gap: 2rem;
-    grid-template-rows: repeat(10, 1fr);
-    margin: 4rem;
+    grid-auto-rows: 5rem;
+    grid-template-columns: repeat(auto-fit, minmax(5rem, 1fr));
+    grid-auto-flow: dense;
+    /* margin: 8rem; */
 }
+
+.bentoGrid > div {
+    background-color: #3B82F6;
+    border-radius: 1rem;
+    overflow: hidden;
+    /* min-height: 5rem; */
+}
+
+.flexibleContent+.flexibleContent{
+    margin-top: 6rem;
+}
+
+
 
 
 @media screen and (min-width: 600px) {
