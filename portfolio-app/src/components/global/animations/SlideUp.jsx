@@ -6,7 +6,7 @@ import { Waypoint } from "react-waypoint";
 // import { useSpring, animated } from '@react-spring/web';
 import { useSpring, animated, easings } from '@react-spring/web';
 
-const SlideUp = ({ children, delay, bounceNeeded }) => {
+const SlideUp = ({ children, delay, bounceNeeded, extraStyling }) => {
   const [inView, setInview] = useState(false);
 
   // const config = { 

@@ -12,6 +12,10 @@ import PrevNextProject from '../../components/projectPage/prevNextProject/PrevNe
 import { Link, useParams } from 'react-router-dom';
 import PageNotFound from '../pageNotFound/PageNotFound';
 import ReactMarkdown from 'react-markdown'; 
+import SlideInLeft from '../../components/global/animations/SlideInLeft';
+import ScaleUpWhileScrolling from '../../components/global/animations/ScaleUpWhileScrolling';
+import ScaleUp from '../../components/global/animations/ScaleUp';
+import SlideUp from '../../components/global/animations/SlideUp';
 
 function ProjectDetail({personalInfo}) {
     // To open the lightbox change the value of the "toggler" prop.
@@ -88,56 +92,66 @@ function ProjectDetail({personalInfo}) {
                 <>
                     <div className={`container`}>
                         <div className={styles.topInfo}>
-                            <h1 className={`gradientText`}>{projectData[0].attributes.title}</h1>
-        
-                            <div className={styles.categories}>
-                                {   
-                                    personalInfo!== null &&
-                                    (personalInfo.data.attributes.useCategoryFilterProjects ?
-                                    projectData[0].attributes.projectCategories.data.map((category, index)=>(
-                                        <CategoryBtn key={`project-category-${index}`} location={`/${convertToSlug(category.attributes.name)}`} text={category.attributes.name}/>
-                                    ))
+                            <SlideInLeft>
+                                <h1 className={`gradientText`}>{projectData[0].attributes.title}</h1>
 
-                                    : 
-                                    
-                                    projectData[0].attributes.projectCategories.data.map((category, index)=>(
-                                        <div key={`project-category-${index}`} className={styles.disabledCategory}>
-                                            {category.attributes.name}
-                                        </div>
-                                    )))
-                                    
-                                }
+
+                                <div className={styles.categories}>
+                                    {   
+                                        personalInfo!== null &&
+                                        (personalInfo.data.attributes.useCategoryFilterProjects ?
+                                        projectData[0].attributes.projectCategories.data.map((category, index)=>(
+                                            <CategoryBtn key={`project-category-${index}`} location={`/${convertToSlug(category.attributes.name)}`} text={category.attributes.name}/>
+                                        ))
+
+                                        : 
+                                        
+                                        projectData[0].attributes.projectCategories.data.map((category, index)=>(
+                                            <div key={`project-category-${index}`} className={styles.disabledCategory}>
+                                                {category.attributes.name}
+                                            </div>
+                                        )))
+                                        
+                                    }
+            
+                                </div>
+                            </SlideInLeft>
         
-                            </div>
+                            
                         </div>
         
                         <div className={projectData[0].attributes.hideWebsiteUrlOnDesktop || projectData[0].attributes.hideWebsiteUrlOnMobile ? styles.deviceImgContainer : styles.devicesImagesContainer}>
                             {projectData[0].attributes.DetailPageDesktopImg.data !== null &&
-
-                                <img 
-                                    src={`${process.env.REACT_APP_API_ROOT_URL}${projectData[0].attributes.DetailPageDesktopImg.data.attributes.url}`} 
-                                    alt={projectData[0].attributes.DetailPageDesktopImg.data.attributes.alternativeText} 
-                                    className={styles.desktopImg} 
-                                    onClick={() => openLightboxOnSlide(imageSources.indexOf(`${process.env.REACT_APP_API_ROOT_URL}${projectData[0].attributes.DetailPageDesktopImg.data?.attributes.url}`) +1)}
-                                />
+                                <ScaleUpWhileScrolling delay={400}>
+                                    <img 
+                                        src={`${process.env.REACT_APP_API_ROOT_URL}${projectData[0].attributes.DetailPageDesktopImg.data.attributes.url}`} 
+                                        alt={projectData[0].attributes.DetailPageDesktopImg.data.attributes.alternativeText} 
+                                        className={styles.desktopImg} 
+                                        onClick={() => openLightboxOnSlide(imageSources.indexOf(`${process.env.REACT_APP_API_ROOT_URL}${projectData[0].attributes.DetailPageDesktopImg.data?.attributes.url}`) +1)}
+                                    />
+                                </ScaleUpWhileScrolling>
+                                
                             }
 
                             {projectData[0].attributes.DetailPagePhoneImg.data !== null &&
-
-                                <img 
+                                <ScaleUpWhileScrolling delay={400}>
+                                    <img 
                                     src={`${process.env.REACT_APP_API_ROOT_URL}${projectData[0].attributes.DetailPagePhoneImg.data.attributes.url}`} 
                                     alt={projectData[0].attributes.DetailPagePhoneImg.data.attributes.alternativeText} 
                                     className={styles.phoneImg}
                                     onClick={() => openLightboxOnSlide(imageSources.indexOf(`${process.env.REACT_APP_API_ROOT_URL}${projectData[0].attributes.DetailPagePhoneImg.data?.attributes.url}`) +1)}
                                 />
+
+                                </ScaleUpWhileScrolling>
+                                
                             }
                         </div>
 
 
                         
-        
-                        <UsedTechnologies projectId={projectData[0].id}/>
-        
+                        <SlideUp bounceNeeded={false} delay={200}>
+                            <UsedTechnologies projectId={projectData[0].id}/>
+                        </SlideUp>
                         {
                             projectData[0].attributes.basicDescription &&
                             <>
@@ -147,30 +161,27 @@ function ProjectDetail({personalInfo}) {
                         }
                         
                         
-
                         <div className={styles.externalLinksContainer}>
-                            {((!projectData[0].attributes.hideWebsiteUrlOnDesktop && window.innerWidth > 600) || (!projectData[0].attributes.hideWebsiteUrlOnMobile && window.innerWidth < 600)) && projectData[0].attributes.projectUrls.liveSiteUrl !== null &&
-
-                                <WebsiteExtraInfoBtn iconClassName={'fi fi-rr-globe'} text={'Bekijk\nlive website'} location={projectData[0].attributes.projectUrls.liveSiteUrl}/>
-                            }
-
                             {
-                                projectData[0].attributes.projectUrls.githubUrl !== null &&
-                                    <WebsiteExtraInfoBtn iconClassName={'fa-brands fa-github'} text={'Bekijk\ngithub'} location={projectData[0].attributes.projectUrls.githubUrl}/> 
-                            }
-
-                            {
-                                projectData[0].attributes.projectUrls.designFileUrl !== null &&
-                                    <WebsiteExtraInfoBtn iconClassName={'fi fi-rs-pencil-paintbrush'} text={'Bekijk\ndesign'} location={projectData[0].attributes.projectUrls.designFileUrl}/>
+                                [
+                                    { url: projectData[0].attributes.projectUrls.liveSiteUrl, icon: 'fi fi-rr-globe', text: 'Bekijk\nlive website' },
+                                    { url: projectData[0].attributes.projectUrls.githubUrl, icon: 'fa-brands fa-github', text: 'Bekijk\ngithub' },
+                                    { url: projectData[0].attributes.projectUrls.designFileUrl, icon: 'fi fi-rs-pencil-paintbrush', text: 'Bekijk\ndesign' }
+                                ]
+                                .filter(link => link.url !== null)
+                                .map((link, index) => (
+                                    <ScaleUp key={link.url} delay={400 + index * 200}>
+                                        <WebsiteExtraInfoBtn iconClassName={link.icon} text={link.text} location={link.url} />
+                                    </ScaleUp>
+                                ))
                             }
                         </div>
-        
-        
-                        
-        
+
+
                         {/* <InANutshell/> */}
         
                     </div>
+
     
 
 
