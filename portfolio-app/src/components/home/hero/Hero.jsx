@@ -65,7 +65,7 @@ function Hero({apiData}) {
 
                 </SlideInRight>
             
-                <FadeIn delay={800}>
+                <FadeIn delay={600}>
                     <TypeWriterEffect />
                     
 

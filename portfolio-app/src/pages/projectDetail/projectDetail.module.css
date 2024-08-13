@@ -68,7 +68,7 @@ img, video{
     display: flex;
     flex-direction: column;
     gap: 2em;
-    margin-bottom: 6em;
+    margin-bottom: 4em;
     margin-top: 8em;
 }
 
@@ -144,6 +144,7 @@ img, video{
 
 
 
+
 @media screen and (min-width: 600px) {
     .topInfo, .categories{
         justify-content: center;
@@ -189,6 +190,9 @@ img, video{
         grid-column: 1 / -1;
     }
 
+    .paragraphTextContainer p{
+        line-height: 1.8rem;
+    }
 
     
 

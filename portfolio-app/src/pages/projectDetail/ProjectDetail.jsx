@@ -16,6 +16,7 @@ import SlideInLeft from '../../components/global/animations/SlideInLeft';
 import ScaleUpWhileScrolling from '../../components/global/animations/ScaleUpWhileScrolling';
 import ScaleUp from '../../components/global/animations/ScaleUp';
 import SlideUp from '../../components/global/animations/SlideUp';
+import FadeIn from '../../components/global/animations/FadeIn';
 
 function ProjectDetail({personalInfo}) {
     // To open the lightbox change the value of the "toggler" prop.
@@ -92,10 +93,11 @@ function ProjectDetail({personalInfo}) {
                 <>
                     <div className={`container`}>
                         <div className={styles.topInfo}>
-                            <SlideInLeft>
+                            <SlideUp delay={200}>
                                 <h1 className={`gradientText`}>{projectData[0].attributes.title}</h1>
+                            </SlideUp>
 
-
+                            <FadeIn delay={400}>
                                 <div className={styles.categories}>
                                     {   
                                         personalInfo!== null &&
@@ -115,7 +117,7 @@ function ProjectDetail({personalInfo}) {
                                     }
             
                                 </div>
-                            </SlideInLeft>
+                            </FadeIn>
         
                             
                         </div>
@@ -149,9 +151,9 @@ function ProjectDetail({personalInfo}) {
 
 
                         
-                        <SlideUp bounceNeeded={false} delay={200}>
+                        {/* <SlideUp bounceNeeded={false} delay={200}> */}
                             <UsedTechnologies projectId={projectData[0].id}/>
-                        </SlideUp>
+                        {/* </SlideUp> */}
                         {
                             projectData[0].attributes.basicDescription &&
                             <>
@@ -308,7 +310,7 @@ function ProjectDetail({personalInfo}) {
                                         
 
                                             <div
-                                                className={`${styles.flexibleContent} ${content.width === "width-100%" ? styles.bigImgVideo : styles.mediumImgVideo} container`}
+                                                className={`${styles.paragraphTextContainer} ${styles.flexibleContent} ${content.width === "width-100%" ? styles.bigImgVideo : styles.mediumImgVideo} container`}
                                                 key={`project-info-text-${index}`}
                                             > 
                                                 <ReactMarkdown>{content.informationText}</ReactMarkdown>

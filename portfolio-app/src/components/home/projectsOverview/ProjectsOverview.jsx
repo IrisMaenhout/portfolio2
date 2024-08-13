@@ -101,16 +101,16 @@ function ProjectsOverview({categoriesData, personalInfoData}) {
                             <p>Geen projecten gevonden. Probeer een andere filter.</p>
                             :
                             filteredProjects?.map((projectData, i) => (
-                                <SlideUp bounceNeeded={false} delay={i % 2 === 0 ? 100 : 200}  key={`project-${i}`}>
+                                // <SlideUp bounceNeeded={false} delay={i % 2 === 0 ? 100 : 200}  key={`project-${i}`}>
                                     <ProjectCard projectData={projectData} />  
-                                </SlideUp>
+                                // </SlideUp>
                             ))
                         : 
                         apiData?.map((projectData, i) => (
-                            <SlideUp bounceNeeded={false} delay={i % 2 === 0 ? 100 : 200} key={`project-${i}`}>
+                            // <SlideUp bounceNeeded={false} delay={i % 2 === 0 ? 100 : 200} key={`project-${i}`}>
                                 <ProjectCard projectData={projectData} />
 
-                            </SlideUp>
+                            // </SlideUp>
                         ))
                 }
             </div>

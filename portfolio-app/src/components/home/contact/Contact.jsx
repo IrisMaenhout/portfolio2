@@ -2,15 +2,16 @@ import React from 'react';
 import ContactCard from './contactCard/ContactCard';
 import styles from './contact.module.css';
 import ScaleUp from '../../global/animations/ScaleUp';
+import FadeIn from '../../global/animations/FadeIn';
 
 function Contact({apiData}) {
 
     return (
         <section className={styles.marginContainer} id="contact">
-            <ScaleUp delay={100} isSlow={true}>
+            <FadeIn delay={100} isSlow={true}>
                 <ContactCard apiData={apiData}/>
 
-            </ScaleUp>
+            </FadeIn>
         </section>
     );
 }

@@ -25,11 +25,11 @@ const SlideUp = ({ children, delay, bounceNeeded, extraStyling }) => {
   const transition = useSpring({
     delay: delay,
     from: {
-      transform: 'translateY(12rem)',
+      transform: 'translateY(6rem)',
       opacity: 0
     },
     to: {
-      transform: !inView ? 'translateY(12rem)' : 'translateY(0)',
+      transform: !inView ? 'translateY(6rem)' : 'translateY(0)',
       opacity: !inView ? 0 : 1
     },
     config: {
