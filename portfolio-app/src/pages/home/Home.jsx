@@ -1,14 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Hero from '../../components/home/hero/Hero';
 import TechnologiesSlider from '../../components/global/technologiesSlider/TechnologiesSlider';
 import ProjectsOverview from '../../components/home/projectsOverview/ProjectsOverview';
 import Contact from '../../components/home/contact/Contact';
 import PersonalInfo from '../../components/home/personalInfo/PersonalInfo';
 import Services from '../../components/home/services/Services';
+import ModelLoadingContext from '../../contexts/ModelLoadingContext';
+
 
 function Home({apiPersonalData}) {
 
     const [apiServicesCategoriesData, setServicesCategoriesData] = useState(null);
+    const { isModelLoaded } = useContext(ModelLoadingContext);
 
 
     // Get services & categories to filter my projects from the api
@@ -23,17 +26,17 @@ function Home({apiPersonalData}) {
     }, []);
     
     return (
-        <div className={`container`}>
-            <Hero apiData={apiPersonalData}/>
+          <div className={`container`}>
+              {isModelLoaded && <Hero apiData={apiPersonalData}/>}
 
-            <PersonalInfo apiData={apiPersonalData}/>
+              <PersonalInfo apiData={apiPersonalData}/>
 
-            <Services servicesData={apiServicesCategoriesData}/>
+              {isModelLoaded && <Services servicesData={apiServicesCategoriesData}/>}
 
-            <ProjectsOverview categoriesData={apiServicesCategoriesData} personalInfoData={apiPersonalData}/>
+              {isModelLoaded && <ProjectsOverview categoriesData={apiServicesCategoriesData} personalInfoData={apiPersonalData}/>}
 
-            <Contact apiData={apiPersonalData}/> 
-        </div>
+              {isModelLoaded && <Contact apiData={apiPersonalData}/>}
+          </div>
     );
 }
 

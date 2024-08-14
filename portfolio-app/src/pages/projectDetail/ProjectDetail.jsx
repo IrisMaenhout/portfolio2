@@ -12,6 +12,11 @@ import PrevNextProject from '../../components/projectPage/prevNextProject/PrevNe
 import { Link, useParams } from 'react-router-dom';
 import PageNotFound from '../pageNotFound/PageNotFound';
 import ReactMarkdown from 'react-markdown'; 
+import SlideInLeft from '../../components/global/animations/SlideInLeft';
+import ScaleUpWhileScrolling from '../../components/global/animations/ScaleUpWhileScrolling';
+import ScaleUp from '../../components/global/animations/ScaleUp';
+import SlideUp from '../../components/global/animations/SlideUp';
+import FadeIn from '../../components/global/animations/FadeIn';
 
 function ProjectDetail({personalInfo}) {
     // To open the lightbox change the value of the "toggler" prop.
@@ -31,10 +36,10 @@ function ProjectDetail({personalInfo}) {
     }
 
     const getProjectContentData = async () => {
-        const resp = await fetch(`${process.env.REACT_APP_API_ROOT_URL}/api/projects?filters[slug][$eq]=${projectSlug}&populate[projectContent][on][project-info.files][populate][imagesVideos][populate][0]=imageVideo&populate[projectContent][on][project-info.description][populate]=*`);
+        const resp = await fetch(`${process.env.REACT_APP_API_ROOT_URL}/api/projects?filters[slug][$eq]=${projectSlug}&populate[projectContent][on][project-info.files][populate][imagesVideos][populate][0]=imageVideo&populate[projectContent][on][project-info.files][populate][bigImgOrVideo][populate][0]=imageVideo&populate[projectContent][on][project-info.description][populate]=*`);
         const json = await resp.json();
 
-        setProjectContentData(json.data[0].attributes.projectContent);
+        json.data[0] !== undefined && setProjectContentData(json.data[0].attributes.projectContent);
     }
 
       
@@ -46,9 +51,9 @@ function ProjectDetail({personalInfo}) {
 
     const imageSources = [];
 
-    projectData && imageSources.push(`${process.env.REACT_APP_API_ROOT_URL}${projectData[0].attributes.DetailPageDesktopImg.data?.attributes.url}`);
+    projectData !== null && projectData.length > 0 && (imageSources.push(`${process.env.REACT_APP_API_ROOT_URL}${projectData[0].attributes.DetailPageDesktopImg.data?.attributes.url}`));
 
-    projectData && imageSources.push(`${process.env.REACT_APP_API_ROOT_URL}${projectData[0].attributes.DetailPagePhoneImg.data?.attributes.url}`);
+    projectData !== null && projectData.length > 0 && (imageSources.push(`${process.env.REACT_APP_API_ROOT_URL}${projectData[0].attributes.DetailPagePhoneImg.data?.attributes.url}`));
 
     // Iterate over the projectContentData to extract the image URLs
     projectContentData?.forEach((content) => {
@@ -80,6 +85,7 @@ function ProjectDetail({personalInfo}) {
     // function toggleLightBox (){
     //     setLightBoxToggle(prevLightBoxToggle => !prevLightBoxToggle);
     // }
+
     if(projectData !== null){
         if(projectData.length > 0){
 
@@ -87,90 +93,101 @@ function ProjectDetail({personalInfo}) {
                 <>
                     <div className={`container`}>
                         <div className={styles.topInfo}>
-                            <h1 className={`gradientText`}>{projectData[0].attributes.title}</h1>
-        
-                            <div className={styles.categories}>
-                                {   
-                                    personalInfo!== null &&
-                                    (personalInfo.data.attributes.useCategoryFilterProjects ?
-                                    projectData[0].attributes.projectCategories.data.map((category, index)=>(
-                                        <CategoryBtn key={`project-category-${index}`} location={`/${convertToSlug(category.attributes.name)}`} text={category.attributes.name}/>
-                                    ))
+                            <SlideUp delay={200}>
+                                <h1 className={`gradientText`}>{projectData[0].attributes.title}</h1>
+                            </SlideUp>
 
-                                    : 
-                                    
-                                    projectData[0].attributes.projectCategories.data.map((category, index)=>(
-                                        <div key={`project-category-${index}`} className={styles.disabledCategory}>
-                                            {category.attributes.name}
-                                        </div>
-                                    )))
-                                    
-                                }
+                            <FadeIn delay={400}>
+                                <div className={styles.categories}>
+                                    {   
+                                        personalInfo!== null &&
+                                        (personalInfo.data.attributes.useCategoryFilterProjects ?
+                                        projectData[0].attributes.projectCategories.data.map((category, index)=>(
+                                            <CategoryBtn key={`project-category-${index}`} location={`/${convertToSlug(category.attributes.name)}`} text={category.attributes.name}/>
+                                        ))
+
+                                        : 
+                                        
+                                        projectData[0].attributes.projectCategories.data.map((category, index)=>(
+                                            <div key={`project-category-${index}`} className={styles.disabledCategory}>
+                                                {category.attributes.name}
+                                            </div>
+                                        )))
+                                        
+                                    }
+            
+                                </div>
+                            </FadeIn>
         
-                            </div>
+                            
                         </div>
         
                         <div className={projectData[0].attributes.hideWebsiteUrlOnDesktop || projectData[0].attributes.hideWebsiteUrlOnMobile ? styles.deviceImgContainer : styles.devicesImagesContainer}>
                             {projectData[0].attributes.DetailPageDesktopImg.data !== null &&
-
-                                <img 
-                                    src={`${process.env.REACT_APP_API_ROOT_URL}${projectData[0].attributes.DetailPageDesktopImg.data.attributes.url}`} 
-                                    alt={projectData[0].attributes.DetailPageDesktopImg.data.attributes.alternativeText} 
-                                    className={styles.desktopImg} 
-                                    onClick={() => openLightboxOnSlide(imageSources.indexOf(`${process.env.REACT_APP_API_ROOT_URL}${projectData[0].attributes.DetailPageDesktopImg.data?.attributes.url}`) +1)}
-                                />
+                                <ScaleUpWhileScrolling delay={400}>
+                                    <img 
+                                        src={`${process.env.REACT_APP_API_ROOT_URL}${projectData[0].attributes.DetailPageDesktopImg.data.attributes.url}`} 
+                                        alt={projectData[0].attributes.DetailPageDesktopImg.data.attributes.alternativeText} 
+                                        className={styles.desktopImg} 
+                                        onClick={() => openLightboxOnSlide(imageSources.indexOf(`${process.env.REACT_APP_API_ROOT_URL}${projectData[0].attributes.DetailPageDesktopImg.data?.attributes.url}`) +1)}
+                                    />
+                                </ScaleUpWhileScrolling>
+                                
                             }
 
                             {projectData[0].attributes.DetailPagePhoneImg.data !== null &&
-
-                                <img 
+                                <ScaleUpWhileScrolling delay={400}>
+                                    <img 
                                     src={`${process.env.REACT_APP_API_ROOT_URL}${projectData[0].attributes.DetailPagePhoneImg.data.attributes.url}`} 
                                     alt={projectData[0].attributes.DetailPagePhoneImg.data.attributes.alternativeText} 
                                     className={styles.phoneImg}
                                     onClick={() => openLightboxOnSlide(imageSources.indexOf(`${process.env.REACT_APP_API_ROOT_URL}${projectData[0].attributes.DetailPagePhoneImg.data?.attributes.url}`) +1)}
                                 />
+
+                                </ScaleUpWhileScrolling>
+                                
                             }
                         </div>
 
 
-                        <div className={styles.externalLinksContainer}>
-                            {((!projectData[0].attributes.hideWebsiteUrlOnDesktop && window.innerWidth > 600) || (!projectData[0].attributes.hideWebsiteUrlOnMobile && window.innerWidth < 600)) && projectData[0].attributes.projectUrls.liveSiteUrl !== null &&
-
-                                <WebsiteExtraInfoBtn iconClassName={'fi fi-rr-globe'} text={'Bekijk\nlive website'} location={projectData[0].attributes.projectUrls.liveSiteUrl}/>
-                            }
-
-                            {
-                                projectData[0].attributes.projectUrls.githubUrl !== null &&
-                                    <WebsiteExtraInfoBtn iconClassName={'fa-brands fa-github'} text={'Bekijk\ngithub'} location={projectData[0].attributes.projectUrls.githubUrl}/> 
-                            }
-
-                            {
-                                projectData[0].attributes.projectUrls.designFileUrl !== null &&
-                                    <WebsiteExtraInfoBtn iconClassName={'fi fi-rs-pencil-paintbrush'} text={'Bekijk\ndesign'} location={projectData[0].attributes.projectUrls.designFileUrl}/>
-                            }
-                        </div>
-        
-                        <UsedTechnologies projectId={projectData[0].id}/>
-        
+                        
+                        {/* <SlideUp bounceNeeded={false} delay={200}> */}
+                            <UsedTechnologies projectId={projectData[0].id}/>
+                        {/* </SlideUp> */}
                         {
                             projectData[0].attributes.basicDescription &&
                             <>
-                                <h2 className={`gradientText`}>Briefing</h2>
+                                <h2 className={`gradientText`}>Over dit project</h2>
                                 <ReactMarkdown>{projectData[0].attributes.basicDescription}</ReactMarkdown>
                             </>
                         }
                         
-        
-        
                         
-        
+                        <div className={styles.externalLinksContainer}>
+                            {
+                                [
+                                    { url: projectData[0].attributes.projectUrls.liveSiteUrl, icon: 'fi fi-rr-globe', text: 'Bekijk\nlive website' },
+                                    { url: projectData[0].attributes.projectUrls.githubUrl, icon: 'fa-brands fa-github', text: 'Bekijk\ngithub' },
+                                    { url: projectData[0].attributes.projectUrls.designFileUrl, icon: 'fi fi-rs-pencil-paintbrush', text: 'Bekijk\ndesign' }
+                                ]
+                                .filter(link => link.url !== null)
+                                .map((link, index) => (
+                                    <ScaleUp key={link.url} delay={400 + index * 200}>
+                                        <WebsiteExtraInfoBtn iconClassName={link.icon} text={link.text} location={link.url} />
+                                    </ScaleUp>
+                                ))
+                            }
+                        </div>
+
+
                         {/* <InANutshell/> */}
         
                     </div>
+
     
 
 
-                    <div className={`container ${styles.imagesContainer}`}>
+                    {/* <div className={`container ${styles.imagesContainer}`}>
                         {projectContentData?.length > 0 &&
                             projectContentData.map((content, index) => {
                                 if (content.__component === "project-info.files") {
@@ -217,9 +234,102 @@ function ProjectDetail({personalInfo}) {
                                     )
                                 }
                             })}
-                    </div>
+                    </div> */}
 
-        
+
+
+                    {projectContentData?.length > 0 &&
+                            projectContentData.map((content, index) => {
+
+                                // Check if there are multiple images or video's for the bento grid
+                                if (content.__component === "project-info.files") {
+                                    // Check if the imagesVideos has content inside
+                                    if(content.imagesVideos.length > 0){
+                                        return (
+                                            <div className={`container ${styles.bentoGrid} ${styles.flexibleContent}`}>
+                                                { content.imagesVideos.map((imgVideo, i) => (
+                                                    <div
+                                                        style={{gridColumn: `span ${imgVideo.gridSizeHorizontal}`, gridRow: `span ${imgVideo.gridSizeVertical}`}}
+                                                        onClick={() => openLightboxOnSlide(imageSources.indexOf(`${process.env.REACT_APP_API_ROOT_URL}${imgVideo.imageVideo.data.attributes.url}`) +1)} 
+                                                        key={`project-img-${i}`}
+                                                    >
+                                                        {imgVideo.imageVideo.data.attributes.ext.match(/\.(jpg|jpeg|png|gif)$/i) ? (
+                                                            <img
+                                                                src={`${process.env.REACT_APP_API_ROOT_URL}${imgVideo.imageVideo.data?.attributes.url}`}
+                                                                alt={imgVideo.imageVideo.data?.attributes.alternativeText}
+                                                            />
+                                                        ) : (
+                                                            <video autoPlay loop muted playsInline>
+                                                                <source
+                                                                    src={`${process.env.REACT_APP_API_ROOT_URL}${imgVideo.imageVideo.data?.attributes.url}`}
+                                                                    type={imgVideo.imageVideo.data?.attributes.mime}
+                                                                />
+                                                            </video>
+                                                        )}
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        );
+                                    }
+                                
+                                    // Check if there is a big image or video
+                                    if(content.bigImgOrVideo !== null){
+                                        console.log(content.bigImgOrVideo.isFullWidthViewport)
+                                        return (
+                                            <div className={`${styles.flexibleContent} ${content.bigImgOrVideo.isFullWidthViewport ? styles.fullViewportWidth : "container"}`}>
+                                                <div className={styles.bigMedia}>
+                                                {content.bigImgOrVideo.imageVideo.data.attributes.ext.match(/\.(jpg|jpeg|png|gif)$/i) ? (
+                                                    <img
+                                                        style={{height: content.bigImgOrVideo.height !== null ? content.bigImgOrVideo.height : '100%'}}
+                                                        src={`${process.env.REACT_APP_API_ROOT_URL}${content.bigImgOrVideo.imageVideo.data?.attributes.url}`}
+                                                        alt={content.bigImgOrVideo.imageVideo.data?.attributes.alternativeText}
+                                                    />
+                                                ) : (
+                                                    <video 
+                                                        autoPlay 
+                                                        loop 
+                                                        muted 
+                                                        playsInline
+                                                        style={{height: content.bigImgOrVideo.height !== null ? content.bigImgOrVideo.height : '100%'}}
+                                                    >
+                                                        <source
+                                                            src={`${process.env.REACT_APP_API_ROOT_URL}${content.bigImgOrVideo.imageVideo.data?.attributes.url}`}
+                                                            type={content.bigImgOrVideo.imageVideo.data?.attributes.mime}
+                                                        />
+                                                    </video>
+                                                )}
+                                                </div>
+
+                                                
+                                            </div>
+                                        );
+                                    }
+                                } else {
+                                    // If the component is text
+                                    return (
+                                        
+
+                                            <div
+                                                className={`${styles.paragraphTextContainer} ${styles.flexibleContent} ${content.width === "width-100%" ? styles.bigImgVideo : styles.mediumImgVideo} container`}
+                                                key={`project-info-text-${index}`}
+                                            > 
+                                                <ReactMarkdown>{content.informationText}</ReactMarkdown>
+                                            </div> 
+                                       
+                                        
+                                    )
+                                }
+                                
+                                return null;
+                            })}
+                        {/* <div style={{gridColumn: "span 4", gridRow: "span 3"}}>Box 1</div>
+                        <div style={{gridColumn: "span 4", gridRow: "span 3"}}>Box 1</div>
+                        <div style={{gridColumn: "span 2", gridRow: "span 3"}}>Box 2</div>
+                        <div style={{gridColumn: "span 6", gridRow: "span 5"}}>Box 3</div>
+                        <div style={{gridColumn: "span 4", gridRow: "span 4"}}>Box 4</div>
+                        <div style={{gridColumn: "span 1", gridRow: "span 1"}}>Box 5</div>
+                        <div style={{gridColumn: "span 3", gridRow: "span 1"}}>Box 6</div> */}
+
         
                     <div className='container'>
                         <Cta ctaText={'Vind je dit een interessant project en wil je graag samenwerken?'} url={'/#contact'} btnText={'Stuur mij een berichtje'}/>

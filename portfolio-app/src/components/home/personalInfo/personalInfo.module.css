@@ -127,6 +127,7 @@
 
 .personalDataInfoContent .grid div .techImgContainer{
    margin: .5rem;
+   width: 50%;
 }
 
 
@@ -172,7 +173,16 @@
     .flexContainer{
         display: flex;
         gap: 2em;
+
+        /* justify-content: space-between;
+        align-items: flex-start; */
     }
+
+    /* .infoContainer {
+        flex: 1;
+        padding: 1em;
+    } */
+
 
 
     .personalDataHeader{
@@ -188,6 +198,21 @@
 
     .canvas3D{
         margin-top: 0;
+
+    }
+
+    .stickyCanvas {
+        position: sticky;
+        align-self: flex-start;
+        top: 0;
+        overflow-y: auto;
+        overflow: hidden;
+        top: 8rem;
+        padding: 0 1%;
+    }
+
+    .bottomCanvas {
+        position: static;
     }
 
   }

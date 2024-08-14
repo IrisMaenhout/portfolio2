@@ -38,6 +38,22 @@ export interface PersonalInfoContactInfo extends Schema.Component {
   };
 }
 
+export interface ProjectInfoBigImageOrVideo extends Schema.Component {
+  collectionName: 'components_project_info_big_image_or_videos';
+  info: {
+    displayName: 'Big image or video';
+    icon: 'picture';
+    description: '';
+  };
+  attributes: {
+    imageVideo: Attribute.Media;
+    isFullWidthViewport: Attribute.Boolean &
+      Attribute.Required &
+      Attribute.DefaultTo<false>;
+    height: Attribute.String;
+  };
+}
+
 export interface ProjectInfoDescription extends Schema.Component {
   collectionName: 'components_project_info_descriptions';
   info: {
@@ -67,6 +83,7 @@ export interface ProjectInfoFiles extends Schema.Component {
   };
   attributes: {
     imagesVideos: Attribute.Component<'project-info.images', true>;
+    bigImgOrVideo: Attribute.Component<'project-info.big-image-or-video'>;
   };
 }
 
@@ -78,13 +95,18 @@ export interface ProjectInfoImages extends Schema.Component {
   };
   attributes: {
     imageVideo: Attribute.Media;
-    ImgVideoSize: Attribute.Enumeration<['big', 'medium']>;
-    belongsToProcess: Attribute.Boolean &
+    gridSizeHorizontal: Attribute.Integer &
       Attribute.Required &
-      Attribute.DefaultTo<false>;
-    showProcessTitle: Attribute.Boolean &
+      Attribute.SetMinMax<{
+        max: 25;
+      }> &
+      Attribute.DefaultTo<1>;
+    gridSizeVertical: Attribute.Integer &
       Attribute.Required &
-      Attribute.DefaultTo<false>;
+      Attribute.SetMinMax<{
+        max: 25;
+      }> &
+      Attribute.DefaultTo<1>;
   };
 }
 
@@ -151,6 +173,7 @@ declare module '@strapi/strapi' {
       'header-nav.logo-site': HeaderNavLogoSite;
       'header-nav.nav-items': HeaderNavNavItems;
       'personal-info.contact-info': PersonalInfoContactInfo;
+      'project-info.big-image-or-video': ProjectInfoBigImageOrVideo;
       'project-info.description': ProjectInfoDescription;
       'project-info.files': ProjectInfoFiles;
       'project-info.images': ProjectInfoImages;

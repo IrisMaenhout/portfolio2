@@ -4,6 +4,7 @@ import styles from './projectsOverview.module.css';
 import ProjectCard from './projectCard/ProjectCard';
 import CategoryBtn from '../../global/btns/categoryBtn/CategoryBtn';
 import { Link, useLocation } from 'react-router-dom';
+import SlideUp from '../../global/animations/SlideUp';
 
 function ProjectsOverview({categoriesData, personalInfoData}) {
 
@@ -66,10 +67,10 @@ function ProjectsOverview({categoriesData, personalInfoData}) {
 
 
     return (
-        <div className={styles.projectsOverview} id={"projecten"}>
+        <section className={styles.projectsOverview} id={"projecten"}>
             <h2 className='gradientText'>Projecten</h2>
             
-            { useCategoryFilterProjects ?
+            { useCategoryFilterProjects &&
                 <div className={styles.filters}>
 
                     <CategoryBtn location={'all'} text={'All'} initialySelected={true}/>
@@ -88,9 +89,9 @@ function ProjectsOverview({categoriesData, personalInfoData}) {
 
                 </div>
             
-                :
+                // :
 
-                <div className={styles.noFilter}></div>
+                // <div className={styles.noFilter}></div>
             }
             
             <div className={styles.grid}>
@@ -100,16 +101,21 @@ function ProjectsOverview({categoriesData, personalInfoData}) {
                             <p>Geen projecten gevonden. Probeer een andere filter.</p>
                             :
                             filteredProjects?.map((projectData, i) => (
-                                <ProjectCard key={i} projectData={projectData} />
+                                // <SlideUp bounceNeeded={false} delay={i % 2 === 0 ? 100 : 200}  key={`project-${i}`}>
+                                    <ProjectCard projectData={projectData} />  
+                                // </SlideUp>
                             ))
                         : 
                         apiData?.map((projectData, i) => (
-                            <ProjectCard key={i} projectData={projectData} />
+                            // <SlideUp bounceNeeded={false} delay={i % 2 === 0 ? 100 : 200} key={`project-${i}`}>
+                                <ProjectCard projectData={projectData} />
+
+                            // </SlideUp>
                         ))
                 }
             </div>
            
-        </div>
+        </section>
     );
 }
 

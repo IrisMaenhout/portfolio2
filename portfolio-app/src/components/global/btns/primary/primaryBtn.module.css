@@ -1,25 +1,85 @@
 .primaryBtn{
     background-color: #FFA6FF;
-    color: #1E1849;
-    text-transform: uppercase;
     border-radius: 0.5rem;
     border: none;
-    padding: .8rem 1rem;
     cursor: pointer;
+
+    position: relative;
+}
+
+.primaryBtn .inner{
+    color: #1E1849;
+    text-transform: uppercase;
     font-weight: 400;
     font-size: 16px;
     letter-spacing: .1rem;
+    padding: .8rem 1rem;
+
+    border-radius: 0.5rem;
 }
 
-.primaryBtn:hover{
-    scale: 1.1;
-    background: rgb(173,74,173);
-    background: linear-gradient(30deg, rgb(182, 93, 182) 0%, rgb(239, 182, 239) 100%);
-}
 
 @media screen and (min-width: 600px) {
-    .primaryBtn{
-        font-size: 18px;
+    /* .primaryBtn .inner{
+        font-size: 20px;
+    } */
+
+
+    .primaryBtn:hover::before,
+    .primaryBtn:hover::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(
+        45deg,
+        /* #51D6AF, */
+        #d55df3,
+        #3531C8
+        
+    );
+    background-size: 400%;
+    z-index: -1;
+    animation: glow 6s linear infinite;
+    width: 100%;
+    border-radius: .5rem;
+    transition: 200ms;
+    }
+
+    @keyframes glow {
+        0% {
+        background-position: 0 0;
+        }
+    
+        50% {
+        background-position: 100% 0;
+        }
+    
+        100% {
+        background-position: 0 0;
+        }
+    }
+
+    .primaryBtn:hover::after{
+        filter: blur(18px);
+        transform: translate3d(0, 0, 0); /* For Safari */
+        
+    }
+
+    .primaryBtn:hover{
+        scale: 1.1;
+        transition: 200ms;
+    }
+
+
+    .primaryBtn:hover .inner{
+        color: #EAE5F1;
+        background-color: #5a008aaf;
+        /* width: 100%; */
+        margin: .15em 0;
+        transition: 200ms;
     }
   
   

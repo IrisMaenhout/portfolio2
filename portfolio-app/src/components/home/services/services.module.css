@@ -5,14 +5,24 @@
     width: 100%;
     display: grid;
     gap: 4em;
-    grid-template-columns: repeat(3, minmax(12em, 1fr));
+    /* grid-template-columns: repeat(3, minmax(12em, 1fr)); */
 }
 
-.servicesContainer div {
+.servicesContainer .service {
   width: 100%;
-  gap: 2em;
+  /* gap: 2em; */
   background-color: rgba(42, 40, 105, 0.6);
   border-radius: .4rem;
+  padding: 1rem 0;
+  
+}
+
+.twoServices{
+    grid-template-columns: repeat(2, minmax(12em, 1fr));
+}
+
+.threeOrMoreServices{
+    grid-template-columns: repeat(3, minmax(12em, 1fr));
 }
 
 
@@ -24,7 +34,7 @@
     margin: 0;
     margin-bottom: 2rem;
 }
-.servicesContainer div i{
+.servicesContainer .service i{
     color: #AB81D0;
     font-weight: 400;
     font-size: 64px;
@@ -54,14 +64,16 @@
 }
 
 
+
+
 @media screen and (max-width: 992px) {
-    .servicesContainer  {
+    .servicesContainer, .threeOrMoreServices  {
         grid-template-columns: repeat(2, minmax(12em, 1fr));
     }
 }
   
 @media screen and (max-width: 600px) {
-    .servicesContainer {
+    .servicesContainer, .twoServices, .threeOrMoreServices {
         grid-template-columns: repeat(1, minmax(12em, 1fr));
     }
 }

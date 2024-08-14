@@ -1,146 +1,146 @@
-.card{
+
+.card {
     text-decoration: none;
     transition: filter 0.5s ease-in-out;
-
-    /* filter: drop-shadow(.5rem 0 1em rgba(54, 49, 200, 0.4)); */
 }
 
+.card .hide{
+    display: none;
+    /* animation: vanish .25s; */
+}
 
+.card .show{
+    display: block;
+    /* animation: appear .25s; */
+}
 
-
-.projectCardhoverImg{
+.projectCardhoverImg {
     position: relative;
-    transition: padding 0.5s;
+    height: fit-content;
+    width: fit-content;
+    z-index: -1;
+    transition: all 0.5s ease-in-out; /* Added transition */
 }
 
-  
 .projectCardhoverImg svg {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1; /* Ensure the SVG is behind other content */
-}
-
-.card:hover .projectCardhoverImg{
-    /* background-image: url( '/public/svg/projectHoverImg.svg' ); */
-
-    width: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    /* padding: 1rem 0; */
-    padding: .5rem;
-}
-
-.card:hover .projectCardhoverImg .image{
-    transform: scale(0.9);
-    transition: transform 0.5s;
+    width: calc(100% + 0.2rem);
+    margin: 0;
+    padding: 0;
 }
 
 
-.image{
-    /* background-color: #1E1849; */
+
+.image {
     height: 20rem;
     border-radius: .4em;
     display: flex;
-    justify-content: flex-end;
-    align-items: end;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-
+    transition: background-size 0.5s ease-in-out; /* Added transition */
 }
 
-
-.projectCardhoverContent{
-    background: transparent;
-    transition: padding 0.5s;
-
-}
-
-.card:hover .projectCardhoverContent{
-    background-image: url( '/public/svg/projectHoverContent.svg' );
-
+.hoverVideo {
+    -webkit-mask-image: url("./imageHoverOutline.svg");
+    mask-image: url("./imageHoverOutline.svg");
+    -webkit-mask-size: cover;
+    mask-size: cover;
+    /* mask-clip: ; */
+    mask-repeat: no-repeat;
+    -webkit-mask-repeat: no-repeat;
+    margin: 0;
+    padding: 0;
+    border-radius: 0;
+    height: 100%;
     width: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    padding: .5rem;
-    margin-top: -0.2rem;
+    transition: all 0.5s ease-in-out; /* Added transition */
 }
 
-.card:hover .cardContent{
-    padding: 0 2em;
-}
-
-
-.btns{
+.categoryHashtags {
     display: flex;
     gap: 1em;
-    margin: 2em;
+    margin-top: .5em;
+    margin-bottom: 2em;
 }
 
-
-.btns a{
-    display: block;
-    border-radius: 100%;
-    width: 4rem;
-    height: 4rem;
-    text-decoration: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: transform 0.5s, background-color 0.5s;
-}
-
-.btns a:hover{
-    transform: scale(1.1);
-    transition: 1s ease-in-out;
-    background-color: #FFA6FF;
-}
-
-.btns a:hover i{
-    color: #0C0118;
-}
-
-.btns i{
-    font-size: 28px;
-}
-
-.websiteLink{
-    background-color: #EAE5F1;
-}
-
-.websiteLink i{
-    color: #301449;
-}
-
-.readMoreLink{
-    background-color: #0C0118;
-}
-
-.readMoreLink i{
-    color: #EAE5F1;
-}
-
-
-.cardContent h3{
-    text-transform: none;
-    margin-bottom: 0em;
-}
-
-.categoryHashtags{
-    display: flex;
-    gap: 1em;
-    margin-top: 2em;
-    margin-bottom: 4em;
-}
-
-.categoryHashtags i{
+.categoryHashtags i {
     display: block;
     color: #51D6AF;
     font-weight: 200;
     font-size: 16px;
+}
+
+.cardContent h3{
+    margin-bottom: 1.5rem;
+}
+
+
+.card .projectCardhoverContent {
+    padding-top: .5rem;
+    width: calc(100% + 0.2rem);
+    padding-bottom: 0;
+    margin-top: -0.45rem;
+    z-index: 10;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes vanish {
+    from {
+        display: block;
+        opacity: 1;
+    }
+    to {
+        display: none;
+        opacity: 0;
+    }
+}
+
+
+
+
+@media screen and (min-width: 600px) {
+    
+    /* Hovers */
+    .card:hover {
+        filter: drop-shadow(.5rem .5rem 1em rgba(54, 49, 200, 0.4));
+    }
+    
+    .card:hover .projectCardhoverContent {
+        background-image: url('/public/svg/projectHoverContent.svg');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        /* padding-top: .5rem; */
+        /* width: calc(100% + 0.2rem); */
+        /* padding-bottom: 0;
+        margin-top: -0.45rem;
+        z-index: 10; */
+        transition: all 0.5s ease-in-out; /* Added transition */
+    }
+    
+    .card:hover .cardContent {
+        padding: 0 2rem 0.5rem 2rem;
+        transition: padding 0.5s ease-in-out; /* Added transition */
+    }
+
+    .onOtherBrowsers .projectCardhoverImg svg{
+        height: 100%;
+    }
+    
+    .onFirefox .projectCardhoverImg svg{
+        height: auto;
+    }
+
+    
 }
