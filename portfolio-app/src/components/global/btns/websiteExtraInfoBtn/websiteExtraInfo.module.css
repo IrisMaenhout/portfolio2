@@ -16,14 +16,6 @@
 }
 
 
-.externalLink:hover{
-    background-color: #161041;
-    border: 2px solid #3531C8;
-    scale: 1.1;
-    box-shadow: 10px 10px 20px #3631c890;
-
-}
-
 .externalLink i, .externalLink p{
     font-weight: 600;
 }
@@ -46,5 +38,13 @@
         align-items: center;
         white-space: pre-line;
         text-align: center;
+    }
+
+    .externalLink:hover{
+        background-color: #161041;
+        border: 2px solid #3531C8;
+        scale: 1.1;
+        box-shadow: 10px 10px 20px #3631c890;
+    
     }
 }

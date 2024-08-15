@@ -102,13 +102,13 @@ function ProjectsOverview({categoriesData, personalInfoData}) {
                             :
                             filteredProjects?.map((projectData, i) => (
                                 // <SlideUp bounceNeeded={false} delay={i % 2 === 0 ? 100 : 200}  key={`project-${i}`}>
-                                    <ProjectCard projectData={projectData} />  
+                                    <ProjectCard projectData={projectData} key={`project-${i}`} />  
                                 // </SlideUp>
                             ))
                         : 
                         apiData?.map((projectData, i) => (
                             // <SlideUp bounceNeeded={false} delay={i % 2 === 0 ? 100 : 200} key={`project-${i}`}>
-                                <ProjectCard projectData={projectData} />
+                                <ProjectCard projectData={projectData} key={`project-${i}`} />
 
                             // </SlideUp>
                         ))

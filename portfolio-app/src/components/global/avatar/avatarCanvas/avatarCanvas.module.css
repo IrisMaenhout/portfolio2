@@ -19,7 +19,7 @@
     cursor: pointer;
     /* border: 1px solid #51D6AF; */
     border-radius: 1rem;
-    animation: animateOutline 4s ease infinite;
+    animation: animateOutline 2s ease infinite;
     /* animation: name duration timing-function delay iteration-count direction fill-mode; */
 
     background-color: #260b44;

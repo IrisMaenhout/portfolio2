@@ -568,6 +568,11 @@
     intl-messageformat "10.3.4"
     tslib "^2.4.0"
 
+"@googlemaps/js-api-loader@^1.15.1":
+  version "1.16.8"
+  resolved "https://registry.npmjs.org/@googlemaps/js-api-loader/-/js-api-loader-1.16.8.tgz"
+  integrity sha512-CROqqwfKotdO6EBjZO/gQGVTbeDps5V7Mt9+8+5Q+jTg5CRMi3Ii/L9PmV3USROrt2uWxtGzJHORmByxyo9pSQ==
+
 "@internationalized/date@^3.4.0", "@internationalized/date@^3.5.2":
   version "3.5.2"
   resolved "https://registry.npmjs.org/@internationalized/date/-/date-3.5.2.tgz"
@@ -1504,7 +1509,7 @@
     "@strapi/utils" "4.13.7"
     fs-extra "10.0.0"
 
-"@strapi/strapi@^4.3.4", "@strapi/strapi@^4.4.0", "@strapi/strapi@^4.9.0", "@strapi/strapi@4.13.7":
+"@strapi/strapi@^4.0.0", "@strapi/strapi@^4.3.4", "@strapi/strapi@^4.4.0", "@strapi/strapi@^4.9.0", "@strapi/strapi@4.13.7":
   version "4.13.7"
   resolved "https://registry.npmjs.org/@strapi/strapi/-/strapi-4.13.7.tgz"
   integrity sha512-t7HaENDxXJEKg1Lx+9lW5ifWckm5GRAp0tJmHtbzlkgDENpCJJPrcEa8mTiD8JNZrW3JUZV2TeHMTT4znKWleQ==
@@ -8138,6 +8143,13 @@ std-env@^3.0.1:
   version "3.4.3"
   resolved "https://registry.npmjs.org/std-env/-/std-env-3.4.3.tgz"
   integrity sha512-f9aPhy8fYBuMN+sNfakZV18U39PbalgjXG3lLB9WkaYTxijru61wb57V9wxxNthXM5Sd88ETBWi29qLAsHO52Q==
+
+strapi-location-field-plugin@^1.2.3:
+  version "1.2.3"
+  resolved "https://registry.npmjs.org/strapi-location-field-plugin/-/strapi-location-field-plugin-1.2.3.tgz"
+  integrity sha512-Eq5Llf2ZGUa+jETRr10Pvg+865uORe4kyw4tCyVf/8AACZD3NkqJ0Sgm5ue58fbCsNOXGXYhI07gYkawYdDNsw==
+  dependencies:
+    "@googlemaps/js-api-loader" "^1.15.1"
 
 strapi-plugin-multi-select@^1.2.2:
   version "1.2.3"

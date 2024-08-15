@@ -22,6 +22,10 @@
     },
     "phoneNr": {
       "type": "string"
+    },
+    "myAddress": {
+      "type": "customField",
+      "customField": "plugin::location-field.location"
     }
   }
 }

@@ -172,7 +172,7 @@ function ProjectDetail({personalInfo}) {
                                 ]
                                 .filter(link => link.url !== null)
                                 .map((link, index) => (
-                                    <ScaleUp key={link.url} delay={400 + index * 200}>
+                                    <ScaleUp key={`WebsiteExtraInfoBtn${index}`} delay={400 + index * 200}>
                                         <WebsiteExtraInfoBtn iconClassName={link.icon} text={link.text} location={link.url} />
                                     </ScaleUp>
                                 ))

@@ -10,6 +10,7 @@ function ContactCard({apiData}) {
             : null
         : null;
 
+
     return (
         
         <div className={styles.card}>
@@ -31,7 +32,15 @@ function ContactCard({apiData}) {
 
                         <div className={styles.phoneNrEmailDiv}>
                             <i className="fa-solid fa-phone"></i>
-                            <a href="tel:+32 4325 2909">{contactData.phoneNr}</a>
+                            <a href={`tel:${contactData.phoneNr}`}>{contactData.phoneNr}</a>
+                        </div>
+                    }
+                    
+                    { (contactData !== null && contactData.myAddress !== null) &&
+                        
+                        <div className={styles.phoneNrEmailDiv}>
+                            <i className="fa-solid fa-location-dot"></i>
+                            <a href={`https://www.google.com/maps/place/${contactData.myAddress.details.formatted_address}`} target="_blank" rel="noreferrer">{contactData.myAddress.description}</a>
                         </div>
                     }
 

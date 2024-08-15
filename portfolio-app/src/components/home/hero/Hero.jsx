@@ -73,7 +73,7 @@ function Hero({apiData}) {
 
 
                     <div className={styles.btnsContainer}>
-                        <a href={"#contact"}>
+                        <a href={"#contact"} className='primairBtnLink'>
                             <PrimaryBtn text={'Neem contact op'}/>
                         </a>
                     </div>

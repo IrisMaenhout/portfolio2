@@ -128,7 +128,7 @@ function PersonalInfo({ apiData }) {
                         {(data !== null && data.cv.data !== null) &&
                             <div className={styles.cvBtnContainer}>
                                 <ScaleUp bounceNeeded={true}>
-                                    <a href={`${process.env.REACT_APP_API_ROOT_URL}${data.cv.data.attributes.url}`} rel="noreferrer" target="_blank">
+                                    <a href={`${process.env.REACT_APP_API_ROOT_URL}${data.cv.data.attributes.url}`} rel="noreferrer" target="_blank" className='primairBtnLink'>
                                         <PrimaryBtn text={"Bekijk mijn CV"} />
                                     </a>
                                 </ScaleUp>

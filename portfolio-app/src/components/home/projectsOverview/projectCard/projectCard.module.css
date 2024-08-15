@@ -112,11 +112,11 @@
 @media screen and (min-width: 600px) {
     
     /* Hovers */
-    .card:hover {
+    .cardHover {
         filter: drop-shadow(.5rem .5rem 1em rgba(54, 49, 200, 0.4));
     }
     
-    .card:hover .projectCardhoverContent {
+    .cardHover .projectCardhoverContent {
         background-image: url('/public/svg/projectHoverContent.svg');
         background-position: center;
         background-repeat: no-repeat;
@@ -129,7 +129,7 @@
         transition: all 0.5s ease-in-out; /* Added transition */
     }
     
-    .card:hover .cardContent {
+    .cardHover .cardContent {
         padding: 0 2rem 0.5rem 2rem;
         transition: padding 0.5s ease-in-out; /* Added transition */
     }

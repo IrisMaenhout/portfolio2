@@ -46,6 +46,7 @@
 
 .grid div .techImgContainer{
    margin: .5rem;
+   width: 50%;
 }
 
 .clossedTechnologiesContainer{

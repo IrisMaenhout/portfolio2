@@ -92,6 +92,10 @@ h5{
   padding: 3em 10%;
 }
 
+.primairBtnLink{
+  text-decoration: none;
+}
+
 @media screen and (min-width: 600px) {
     
   .container {

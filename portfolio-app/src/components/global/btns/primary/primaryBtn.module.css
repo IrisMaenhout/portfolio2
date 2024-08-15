@@ -5,6 +5,9 @@
     cursor: pointer;
 
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .primaryBtn .inner{
@@ -16,7 +19,10 @@
     padding: .8rem 1rem;
 
     border-radius: 0.5rem;
+    margin: 0;
+    
 }
+
 
 
 @media screen and (min-width: 600px) {

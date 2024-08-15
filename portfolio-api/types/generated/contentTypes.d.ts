@@ -835,6 +835,7 @@ export interface ApiProjectProject extends Schema.CollectionType {
     hideWebsiteUrlOnMobile: Attribute.Boolean &
       Attribute.Required &
       Attribute.DefaultTo<false>;
+    hoverVideo: Attribute.Media & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

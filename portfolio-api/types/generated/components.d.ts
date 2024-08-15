@@ -35,6 +35,8 @@ export interface PersonalInfoContactInfo extends Schema.Component {
     linkedInUrl: Attribute.String;
     messengerUrl: Attribute.String;
     phoneNr: Attribute.String;
+    myAddress: Attribute.JSON &
+      Attribute.CustomField<'plugin::location-field.location'>;
   };
 }
 
