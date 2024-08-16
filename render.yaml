@@ -3,7 +3,7 @@ services:
     name: strapi
     env: node
     plan: starter
-    buildCommand: cd portfolio-api && npm run install && npm run build
+    buildCommand: cd portfolio-api && npm install && npm run build
     startCommand: cd portfolio-api && rsync -a public/ /data/public/ && npm run start
     healthCheckPath: /_health
     autoDeploy: false
