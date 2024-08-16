@@ -3,8 +3,8 @@ services:
     name: strapi
     env: node
     plan: starter
-    buildCommand: yarn install && yarn build
-    startCommand: rsync -a public/ /data/public/ && yarn start
+    buildCommand: cd portfolio-api && yarn install && yarn build
+    startCommand: cd portfolio-api && rsync -a public/ /data/public/ && yarn start
     healthCheckPath: /_health
     autoDeploy: false
     disk:
@@ -24,3 +24,5 @@ services:
         generateValue: true
       - key: APP_KEYS
         generateValue: true
+      - key: GOOGLE_MAPS_API_KEY
+        value: AIzaSyCfVpcvS7o1GeLq0HKe4Yy-D87JQqU-1Yo
