@@ -36,7 +36,7 @@ function ContactCard({apiData}) {
                         </div>
                     }
                     
-                    { (contactData !== null && contactData.myAddress !== null) &&
+                    { (contactData !== null && contactData.myAddress) &&
                         
                         <div className={styles.phoneNrEmailDiv}>
                             <i className="fa-solid fa-location-dot"></i>
