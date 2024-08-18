@@ -19,7 +19,7 @@ function ContactCard({apiData}) {
                 <div className={styles.contactInfo}>
                     <h5>Contact</h5>
                     <h2 className='gradientText'>Zin om samen te werken?</h2>
-                    <p>Contacteer mij gerust en laten we er samen in vliegen.</p>
+                    <p>Contacteer mij dan gerust.</p>
 
                     { (contactData !== null && contactData.email !== null) &&
                         <div className={styles.phoneNrEmailDiv}>

@@ -3,7 +3,7 @@
     flex-direction: column;
     background: rgb(24,13,46);
     background: linear-gradient(5deg, rgba(24,13,46,1) 0%, rgba(74,34,106,0.6) 100%);
-    padding: 2em;
+    /* padding: 2em; */
     border-radius: 0.5em;
     gap: 4em;
 }
@@ -18,11 +18,16 @@
 
 
 .card p{
-    margin-bottom: 2em;
+    margin-bottom: 4rem;
+    font-size: 16px;
+    font-style: italic;
+    margin-top: -.5rem;
 }
 
 .content{
     width: 100%;
+    margin: 4em;
+    margin-right: 0;
 }
 
 .phoneNrEmailDiv a{
@@ -30,8 +35,9 @@
    text-decoration: underline;
 }
 .phoneNrEmailDiv i{
-    margin-right: 1rem;
+    margin-right: 1.5rem;
     font-size: x-large;
+    opacity: .8;
 }
 
 .phoneNrEmailDiv+.phoneNrEmailDiv{
@@ -72,11 +78,15 @@
 
 
 .image{
-    display: block;
+    display: none;
     /* background-color: #140723; */
     width: 100%;
     min-height: 18rem;
     cursor: default;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    border-radius: 0.5em;
 }
 
 
@@ -87,11 +97,12 @@
     }
 
     .content{
-        width: 60%;
+        width: 55%;
     }
 
     .image{
-        width: 40%;
+        width: 45%;
+        display: block;
     }
 
 
