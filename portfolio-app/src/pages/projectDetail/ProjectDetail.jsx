@@ -63,8 +63,11 @@ function ProjectDetail({personalInfo}) {
                 imageSources.push(`${process.env.REACT_APP_API_ROOT_URL}${imgVideo.imageVideo.data?.attributes.url}`);
             });
             
-            // Big images/video's
-            imageSources.push(`${process.env.REACT_APP_API_ROOT_URL}${content.bigImgOrVideo.imageVideo.data?.attributes.url}`);
+            if(content.bigImgOrVideo){
+                // Big images/video's
+                imageSources.push(`${process.env.REACT_APP_API_ROOT_URL}${content.bigImgOrVideo.imageVideo.data?.attributes.url}`);
+            }
+            
             
         }
     });
