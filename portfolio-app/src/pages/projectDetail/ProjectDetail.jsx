@@ -277,7 +277,10 @@ function ProjectDetail({personalInfo}) {
                                         console.log(content.bigImgOrVideo.isFullWidthViewport)
                                         return (
                                             <div className={`${styles.flexibleContent} ${content.bigImgOrVideo.isFullWidthViewport ? styles.fullViewportWidth : "container"}`}>
-                                                <div className={styles.bigMedia}>
+                                                <div 
+                                                    className={styles.bigMedia}
+                                                    onClick={() => openLightboxOnSlide(imageSources.indexOf(`${process.env.REACT_APP_API_ROOT_URL}${content.bigImgOrVideo.imageVideo.data.attributes.url}`) +1)} 
+                                                >
                                                 {content.bigImgOrVideo.imageVideo.data.attributes.ext.match(/\.(jpg|jpeg|png|gif)$/i) ? (
                                                     <img
                                                         style={{height: content.bigImgOrVideo.height !== null ? content.bigImgOrVideo.height : '100%'}}
