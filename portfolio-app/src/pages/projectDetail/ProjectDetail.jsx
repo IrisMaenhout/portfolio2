@@ -58,9 +58,14 @@ function ProjectDetail({personalInfo}) {
     // Iterate over the projectContentData to extract the image URLs
     projectContentData?.forEach((content) => {
         if (content.__component === "project-info.files") {
+            // Bento grid images/video's
             content.imagesVideos.forEach((imgVideo) => {
                 imageSources.push(`${process.env.REACT_APP_API_ROOT_URL}${imgVideo.imageVideo.data?.attributes.url}`);
             });
+            
+            // Big images/video's
+            imageSources.push(`${process.env.REACT_APP_API_ROOT_URL}${content.bigImgOrVideo.imageVideo.data?.attributes.url}`);
+            
         }
     });
 
@@ -289,9 +294,7 @@ function ProjectDetail({personalInfo}) {
                                                     />
                                                 ) : (
                                                     <video 
-                                                        autoPlay 
-                                                        loop 
-                                                        muted 
+                                                        controls
                                                         playsInline
                                                         style={{height: content.bigImgOrVideo.height !== null ? content.bigImgOrVideo.height : '100%'}}
                                                     >
