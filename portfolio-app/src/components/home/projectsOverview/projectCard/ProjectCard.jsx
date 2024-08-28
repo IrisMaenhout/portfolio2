@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import styles from './projectCard.module.css';
 import { Link } from 'react-router-dom';
 import { isFirefox } from 'react-device-detect';
@@ -10,16 +10,37 @@ function ProjectCard({ className, projectData }) {
     const videoHoverRef = useRef(null);
     const hoverTimeoutRef = useRef(null); // Ref to store the timeout ID
 
+    useEffect(() => {
+        if (videoHoverRef.current) {
+            videoHoverRef.current.load();  // This ensures the video is loaded
+        }
+    }, []);
+
+    useEffect(() => {
+        if (videoHoverRef.current) {
+            const video = videoHoverRef.current;
+    
+            // const handleCanPlayThrough = () => {
+            //     console.log('Video is ready to play without buffering.');
+            // };
+    
+            // video.addEventListener('canplaythrough', handleCanPlayThrough);
+            video.load();  // Load the video initially
+    
+            // return () => {
+            //     video.removeEventListener('canplaythrough', handleCanPlayThrough);
+            // };
+        }
+    }, []);
+
     const handleMouseEnter = () => {
-        // Set a timeout to change the cardHover state after a delay (e.g., 2 seconds)
         hoverTimeoutRef.current = setTimeout(() => {
             setCardHover(true);
             videoHoverRef.current.play();
-        }, 200); // Adjust the delay as needed (2000ms = 2 seconds)
+        }, 200); // Adjust the delay as needed
     };
 
     const handleMouseLeave = () => {
-        // Clear the timeout if the user leaves early
         clearTimeout(hoverTimeoutRef.current);
         setCardHover(false);
         videoHoverRef.current.pause();
