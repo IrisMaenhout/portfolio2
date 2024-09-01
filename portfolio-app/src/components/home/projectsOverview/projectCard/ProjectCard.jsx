@@ -16,22 +16,22 @@ function ProjectCard({ className, projectData }) {
         }
     }, []);
 
-    useEffect(() => {
-        if (videoHoverRef.current) {
-            const video = videoHoverRef.current;
+    // useEffect(() => {
+    //     if (videoHoverRef.current) {
+    //         const video = videoHoverRef.current;
     
-            // const handleCanPlayThrough = () => {
-            //     console.log('Video is ready to play without buffering.');
-            // };
+    //         // const handleCanPlayThrough = () => {
+    //         //     console.log('Video is ready to play without buffering.');
+    //         // };
     
-            // video.addEventListener('canplaythrough', handleCanPlayThrough);
-            video.load();  // Load the video initially
+    //         // video.addEventListener('canplaythrough', handleCanPlayThrough);
+    //         video.load();  // Load the video initially
     
-            // return () => {
-            //     video.removeEventListener('canplaythrough', handleCanPlayThrough);
-            // };
-        }
-    }, []);
+    //         // return () => {
+    //         //     video.removeEventListener('canplaythrough', handleCanPlayThrough);
+    //         // };
+    //     }
+    // }, []);
 
     const handleMouseEnter = () => {
         hoverTimeoutRef.current = setTimeout(() => {
